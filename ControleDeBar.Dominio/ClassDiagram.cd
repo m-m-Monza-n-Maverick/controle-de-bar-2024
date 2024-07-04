@@ -25,9 +25,6 @@
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAA=</HashCode>
       <FileName>Mesa.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Conta" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="ControleDeBar.Dominio.Conta">
     <Position X="1.25" Y="4" Width="1.5" />
