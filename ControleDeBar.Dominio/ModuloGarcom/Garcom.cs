@@ -1,30 +1,25 @@
 ﻿using ControleDeBar.Dominio.Compartilhado;
+using ControleDeBar.Dominio.Compartilhado.Extensions;
 namespace ControleDeBar.Dominio.ModuloGarcom
 {
-    public class Garcom : EntidadeBase
+    public class Garcom(string nome) : EntidadeBase
     {
-        public string Nome { get; set; }
-        public int Id { get; set; }
+        public string Nome { get; set; } = nome;
 
-        public Garcom()
-        {
-            
-        }
-        public Garcom(string nome, int id)
-        {
-            Nome = nome;
-            Id = id;
-            
-        }
-
-        public override List<string> Validar()
-        {
-            throw new NotImplementedException();
-        }
-
+        #region Overrides
         public override void AtualizarRegistro(EntidadeBase novoRegistro)
         {
-            throw new NotImplementedException();
+            Garcom atualizado = (Garcom)novoRegistro;
+            Nome = atualizado.Nome;
         }
+        public override List<string> Validar()
+        {
+            List<string> erros = [];
+            VerificaNulo(ref erros, Nome, "Nome");
+
+            return erros;
+        }
+        public override string ToString() => Nome.ToTitleCase();
+        #endregion
     }
 }

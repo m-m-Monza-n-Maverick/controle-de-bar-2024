@@ -1,7 +1,8 @@
-﻿using ControleDeBar.Dominio.ModuloGarcom;
+﻿using ControladeDeBar.Infra.Orm.Compartilhado;
+using ControleDeBar.Dominio.ModuloGarcom;
 namespace ControladeDeBar.Infra.SQL.ModuloGarcom
 {
-    public class RepositorioGarcomEmOrm(GeradorTestesDbContext dbContext) : IRepositorioGarcom
+    public class RepositorioGarcomEmOrm(ControleDeBarDbContext dbContext) : IRepositorioGarcom
     {
         public void Cadastrar(Garcom garcom)
         {
@@ -37,7 +38,7 @@ namespace ControladeDeBar.Infra.SQL.ModuloGarcom
             return true;
         }
 
-        public Garcom SelecionarPorId(int id) => dbContext.Garcoms.Find(id)!;
-        public List<Garcom> SelecionarTodos() => dbContext.Garcoms.ToList();
+        public Garcom SelecionarPorId(int id) => dbContext.Garcons.Find(id)!;
+        public List<Garcom> SelecionarTodos() => [.. dbContext.Garcons];
     }
 }

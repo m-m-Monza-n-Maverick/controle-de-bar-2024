@@ -16,7 +16,6 @@ namespace ControladeDeBar.Infra.Orm.Compartilhado
 
             base.OnConfiguring(optionsBuilder);
         }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Garcom>(garcomBuilder =>

@@ -11,21 +11,18 @@
   <ItemGroup>
     <Compile Remove="ModuloBar\**" />
     <Compile Remove="ModuloConta\**" />
-    <Compile Remove="ModuloGarcom\**" />
     <Compile Remove="ModuloMesa\**" />
     <Compile Remove="ModuloPedido\**" />
     <Compile Remove="ModuloProduto\**" />
     <Compile Remove="Resources\**" />
     <EmbeddedResource Remove="ModuloBar\**" />
     <EmbeddedResource Remove="ModuloConta\**" />
-    <EmbeddedResource Remove="ModuloGarcom\**" />
     <EmbeddedResource Remove="ModuloMesa\**" />
     <EmbeddedResource Remove="ModuloPedido\**" />
     <EmbeddedResource Remove="ModuloProduto\**" />
     <EmbeddedResource Remove="Resources\**" />
     <None Remove="ModuloBar\**" />
     <None Remove="ModuloConta\**" />
-    <None Remove="ModuloGarcom\**" />
     <None Remove="ModuloMesa\**" />
     <None Remove="ModuloPedido\**" />
     <None Remove="ModuloProduto\**" />
@@ -40,6 +37,21 @@
   <ItemGroup>
     <ProjectReference Include="..\ControladeDeBar.Infra.SQL\ControladeDeBar.Infra.Orm.csproj" />
     <ProjectReference Include="..\ControleDeBar.Dominio\ControleDeBar.Dominio.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>
