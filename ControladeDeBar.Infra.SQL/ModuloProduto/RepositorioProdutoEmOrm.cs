@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ControladeDeBar.Infra.SQL.ModuloPedido
+namespace ControladeDeBar.Infra.SQL.ModuloProduto
 {
-    internal class RepositorioPedidoEmSQL
+    internal class RepositorioProdutoEmOrm
     {
     }
 }

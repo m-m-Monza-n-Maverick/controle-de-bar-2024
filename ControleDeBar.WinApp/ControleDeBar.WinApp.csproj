@@ -9,18 +9,37 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ControladeDeBar.Infra.SQL\ControladeDeBar.Infra.SQL.csproj" />
-    <ProjectReference Include="..\ControleDeBar.Dominio\ControleDeBar.Dominio.csproj" />
+    <Compile Remove="ModuloBar\**" />
+    <Compile Remove="ModuloConta\**" />
+    <Compile Remove="ModuloGarcom\**" />
+    <Compile Remove="ModuloMesa\**" />
+    <Compile Remove="ModuloPedido\**" />
+    <Compile Remove="ModuloProduto\**" />
+    <Compile Remove="Resources\**" />
+    <EmbeddedResource Remove="ModuloBar\**" />
+    <EmbeddedResource Remove="ModuloConta\**" />
+    <EmbeddedResource Remove="ModuloGarcom\**" />
+    <EmbeddedResource Remove="ModuloMesa\**" />
+    <EmbeddedResource Remove="ModuloPedido\**" />
+    <EmbeddedResource Remove="ModuloProduto\**" />
+    <EmbeddedResource Remove="Resources\**" />
+    <None Remove="ModuloBar\**" />
+    <None Remove="ModuloConta\**" />
+    <None Remove="ModuloGarcom\**" />
+    <None Remove="ModuloMesa\**" />
+    <None Remove="ModuloPedido\**" />
+    <None Remove="ModuloProduto\**" />
+    <None Remove="Resources\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ModuloConta\" />
-    <Folder Include="ModuloBar\" />
-    <Folder Include="ModuloGarcom\" />
-    <Folder Include="ModuloMesa\" />
-    <Folder Include="ModuloPedido\" />
-    <Folder Include="ModuloProduto\" />
-    <Folder Include="Resources\" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ControladeDeBar.Infra.SQL\ControladeDeBar.Infra.Orm.csproj" />
+    <ProjectReference Include="..\ControleDeBar.Dominio\ControleDeBar.Dominio.csproj" />
   </ItemGroup>
 
 </Project>

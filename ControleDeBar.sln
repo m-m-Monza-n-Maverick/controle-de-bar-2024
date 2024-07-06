@@ -11,15 +11,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Infraestrutura", "3. Inf
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControleDeBar.Dominio", "ControleDeBar.Dominio\ControleDeBar.Dominio.csproj", "{D29AEAC0-ECD5-49B9-BD15-94DB0FBB0534}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControleDeBar.WinApp", "ControleDeBar.WinApp\ControleDeBar.WinApp.csproj", "{DDE02D2C-641E-405A-B4D1-1CD17118419F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControleDeBar.WinApp", "ControleDeBar.WinApp\ControleDeBar.WinApp.csproj", "{DDE02D2C-641E-405A-B4D1-1CD17118419F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.1 Arquivos", "3.1 Arquivos", "{FE58297C-76C7-415D-9848-692B5C4CA5A5}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.2 SQL", "3.2 SQL", "{D2B9823A-F9B6-438F-A876-AD6BE59D6076}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.2 ORM", "3.2 ORM", "{D2B9823A-F9B6-438F-A876-AD6BE59D6076}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControleDeBar.Infra.Arquivo", "ControleDeBar.Infra.Arquivo\ControleDeBar.Infra.Arquivo.csproj", "{B1C2F3D7-E3B5-40B7-AD28-BDCA1C245EDC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControleDeBar.Infra.Arquivo", "ControleDeBar.Infra.Arquivo\ControleDeBar.Infra.Arquivo.csproj", "{B1C2F3D7-E3B5-40B7-AD28-BDCA1C245EDC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControladeDeBar.Infra.SQL", "ControladeDeBar.Infra.SQL\ControladeDeBar.Infra.SQL.csproj", "{BC65CE11-0BDF-48CC-9802-C980D728F11E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControladeDeBar.Infra.Orm", "ControladeDeBar.Infra.SQL\ControladeDeBar.Infra.Orm.csproj", "{BC65CE11-0BDF-48CC-9802-C980D728F11E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
