@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿using ControleDeBar.Dominio.Compartilhado;
 namespace ControleDeBar.Dominio.ModuloGarcom
 {
     public class Garcom : EntidadeBase
@@ -19,6 +15,16 @@ namespace ControleDeBar.Dominio.ModuloGarcom
             Nome = nome;
             Id = id;
             
+        }
+
+        public override List<string> Validar()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void AtualizarRegistro(EntidadeBase novoRegistro)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ControleDeBar.Dominio.ModuloGarcom
+﻿namespace ControleDeBar.Dominio.ModuloGarcom
 {
-    internal class IRepositorioGarcom
+    public interface IRepositorioGarcom
     {
+        void Cadastrar(Garcom garcom);
+        bool Editar(int id, Garcom garcom);
+        bool Excluir(int id);
+        Garcom SelecionarPorId(int id);
+        List<Garcom> SelecionarTodos();
     }
 }
