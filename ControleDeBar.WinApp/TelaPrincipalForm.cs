@@ -1,9 +1,12 @@
 using ControladeDeBar.Infra.Orm.Compartilhado;
 using ControladeDeBar.Infra.SQL.ModuloGarcom;
+using ControladeDeBar.Infra.SQL.ModuloProduto;
 using ControleDeBar.Dominio.Compartilhado;
 using ControleDeBar.Dominio.ModuloGarcom;
+using ControleDeBar.Dominio.ModuloProduto;
 using ControleDeBar.WinApp.Compartilhado;
 using ControleDeBar.WinApp.ModuloGarcom;
+using ControleDeBar.WinApp.ModuloProduto;
 namespace ControleDeBar.WinApp
 {
     public partial class TelaPrincipalForm : Form
@@ -14,6 +17,7 @@ namespace ControleDeBar.WinApp
         ControleDeBarDbContext dbContext = new();
 
         IRepositorioGarcom repositorioGarcom;
+        IRepositorioProduto repositorioProduto;
 
         public TelaPrincipalForm()
         {
@@ -22,6 +26,7 @@ namespace ControleDeBar.WinApp
             lblTipoCadastro.Text = string.Empty;
 
             repositorioGarcom = new RepositorioGarcomEmOrm(dbContext);
+            repositorioProduto = new RepositorioProdutoEmOrm(dbContext);
 
             Instancia = this;
         }
@@ -32,9 +37,9 @@ namespace ControleDeBar.WinApp
         private void garcomMenuItem_Click(object sender, EventArgs e)
             => SelecionaModulo(ref controlador, () => controlador = new ControladorGarcom(repositorioGarcom, dbContext),
                     repositorioGarcom.SelecionarTodos().Count);
-        private void produtoMenuItem_Click(object sender, EventArgs e) { }
-        /*               => SelecionaModulo(ref controlador, () => controlador = new ControladorGarcom(repositorioGarcom),
-                    repositorioGarcom.SelecionarTodos().Count);*/
+        private void produtoMenuItem_Click(object sender, EventArgs e)
+            => SelecionaModulo(ref controlador, () => controlador = new ControladorProduto(repositorioProduto, dbContext),
+                    repositorioProduto.SelecionarTodos().Count);
         private void btnCadastroPedido_Click(object sender, EventArgs e) { }
         /*            => SelecionaModulo(ref controlador, () => controlador = new ControladorGarcom(repositorioGarcom),
                 repositorioGarcom.SelecionarTodos().Count);*/        

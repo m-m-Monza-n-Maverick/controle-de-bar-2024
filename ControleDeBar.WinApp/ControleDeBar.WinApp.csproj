@@ -13,19 +13,16 @@
     <Compile Remove="ModuloConta\**" />
     <Compile Remove="ModuloMesa\**" />
     <Compile Remove="ModuloPedido\**" />
-    <Compile Remove="ModuloProduto\**" />
     <Compile Remove="Resources\**" />
     <EmbeddedResource Remove="ModuloBar\**" />
     <EmbeddedResource Remove="ModuloConta\**" />
     <EmbeddedResource Remove="ModuloMesa\**" />
     <EmbeddedResource Remove="ModuloPedido\**" />
-    <EmbeddedResource Remove="ModuloProduto\**" />
     <EmbeddedResource Remove="Resources\**" />
     <None Remove="ModuloBar\**" />
     <None Remove="ModuloConta\**" />
     <None Remove="ModuloMesa\**" />
     <None Remove="ModuloPedido\**" />
-    <None Remove="ModuloProduto\**" />
     <None Remove="Resources\**" />
   </ItemGroup>
 
@@ -42,6 +39,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="ModuloProduto\TabelaProdutoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ModuloProduto\TelaProdutoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

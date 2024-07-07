@@ -1,6 +1,8 @@
 ﻿using ControladeDeBar.Infra.Orm.Compartilhado;
 using ControleDeBar.Dominio.Compartilhado;
 using ControleDeBar.Dominio.ModuloGarcom;
+using ControleDeBar.Dominio.ModuloProduto;
+using ControleDeBar.Dominio.ModuloProduto;
 using ControleDeBar.WinApp.Compartilhado;
 namespace ControleDeBar.WinApp.ModuloGarcom
 {
@@ -19,12 +21,12 @@ namespace ControleDeBar.WinApp.ModuloGarcom
         #region CRUD
         public override void Adicionar()
         {
-            TelaGarcomForm telaGarcom = new([.. dbContext.Garcons]);
-            DialogResult resultado = telaGarcom.ShowDialog();
+            TelaGarcomForm telaProduto = new([.. dbContext.Garcons]);
+            DialogResult resultado = telaProduto.ShowDialog();
 
             if (resultado != DialogResult.OK) return;
 
-            Garcom novoRegistro = telaGarcom.Garcom;
+            Garcom novoRegistro = telaProduto.Garcom;
 
             RealizarAcao(
                 () => repositorioGarcom.Cadastrar(novoRegistro),
@@ -79,10 +81,5 @@ namespace ControleDeBar.WinApp.ModuloGarcom
         }
         public override void CarregarRegistros()
             => tabelaGarcom.AtualizarRegistros(repositorioGarcom.SelecionarTodos());
-        static public int SelecionarId(List<Garcom> garconsCadastrados)
-        {
-            if (garconsCadastrados.Count == 0) return 1;
-            else return garconsCadastrados.Last().Id + 1;
-        }
     }
 }
