@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ControleDeBar.Dominio.Compartilhado;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -22,6 +23,16 @@ namespace ControleDeBar.Dominio.ModuloProduto
             Nome = nome;
             Preco = preco;
             Id = id;
+        }
+
+        public override void AtualizarRegistro(EntidadeBase novoRegistro)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override List<string> Validar()
+        {
+            throw new NotImplementedException();
         }
     }
 }

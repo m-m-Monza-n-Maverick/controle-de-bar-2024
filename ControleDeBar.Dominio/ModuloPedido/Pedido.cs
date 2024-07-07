@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ControleDeBar.Dominio.Compartilhado;
 using ControleDeBar.Dominio.ModuloGarcom;
 using ControleDeBar.Dominio.ModuloProduto;
 
@@ -25,6 +26,16 @@ namespace ControleDeBar.Dominio.ModuloPedido
             Garcom = garcom;
             Produto = produto;
             Quantidade = quantidade;
+        }
+
+        public override void AtualizarRegistro(EntidadeBase novoRegistro)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override List<string> Validar()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -10,6 +10,7 @@ namespace ControleDeBar.WinApp
         public static TelaPrincipalForm Instancia { get; private set; }
 
         ControladorBase controlador;
+        ControleDeBarDbContext dbContext = new();
 
         IRepositorioGarcom repositorioGarcom;
 
@@ -18,7 +19,6 @@ namespace ControleDeBar.WinApp
             InitializeComponent();
 
             lblTipoCadastro.Text = string.Empty;
-            ControleDeBarDbContext dbContext = new();
 
             repositorioGarcom = new RepositorioGarcomEmOrm(dbContext);
 
@@ -29,7 +29,7 @@ namespace ControleDeBar.WinApp
 
         #region Seleção de módulo
         private void garcomMenuItem_Click(object sender, EventArgs e)
-            => SelecionaModulo(ref controlador, () => controlador = new ControladorGarcom(repositorioGarcom),
+            => SelecionaModulo(ref controlador, () => controlador = new ControladorGarcom(repositorioGarcom, dbContext),
                     repositorioGarcom.SelecionarTodos().Count);
         private void produtoMenuItem_Click(object sender, EventArgs e) { }
         /*               => SelecionaModulo(ref controlador, () => controlador = new ControladorGarcom(repositorioGarcom),

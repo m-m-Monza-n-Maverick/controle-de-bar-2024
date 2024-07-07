@@ -28,54 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            lblId = new Label();
-            txtId = new TextBox();
-            lblNome = new Label();
-            txtNome = new TextBox();
             btnGravar = new Button();
             btnCancelar = new Button();
+            txtNome = new TextBox();
+            txtId = new TextBox();
+            label2 = new Label();
+            label1 = new Label();
             SuspendLayout();
-            // 
-            // lblId
-            // 
-            lblId.AutoSize = true;
-            lblId.Location = new Point(73, 39);
-            lblId.Name = "lblId";
-            lblId.Size = new Size(25, 20);
-            lblId.TabIndex = 0;
-            lblId.Text = "Id:";
-            // 
-            // txtId
-            // 
-            txtId.Enabled = false;
-            txtId.Location = new Point(104, 36);
-            txtId.Name = "txtId";
-            txtId.PlaceholderText = "0";
-            txtId.Size = new Size(100, 27);
-            txtId.TabIndex = 1;
-            // 
-            // lblNome
-            // 
-            lblNome.AutoSize = true;
-            lblNome.Location = new Point(45, 72);
-            lblNome.Name = "lblNome";
-            lblNome.Size = new Size(53, 20);
-            lblNome.TabIndex = 0;
-            lblNome.Text = "Nome:";
-            // 
-            // txtNome
-            // 
-            txtNome.Location = new Point(104, 69);
-            txtNome.Name = "txtNome";
-            txtNome.Size = new Size(376, 27);
-            txtNome.TabIndex = 1;
             // 
             // btnGravar
             // 
             btnGravar.DialogResult = DialogResult.OK;
-            btnGravar.Location = new Point(276, 156);
+            btnGravar.Location = new Point(319, 163);
             btnGravar.Name = "btnGravar";
-            btnGravar.Size = new Size(99, 35);
+            btnGravar.Size = new Size(75, 23);
             btnGravar.TabIndex = 2;
             btnGravar.Text = "Gravar";
             btnGravar.UseVisualStyleBackColor = true;
@@ -84,39 +50,74 @@
             // btnCancelar
             // 
             btnCancelar.DialogResult = DialogResult.Cancel;
-            btnCancelar.Location = new Point(381, 156);
+            btnCancelar.Location = new Point(12, 163);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(99, 35);
-            btnCancelar.TabIndex = 2;
+            btnCancelar.Size = new Size(75, 23);
+            btnCancelar.TabIndex = 1;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
             // 
-            // TelaDisciplinaForm
+            // txtNome
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            txtNome.Location = new Point(78, 89);
+            txtNome.Name = "txtNome";
+            txtNome.Size = new Size(281, 23);
+            txtNome.TabIndex = 0;
+            // 
+            // txtId
+            // 
+            txtId.Enabled = false;
+            txtId.Location = new Point(78, 52);
+            txtId.Name = "txtId";
+            txtId.Size = new Size(55, 23);
+            txtId.TabIndex = 19;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(32, 93);
+            label2.Name = "label2";
+            label2.Size = new Size(43, 15);
+            label2.TabIndex = 16;
+            label2.Text = "Nome:";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(55, 56);
+            label1.Name = "label1";
+            label1.Size = new Size(20, 15);
+            label1.TabIndex = 15;
+            label1.Text = "Id:";
+            // 
+            // TelaGarcomForm
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(508, 203);
-            Controls.Add(btnCancelar);
+            ClientSize = new Size(406, 199);
             Controls.Add(btnGravar);
+            Controls.Add(btnCancelar);
             Controls.Add(txtNome);
-            Controls.Add(lblNome);
             Controls.Add(txtId);
-            Controls.Add(lblId);
-            Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Margin = new Padding(3, 4, 3, 4);
-            Name = "TelaDisciplinaForm";
-            Text = "Cadastro de Disciplina";
+            Controls.Add(label2);
+            Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "TelaGarcomForm";
+            StartPosition = FormStartPosition.CenterParent;
+            Text = "Cadastro de Garçom";
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Label lblId;
-        private TextBox txtId;
-        private Label lblNome;
-        private TextBox txtNome;
         private Button btnGravar;
         private Button btnCancelar;
+        private TextBox txtNome;
+        private TextBox txtId;
+        private Label label2;
+        private Label label1;
     }
 }

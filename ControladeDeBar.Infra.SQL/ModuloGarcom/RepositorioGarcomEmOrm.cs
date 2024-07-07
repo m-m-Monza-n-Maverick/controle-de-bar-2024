@@ -6,20 +6,20 @@ namespace ControladeDeBar.Infra.SQL.ModuloGarcom
     {
         public void Cadastrar(Garcom garcom)
         {
-            dbContext.Garcoms.Add(garcom);
+            dbContext.Garcons.Add(garcom);
             dbContext.SaveChanges();
         }
 
         public bool Editar(int id, Garcom garcomAtualizada)
         {
-            Garcom garcom = dbContext.Garcoms.Find(id)!;
+            Garcom garcom = dbContext.Garcons.Find(id)!;
 
             if (garcom == null)
                 return false;
 
             garcom.AtualizarRegistro(garcomAtualizada);
 
-            dbContext.Garcoms.Update(garcom);
+            dbContext.Garcons.Update(garcom);
             dbContext.SaveChanges();
 
             return true;
@@ -27,12 +27,12 @@ namespace ControladeDeBar.Infra.SQL.ModuloGarcom
 
         public bool Excluir(int id)
         {
-            Garcom garcom = dbContext.Garcoms.Find(id)!;
+            Garcom garcom = dbContext.Garcons.Find(id)!;
 
             if (garcom == null)
                 return false;
 
-            dbContext.Garcoms.Remove(garcom);
+            dbContext.Garcons.Remove(garcom);
             dbContext.SaveChanges();
 
             return true;

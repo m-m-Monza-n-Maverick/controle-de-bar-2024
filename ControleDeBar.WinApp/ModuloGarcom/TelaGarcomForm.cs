@@ -1,4 +1,5 @@
-﻿using ControleDeBar.Dominio.ModuloGarcom;
+﻿using ControleDeBar.Dominio.Compartilhado.Extensions;
+using ControleDeBar.Dominio.ModuloGarcom;
 namespace ControleDeBar.WinApp.ModuloGarcom
 {
     public partial class TelaGarcomForm : Form
@@ -19,7 +20,10 @@ namespace ControleDeBar.WinApp.ModuloGarcom
         public TelaGarcomForm(List<Garcom> garconsCadastrados)
         {
             InitializeComponent();
-            txtId.Text = (garconsCadastrados.Last().Id + 1).ToString();
+
+            if (garconsCadastrados.Count > 0)
+                txtId.Text = (garconsCadastrados.Last().Id + 1).ToString();
+            else txtId.Text = "1";
 
             this.garconsCadastrados = garconsCadastrados;
         }
@@ -40,6 +44,6 @@ namespace ControleDeBar.WinApp.ModuloGarcom
                 DialogResult = DialogResult.None;
             }
         }
-        private bool GarcomTemNomeDuplicado() => garconsCadastrados.Any(d => d.Nome == garcom.Nome);
+        private bool GarcomTemNomeDuplicado() => garconsCadastrados.Any(d => d.Nome.Validation() == garcom.Nome.Validation());
     }
 }
