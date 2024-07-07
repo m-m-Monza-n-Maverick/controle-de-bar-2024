@@ -1,5 +1,6 @@
 using ControladeDeBar.Infra.Orm.Compartilhado;
 using ControladeDeBar.Infra.SQL.ModuloGarcom;
+using ControleDeBar.Dominio.Compartilhado;
 using ControleDeBar.Dominio.ModuloGarcom;
 using ControleDeBar.WinApp.Compartilhado;
 using ControleDeBar.WinApp.ModuloGarcom;
@@ -34,9 +35,9 @@ namespace ControleDeBar.WinApp
         private void produtoMenuItem_Click(object sender, EventArgs e) { }
         /*               => SelecionaModulo(ref controlador, () => controlador = new ControladorGarcom(repositorioGarcom),
                     repositorioGarcom.SelecionarTodos().Count);*/
-        private void pedidoMenuItem_Click(object sender, EventArgs e) { }
-        /*                => SelecionaModulo(ref controlador, () => controlador = new ControladorGarcom(repositorioGarcom),
-                    repositorioGarcom.SelecionarTodos().Count);*/
+        private void btnCadastroPedido_Click(object sender, EventArgs e) { }
+        /*            => SelecionaModulo(ref controlador, () => controlador = new ControladorGarcom(repositorioGarcom),
+                repositorioGarcom.SelecionarTodos().Count);*/        
         private void mesaMenuItem_Click(object sender, EventArgs e) { }
         /*                => SelecionaModulo(ref controlador, () => controlador = new ControladorGarcom(repositorioGarcom),
                     repositorioGarcom.SelecionarTodos().Count);*/
@@ -72,7 +73,9 @@ namespace ControleDeBar.WinApp
             btnAdicionar.Enabled = true;
             btnEditar.Enabled = true;
             btnExcluir.Enabled = true;
-            
+
+            btnCadastroPedido.Enabled = controladorSelecionado is IControladorGeraPedido;
+
             ConfigurarToolTips(controladorSelecionado);
         }
         private void ConfigurarToolTips(ControladorBase controladorSelecionado)
@@ -80,11 +83,14 @@ namespace ControleDeBar.WinApp
             btnAdicionar.ToolTipText = controladorSelecionado.ToolTipAdicionar;
             btnEditar.ToolTipText = controladorSelecionado.ToolTipEditar;
             btnExcluir.ToolTipText = controladorSelecionado.ToolTipExcluir;
+
+            if (controladorSelecionado is IControladorGeraPedido controladorGeraPedido)
+                btnCadastroPedido.ToolTipText = controladorGeraPedido.ToolTipGerarPedido;
         }
         private void ConfigurarListagem(ControladorBase controladorSelecionado)
         {
             UserControl listagemContato = controladorSelecionado.ObterListagem();
-            
+
             listagemContato.Dock = DockStyle.Fill;
             pnlRegistros.Controls.Clear();
             pnlRegistros.Controls.Add(listagemContato);

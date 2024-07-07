@@ -32,7 +32,6 @@
             cadastrosToolStripMenuItem = new ToolStripMenuItem();
             garcomMenuItem = new ToolStripMenuItem();
             produtoMenuItem = new ToolStripMenuItem();
-            pedidoMenuItem = new ToolStripMenuItem();
             mesaMenuItem = new ToolStripMenuItem();
             contaMenuItem = new ToolStripMenuItem();
             barMenuItem = new ToolStripMenuItem();
@@ -43,7 +42,7 @@
             btnEditar = new ToolStripButton();
             btnExcluir = new ToolStripButton();
             toolStripSeparator2 = new ToolStripSeparator();
-            btnDuplicar = new ToolStripButton();
+            btnCadastroPedido = new ToolStripButton();
             btnDetalhes = new ToolStripButton();
             btnPdf = new ToolStripButton();
             btnGabarito = new ToolStripButton();
@@ -67,7 +66,7 @@
             // 
             // cadastrosToolStripMenuItem
             // 
-            cadastrosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { garcomMenuItem, produtoMenuItem, pedidoMenuItem, mesaMenuItem, contaMenuItem, barMenuItem });
+            cadastrosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { garcomMenuItem, produtoMenuItem, mesaMenuItem, contaMenuItem, barMenuItem });
             cadastrosToolStripMenuItem.Name = "cadastrosToolStripMenuItem";
             cadastrosToolStripMenuItem.Size = new Size(86, 24);
             cadastrosToolStripMenuItem.Text = "Cadastros";
@@ -75,42 +74,35 @@
             // garcomMenuItem
             // 
             garcomMenuItem.Name = "garcomMenuItem";
-            garcomMenuItem.Size = new Size(131, 24);
+            garcomMenuItem.Size = new Size(180, 24);
             garcomMenuItem.Text = "Garçom";
             garcomMenuItem.Click += garcomMenuItem_Click;
             // 
             // produtoMenuItem
             // 
             produtoMenuItem.Name = "produtoMenuItem";
-            produtoMenuItem.Size = new Size(131, 24);
+            produtoMenuItem.Size = new Size(180, 24);
             produtoMenuItem.Text = "Produto";
             produtoMenuItem.Click += produtoMenuItem_Click;
-            // 
-            // pedidoMenuItem
-            // 
-            pedidoMenuItem.Name = "pedidoMenuItem";
-            pedidoMenuItem.Size = new Size(131, 24);
-            pedidoMenuItem.Text = "Pedido";
-            pedidoMenuItem.Click += pedidoMenuItem_Click;
             // 
             // mesaMenuItem
             // 
             mesaMenuItem.Name = "mesaMenuItem";
-            mesaMenuItem.Size = new Size(131, 24);
+            mesaMenuItem.Size = new Size(180, 24);
             mesaMenuItem.Text = "Mesa";
             mesaMenuItem.Click += mesaMenuItem_Click;
             // 
             // contaMenuItem
             // 
             contaMenuItem.Name = "contaMenuItem";
-            contaMenuItem.Size = new Size(131, 24);
+            contaMenuItem.Size = new Size(180, 24);
             contaMenuItem.Text = "Conta";
             contaMenuItem.Click += contaMenuItem_Click;
             // 
             // barMenuItem
             // 
             barMenuItem.Name = "barMenuItem";
-            barMenuItem.Size = new Size(131, 24);
+            barMenuItem.Size = new Size(180, 24);
             barMenuItem.Text = "Bar";
             barMenuItem.Click += barMenuItem_Click;
             // 
@@ -132,7 +124,7 @@
             // 
             // toolStrip1
             // 
-            toolStrip1.Items.AddRange(new ToolStripItem[] { btnAdicionar, btnEditar, btnExcluir, toolStripSeparator2, btnDuplicar, btnDetalhes, btnPdf, btnGabarito, toolStripSeparator4, lblTipoCadastro });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { btnAdicionar, btnEditar, btnExcluir, toolStripSeparator2, btnCadastroPedido, btnDetalhes, btnPdf, btnGabarito, toolStripSeparator4, lblTipoCadastro });
             toolStrip1.Location = new Point(0, 28);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(800, 41);
@@ -180,15 +172,17 @@
             toolStripSeparator2.Name = "toolStripSeparator2";
             toolStripSeparator2.Size = new Size(6, 41);
             // 
-            // btnDuplicar
+            // btnCadastroPedido
             // 
-            btnDuplicar.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            btnDuplicar.Enabled = false;
-            btnDuplicar.ImageScaling = ToolStripItemImageScaling.None;
-            btnDuplicar.ImageTransparentColor = Color.DarkOrchid;
-            btnDuplicar.Name = "btnDuplicar";
-            btnDuplicar.Padding = new Padding(5);
-            btnDuplicar.Size = new Size(23, 38);
+            btnCadastroPedido.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            btnCadastroPedido.Enabled = false;
+            btnCadastroPedido.Image = WinApp.Properties.Resources.Copiar1;
+            btnCadastroPedido.ImageScaling = ToolStripItemImageScaling.None;
+            btnCadastroPedido.ImageTransparentColor = Color.DarkOrchid;
+            btnCadastroPedido.Name = "btnCadastroPedido";
+            btnCadastroPedido.Padding = new Padding(5);
+            btnCadastroPedido.Size = new Size(38, 38);
+            btnCadastroPedido.Click += btnCadastroPedido_Click;
             // 
             // btnDetalhes
             // 
@@ -280,10 +274,9 @@
         private ToolStripSeparator toolStripSeparator4;
         private ToolStripMenuItem garcomMenuItem;
         private ToolStripMenuItem produtoMenuItem;
-        private ToolStripMenuItem pedidoMenuItem;
         private object Properties;
         private ToolStripMenuItem mesaMenuItem;
-        private ToolStripButton btnDuplicar;
+        private ToolStripButton btnCadastroPedido;
         private ToolStripButton btnDetalhes;
         private ToolStripButton btnPdf;
         private ToolStripSeparator toolStripSeparator2;
