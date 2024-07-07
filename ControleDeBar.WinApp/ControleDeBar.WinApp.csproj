@@ -11,15 +11,12 @@
   <ItemGroup>
     <Compile Remove="ModuloBar\**" />
     <Compile Remove="ModuloConta\**" />
-    <Compile Remove="ModuloMesa\**" />
     <Compile Remove="Resources\**" />
     <EmbeddedResource Remove="ModuloBar\**" />
     <EmbeddedResource Remove="ModuloConta\**" />
-    <EmbeddedResource Remove="ModuloMesa\**" />
     <EmbeddedResource Remove="Resources\**" />
     <None Remove="ModuloBar\**" />
     <None Remove="ModuloConta\**" />
-    <None Remove="ModuloMesa\**" />
     <None Remove="Resources\**" />
   </ItemGroup>
 

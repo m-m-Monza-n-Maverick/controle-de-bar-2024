@@ -38,6 +38,35 @@ namespace ControladeDeBar.Infra.Orm.Migrations
                     b.ToTable("TBGarcom", (string)null);
                 });
 
+            modelBuilder.Entity("ControleDeBar.Dominio.ModuloPedido.Pedido", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Garcom_Id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Produto_Id")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Quantidade")
+                        .HasColumnType("decimal(18, 0)");
+
+                    b.Property<decimal>("Valor")
+                        .HasColumnType("decimal(18, 0)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Garcom_Id");
+
+                    b.HasIndex("Produto_Id");
+
+                    b.ToTable("TBPedido", (string)null);
+                });
+
             modelBuilder.Entity("ControleDeBar.Dominio.ModuloProduto.Produto", b =>
                 {
                     b.Property<int>("Id")
@@ -50,13 +79,33 @@ namespace ControladeDeBar.Infra.Orm.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(250)");
 
-                    b.Property<string>("Preco")
-                        .IsRequired()
-                        .HasColumnType("varchar(100)");
+                    b.Property<decimal>("Preco")
+                        .HasColumnType("decimal(18, 0)");
 
                     b.HasKey("Id");
 
                     b.ToTable("TBProduto", (string)null);
+                });
+
+            modelBuilder.Entity("ControleDeBar.Dominio.ModuloPedido.Pedido", b =>
+                {
+                    b.HasOne("ControleDeBar.Dominio.ModuloGarcom.Garcom", "Garcom")
+                        .WithMany()
+                        .HasForeignKey("Garcom_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_TBPedido_TBGarcom");
+
+                    b.HasOne("ControleDeBar.Dominio.ModuloProduto.Produto", "Produto")
+                        .WithMany()
+                        .HasForeignKey("Produto_Id")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("FK_TBPedido_TBProduto");
+
+                    b.Navigation("Garcom");
+
+                    b.Navigation("Produto");
                 });
 #pragma warning restore 612, 618
         }

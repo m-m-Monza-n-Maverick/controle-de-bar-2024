@@ -1,4 +1,5 @@
-﻿using ControleDeBar.Dominio.ModuloProduto;
+﻿using ControleDeBar.Dominio.ModuloPedido;
+using ControleDeBar.Dominio.ModuloProduto;
 using ControleDeBar.WinApp.Compartilhado.Extensions;
 namespace ControleDeBar.WinApp.ModuloPedido
 {
@@ -14,20 +15,22 @@ namespace ControleDeBar.WinApp.ModuloPedido
             grid.ConfigurarGridZebrado();
         }
 
-        public void AtualizarRegistros(List<Produto> produtos)
+        public void AtualizarRegistros(List<Pedido> pedidos)
         {
             grid.Rows.Clear();
 
-            foreach (Produto p in produtos)
-                grid.Rows.Add(p.Id, p, p.Preco);
+            foreach (Pedido p in pedidos)
+                grid.Rows.Add(p.Id, p.Garcom, p.Produto, p.Quantidade, p.Valor);
         }
 
         public int ObterRegistroSelecionado() => grid.SelecionarId();
         private DataGridViewColumn[] ObterColunas() =>
         [
             new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id" },
-            new DataGridViewTextBoxColumn { DataPropertyName = "Nome", HeaderText = "Nome" },
-            new DataGridViewTextBoxColumn { DataPropertyName = "Preco", HeaderText = "Preço" }
+            new DataGridViewTextBoxColumn { DataPropertyName = "Garcom", HeaderText = "Garçom" },
+            new DataGridViewTextBoxColumn { DataPropertyName = "Produto", HeaderText = "Produto" },
+            new DataGridViewTextBoxColumn { DataPropertyName = "Quantidade", HeaderText = "Quantidade" },
+            new DataGridViewTextBoxColumn { DataPropertyName = "ValorTotal", HeaderText = "Valor total" }
         ];
     }
 }

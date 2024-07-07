@@ -1,9 +1,11 @@
 ﻿using ControladeDeBar.Infra.Orm.Compartilhado;
+using ControleDeBar.Dominio.ModuloMesa;
 using ControleDeBar.Dominio.ModuloPedido;
 using ControleDeBar.WinApp.Compartilhado;
-namespace ControleDeBar.WinApp.ModuloPedido
+using ControleDeBar.WinApp.ModuloPedido;
+namespace ControleDeBar.WinApp.ModuloMesa
 {
-    public class ControladorPedido(IRepositorioPedido repositorioPedido, ControleDeBarDbContext dbContext) : ControladorBase
+/*    public class ControladorMesa(IRepositorioPedido repositorioPedido, ControleDeBarDbContext dbContext) : ControladorBase
     {
         TabelaPedidoControl tabelaPedido;
 
@@ -17,7 +19,7 @@ namespace ControleDeBar.WinApp.ModuloPedido
         #region CRUD
         public override void Adicionar()
         {
-            TelaPedidoForm telaPedido = new(dbContext);
+            TelaPedidoForm telaPedido = new([.. dbContext.Pedidos]);
             DialogResult resultado = telaPedido.ShowDialog();
 
             if (resultado != DialogResult.OK) return;
@@ -38,7 +40,7 @@ namespace ControleDeBar.WinApp.ModuloPedido
 
             List<Pedido> disciplinasCadastradas = repositorioPedido.SelecionarTodos();
 
-            TelaPedidoForm telaPedido = new(dbContext)
+            TelaPedidoForm telaPedido = new([.. dbContext.Pedidos])
             {
                 Pedido = registroSelecionado
             };
@@ -78,4 +80,4 @@ namespace ControleDeBar.WinApp.ModuloPedido
         public override void CarregarRegistros()
             => tabelaPedido.AtualizarRegistros(repositorioPedido.SelecionarTodos());
     }
-}
+*/}
