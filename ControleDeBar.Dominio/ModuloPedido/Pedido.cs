@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ControleDeBar.Dominio.Compartilhado;
+﻿using ControleDeBar.Dominio.Compartilhado;
 using ControleDeBar.Dominio.ModuloGarcom;
 using ControleDeBar.Dominio.ModuloProduto;
-
 namespace ControleDeBar.Dominio.ModuloPedido
 {
     public class Pedido : EntidadeBase

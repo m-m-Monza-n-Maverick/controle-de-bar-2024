@@ -1,4 +1,5 @@
 ﻿using ControleDeBar.Dominio.ModuloGarcom;
+using ControleDeBar.Dominio.ModuloPedido;
 using ControleDeBar.Dominio.ModuloProduto;
 using Microsoft.EntityFrameworkCore;
 using static System.Net.Mime.MediaTypeNames;
@@ -24,11 +25,11 @@ namespace ControladeDeBar.Infra.Orm.Compartilhado
             {
                 garcomBuilder.ToTable("TBGarcom");
 
-                garcomBuilder.Property(d => d.Id)
+                garcomBuilder.Property(g => g.Id)
                     .IsRequired()
                     .ValueGeneratedOnAdd();
 
-                garcomBuilder.Property(d => d.Nome)
+                garcomBuilder.Property(g => g.Nome)
                     .IsRequired()
                     .HasColumnType("varchar(250)");
             });
@@ -37,17 +38,34 @@ namespace ControladeDeBar.Infra.Orm.Compartilhado
             {
                 produtoBuilder.ToTable("TBProduto");
 
-                produtoBuilder.Property(d => d.Id)
+                produtoBuilder.Property(p => p.Id)
                     .IsRequired()
                     .ValueGeneratedOnAdd();
 
-                produtoBuilder.Property(d => d.Nome)
+                produtoBuilder.Property(p => p.Nome)
                     .IsRequired()
                     .HasColumnType("varchar(250)");
 
-                produtoBuilder.Property(d => d.Preco)
+                produtoBuilder.Property(p => p.Preco)
                     .IsRequired()
-                    .HasColumnType("varchar(100)");
+                    .HasColumnType("bigint");
+            });            
+            
+            modelBuilder.Entity<Pedido>(pedidoBuilder =>
+            {
+                pedidoBuilder.ToTable("TBProduto");
+
+                pedidoBuilder.Property(p => p.Id)
+                    .IsRequired()
+                    .ValueGeneratedOnAdd();
+
+                pedidoBuilder.Property(p => p.Nome)
+                    .IsRequired()
+                    .HasColumnType("varchar(250)");
+
+                pedidoBuilder.Property(p => p.Preco)
+                    .IsRequired()
+                    .HasColumnType("bigint");
             });
 
             base.OnModelCreating(modelBuilder);

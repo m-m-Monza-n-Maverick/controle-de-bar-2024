@@ -1,8 +1,8 @@
 ﻿using ControleDeBar.Dominio.Compartilhado.Extensions;
 using ControleDeBar.Dominio.ModuloProduto;
-namespace ControleDeBar.WinApp.ModuloProduto
+namespace ControleDeBar.WinApp.ModuloPedido
 {
-    public partial class TelaProdutoForm : Form
+    public partial class TelaPedidoForm : Form
     {
         public Produto Produto
         {
@@ -30,7 +30,7 @@ namespace ControleDeBar.WinApp.ModuloProduto
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
-            produto = new Produto(txtNome.Text, txtPreco.Value);
+            produto = new Produto(txtNome.Text, txtPreco.Value.ToString());
 
             List<string> erros = produto.Validar();
 
