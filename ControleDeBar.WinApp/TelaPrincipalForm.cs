@@ -1,13 +1,16 @@
 using ControladeDeBar.Infra.Orm.Compartilhado;
 using ControladeDeBar.Infra.SQL.ModuloGarcom;
+using ControladeDeBar.Infra.SQL.ModuloMesa;
 using ControladeDeBar.Infra.SQL.ModuloPedido;
 using ControladeDeBar.Infra.SQL.ModuloProduto;
 using ControleDeBar.Dominio.Compartilhado;
 using ControleDeBar.Dominio.ModuloGarcom;
+using ControleDeBar.Dominio.ModuloMesa;
 using ControleDeBar.Dominio.ModuloPedido;
 using ControleDeBar.Dominio.ModuloProduto;
 using ControleDeBar.WinApp.Compartilhado;
 using ControleDeBar.WinApp.ModuloGarcom;
+using ControleDeBar.WinApp.ModuloMesa;
 using ControleDeBar.WinApp.ModuloPedido;
 using ControleDeBar.WinApp.ModuloProduto;
 namespace ControleDeBar.WinApp
@@ -22,6 +25,7 @@ namespace ControleDeBar.WinApp
         IRepositorioGarcom repositorioGarcom;
         IRepositorioProduto repositorioProduto;
         IRepositorioPedido repositorioPedido;
+        IRepositorioMesa repositorioMesa;
 
         public TelaPrincipalForm()
         {
@@ -34,6 +38,7 @@ namespace ControleDeBar.WinApp
             repositorioGarcom = new RepositorioGarcomEmOrm(dbContext);
             repositorioProduto = new RepositorioProdutoEmOrm(dbContext);
             repositorioPedido = new RepositorioPedidoEmOrm(dbContext);
+            repositorioMesa = new RepositorioMesaEmOrm(dbContext);
 
             Instancia = this;
         }
@@ -48,11 +53,14 @@ namespace ControleDeBar.WinApp
             => SelecionaModulo(ref controlador, () => controlador = new ControladorProduto(repositorioProduto, dbContext),
                     repositorioProduto.SelecionarTodos().Count);
         private void btnCadastroPedido_Click(object sender, EventArgs e)
-            => SelecionaModulo(ref controlador, () => controlador = new ControladorPedido(repositorioPedido, dbContext),
-                repositorioPedido.SelecionarTodos().Count);
-        private void mesaMenuItem_Click(object sender, EventArgs e) { }
-        /*                => SelecionaModulo(ref controlador, () => controlador = new ControladorGarcom(repositorioGarcom),
-                    repositorioGarcom.SelecionarTodos().Count);*/
+        {
+            if (controlador is IControladorGeraPedido controladorGeraPedido && controladorGeraPedido.GerarPedido() != 0)
+                SelecionaModulo(ref controlador, () => controlador = new ControladorPedido(repositorioPedido, dbContext, controladorGeraPedido.GerarPedido()),
+                    repositorioPedido.SelecionarTodos().Count);
+        }
+        private void mesaMenuItem_Click(object sender, EventArgs e)
+            => SelecionaModulo(ref controlador, () => controlador = new ControladorMesa(repositorioMesa, dbContext),
+                repositorioMesa.SelecionarTodos().Count);
         private void contaMenuItem_Click(object sender, EventArgs e) { }
         /*                => SelecionaModulo(ref controlador, () => controlador = new ControladorGarcom(repositorioGarcom),
                     repositorioGarcom.SelecionarTodos().Count);*/

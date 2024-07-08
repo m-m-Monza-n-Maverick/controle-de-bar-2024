@@ -1,5 +1,6 @@
 ﻿using ControleDeBar.Dominio.Compartilhado;
 using ControleDeBar.Dominio.ModuloGarcom;
+using ControleDeBar.Dominio.ModuloMesa;
 using ControleDeBar.Dominio.ModuloProduto;
 namespace ControleDeBar.Dominio.ModuloPedido
 {
@@ -7,6 +8,7 @@ namespace ControleDeBar.Dominio.ModuloPedido
     {
         public Garcom Garcom { get; set; }
         public Produto Produto { get; set; }
+        public Mesa Mesa { get; set; }
         public decimal Quantidade { get; set; }
         public decimal Valor { get; set; }
 
@@ -37,6 +39,6 @@ namespace ControleDeBar.Dominio.ModuloPedido
 
             return erros;
         }
-        public override string ToString() => $"Pedido {Id}";
+        public override string ToString() => $"Mesa {Id}";
     }
 }

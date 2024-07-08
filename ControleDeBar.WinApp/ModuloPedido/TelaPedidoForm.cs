@@ -34,14 +34,14 @@ namespace ControleDeBar.WinApp.ModuloPedido
 
         private void CarregarGarcons()
         {
-            List<Garcom> garconsCadastrados = [];
+            List<Garcom> garconsCadastrados = [.. dbContext.Garcons];
 
             foreach (Garcom g in garconsCadastrados)
                 cmbGarcom.Items.Add(g);
         }
         private void CarregarProdutos()
         {
-            List<Produto> produtosCadastrados = [];
+            List<Produto> produtosCadastrados = [.. dbContext.Produtos];
 
             foreach (Produto p in produtosCadastrados)
                 cmbProduto.Items.Add(p);
@@ -55,7 +55,7 @@ namespace ControleDeBar.WinApp.ModuloPedido
 
             txtTotal.Text = valorTotal.ToString();
 
-            pedido = new Pedido(/*(Garcom)cmbGarcom.SelectedItem, */ null, (Produto)cmbProduto.SelectedItem, txtQnt.Value, valorTotal);
+            pedido = new Pedido((Garcom)cmbGarcom.SelectedItem, (Produto)cmbProduto.SelectedItem, txtQnt.Value, valorTotal);
 
             Validar();
         }

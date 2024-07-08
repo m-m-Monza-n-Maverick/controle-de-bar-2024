@@ -50,7 +50,7 @@
             btnGravar.Location = new Point(319, 207);
             btnGravar.Name = "btnGravar";
             btnGravar.Size = new Size(75, 23);
-            btnGravar.TabIndex = 3;
+            btnGravar.TabIndex = 5;
             btnGravar.Text = "Gravar";
             btnGravar.UseVisualStyleBackColor = true;
             btnGravar.Click += btnGravar_Click;
@@ -61,7 +61,7 @@
             btnCancelar.Location = new Point(12, 207);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(75, 23);
-            btnCancelar.TabIndex = 2;
+            btnCancelar.TabIndex = 4;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
             // 
@@ -109,7 +109,7 @@
             txtQnt.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             txtQnt.Name = "txtQnt";
             txtQnt.Size = new Size(52, 23);
-            txtQnt.TabIndex = 1;
+            txtQnt.TabIndex = 2;
             txtQnt.ValueChanged += txtQnt_ValueChanged;
             // 
             // cmbGarcom
@@ -119,7 +119,7 @@
             cmbGarcom.Location = new Point(77, 52);
             cmbGarcom.Name = "cmbGarcom";
             cmbGarcom.Size = new Size(152, 23);
-            cmbGarcom.TabIndex = 21;
+            cmbGarcom.TabIndex = 0;
             // 
             // cmbProduto
             // 
@@ -128,7 +128,7 @@
             cmbProduto.Location = new Point(77, 90);
             cmbProduto.Name = "cmbProduto";
             cmbProduto.Size = new Size(152, 23);
-            cmbProduto.TabIndex = 23;
+            cmbProduto.TabIndex = 1;
             cmbProduto.SelectionChangeCommitted += cmbProduto_SelectionChangeCommitted;
             // 
             // label4
@@ -147,7 +147,7 @@
             txtTotal.Location = new Point(77, 147);
             txtTotal.Name = "txtTotal";
             txtTotal.Size = new Size(52, 23);
-            txtTotal.TabIndex = 25;
+            txtTotal.TabIndex = 3;
             txtTotal.Text = "0";
             // 
             // label5
@@ -195,7 +195,7 @@
             MinimizeBox = false;
             Name = "TelaPedidoForm";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "Cadastro de Pedido";
+            Text = "Cadastro de Mesa";
             ((System.ComponentModel.ISupportInitialize)txtQnt).EndInit();
             ResumeLayout(false);
             PerformLayout();

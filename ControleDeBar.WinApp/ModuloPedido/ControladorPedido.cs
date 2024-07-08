@@ -3,7 +3,7 @@ using ControleDeBar.Dominio.ModuloPedido;
 using ControleDeBar.WinApp.Compartilhado;
 namespace ControleDeBar.WinApp.ModuloPedido
 {
-    public class ControladorPedido(IRepositorioPedido repositorioPedido, ControleDeBarDbContext dbContext) : ControladorBase
+    public class ControladorPedido(IRepositorioPedido repositorioPedido, ControleDeBarDbContext dbContext, int mesaId) : ControladorBase
     {
         TabelaPedidoControl tabelaPedido;
 
@@ -23,6 +23,7 @@ namespace ControleDeBar.WinApp.ModuloPedido
             if (resultado != DialogResult.OK) return;
 
             Pedido novoRegistro = telaPedido.Pedido;
+            novoRegistro.Mesa = dbContext.Mesas.ToList().Find(m => m.Id == mesaId);
 
             RealizarAcao(
                 () => repositorioPedido.Cadastrar(novoRegistro),

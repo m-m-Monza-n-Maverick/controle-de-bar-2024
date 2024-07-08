@@ -33,6 +33,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="ModuloMesa\TabelaMesaControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ModuloMesa\TelaMesaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="ModuloPedido\TabelaPedidoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
