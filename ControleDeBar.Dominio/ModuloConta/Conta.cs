@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ControleDeBar.Dominio.Compartilhado;
 using ControleDeBar.Dominio.ModuloPedido;
 
 namespace ControleDeBar.Dominio.ModuloConta
@@ -24,6 +25,16 @@ namespace ControleDeBar.Dominio.ModuloConta
             ValorTotal = valorTotal;
             EmAberto = emAberto;
             Data = data;
+        }
+
+        public override void AtualizarRegistro(EntidadeBase novoRegistro)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override List<string> Validar()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -13,6 +13,11 @@
             if (string.IsNullOrEmpty(campoTestado))
                 erros.Add($"\nO campo \"{mostraCampo}\" é obrigatório. Tente novamente ");
         }
+        protected void VerificaNulo(ref List<string> erros, decimal campoTestado, string mostraCampo)
+        {
+            if (campoTestado == 0)
+                erros.Add($"\nO campo \"{mostraCampo}\" é obrigatório. Tente novamente ");
+        }
         protected void VerificaNulo(ref List<string> erros, int campoTestado, string mostraCampo)
         {
             if (string.IsNullOrEmpty(campoTestado.ToString()))
@@ -26,6 +31,11 @@
         protected void VerificaNulo(ref List<string> erros, TimeSpan campoTestado, string mostraCampo)
         {
             if (campoTestado == TimeSpan.Zero)
+                erros.Add($"\nO campo \"{mostraCampo}\" é obrigatório. Tente novamente ");
+        }
+        protected void VerificaNulo(ref List<string> erros, EntidadeBase entidade, string mostraCampo)
+        {
+            if (entidade == null)
                 erros.Add($"\nO campo \"{mostraCampo}\" é obrigatório. Tente novamente ");
         }
         #endregion

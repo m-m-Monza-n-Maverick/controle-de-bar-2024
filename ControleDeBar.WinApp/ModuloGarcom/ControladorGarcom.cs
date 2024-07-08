@@ -1,29 +1,32 @@
-﻿using ControleDeBar.Dominio.ModuloGarcom;
+﻿using ControladeDeBar.Infra.Orm.Compartilhado;
+using ControleDeBar.Dominio.Compartilhado;
+using ControleDeBar.Dominio.ModuloGarcom;
+using ControleDeBar.Dominio.ModuloProduto;
+using ControleDeBar.Dominio.ModuloProduto;
 using ControleDeBar.WinApp.Compartilhado;
 namespace ControleDeBar.WinApp.ModuloGarcom
 {
-    public class ControladorGarcom(IRepositorioGarcom repositorioGarcom) : ControladorBase
+    public class ControladorGarcom(IRepositorioGarcom repositorioGarcom, ControleDeBarDbContext dbContext) : ControladorBase, IControladorGeraPedido
     {
         TabelaGarcomControl tabelaGarcom;
 
         #region ToolTips
-        public override string TipoCadastro => "Garçom";
-        public override string ToolTipAdicionar => "Cadastrar um novo garçom";
-        public override string ToolTipEditar => "Editar um garçom existente";
-        public override string ToolTipExcluir => "Excluir um garçom existente";
+        public override string TipoCadastro { get => "Garçom"; }
+        public override string ToolTipAdicionar { get => "Cadastrar um novo garçom"; }
+        public override string ToolTipEditar { get => "Editar um garçom existente"; }
+        public override string ToolTipExcluir { get => "Excluir um garçom existente"; }
+        public string ToolTipGerarPedido { get => "Cadastrar novo pedido"; }
         #endregion
 
         #region CRUD
         public override void Adicionar()
         {
-            List<Garcom> disciplinasCadastradas = repositorioGarcom.SelecionarTodos();
-
-            TelaGarcomForm telaGarcom = new(disciplinasCadastradas);
-            DialogResult resultado = telaGarcom.ShowDialog();
+            TelaGarcomForm telaProduto = new([.. dbContext.Garcons]);
+            DialogResult resultado = telaProduto.ShowDialog();
 
             if (resultado != DialogResult.OK) return;
 
-            Garcom novoRegistro = telaGarcom.Garcom;
+            Garcom novoRegistro = telaProduto.Garcom;
 
             RealizarAcao(
                 () => repositorioGarcom.Cadastrar(novoRegistro),
@@ -39,9 +42,10 @@ namespace ControleDeBar.WinApp.ModuloGarcom
 
             List<Garcom> disciplinasCadastradas = repositorioGarcom.SelecionarTodos();
 
-            TelaGarcomForm telaGarcom = new(disciplinasCadastradas);
-
-            telaGarcom.Garcom = registroSelecionado;
+            TelaGarcomForm telaGarcom = new([.. dbContext.Garcons])
+            {
+                Garcom = registroSelecionado
+            };
 
             DialogResult resultado = telaGarcom.ShowDialog();
 
