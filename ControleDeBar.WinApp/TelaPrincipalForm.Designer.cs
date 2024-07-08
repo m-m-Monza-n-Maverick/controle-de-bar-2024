@@ -74,35 +74,35 @@
             // garcomMenuItem
             // 
             garcomMenuItem.Name = "garcomMenuItem";
-            garcomMenuItem.Size = new Size(180, 24);
+            garcomMenuItem.Size = new Size(131, 24);
             garcomMenuItem.Text = "Garçom";
             garcomMenuItem.Click += garcomMenuItem_Click;
             // 
             // produtoMenuItem
             // 
             produtoMenuItem.Name = "produtoMenuItem";
-            produtoMenuItem.Size = new Size(180, 24);
+            produtoMenuItem.Size = new Size(131, 24);
             produtoMenuItem.Text = "Produto";
             produtoMenuItem.Click += produtoMenuItem_Click;
             // 
             // mesaMenuItem
             // 
             mesaMenuItem.Name = "mesaMenuItem";
-            mesaMenuItem.Size = new Size(180, 24);
+            mesaMenuItem.Size = new Size(131, 24);
             mesaMenuItem.Text = "Mesa";
             mesaMenuItem.Click += mesaMenuItem_Click;
             // 
             // contaMenuItem
             // 
             contaMenuItem.Name = "contaMenuItem";
-            contaMenuItem.Size = new Size(180, 24);
+            contaMenuItem.Size = new Size(131, 24);
             contaMenuItem.Text = "Conta";
             contaMenuItem.Click += contaMenuItem_Click;
             // 
             // barMenuItem
             // 
             barMenuItem.Name = "barMenuItem";
-            barMenuItem.Size = new Size(180, 24);
+            barMenuItem.Size = new Size(131, 24);
             barMenuItem.Text = "Bar";
             barMenuItem.Click += barMenuItem_Click;
             // 
@@ -176,12 +176,12 @@
             // 
             btnCadastroPedido.DisplayStyle = ToolStripItemDisplayStyle.Image;
             btnCadastroPedido.Enabled = false;
-            btnCadastroPedido.Image = WinApp.Properties.Resources.Copiar1;
+            btnCadastroPedido.Image = WinApp.Properties.Resources.btnGerarPedido;
             btnCadastroPedido.ImageScaling = ToolStripItemImageScaling.None;
             btnCadastroPedido.ImageTransparentColor = Color.DarkOrchid;
             btnCadastroPedido.Name = "btnCadastroPedido";
             btnCadastroPedido.Padding = new Padding(5);
-            btnCadastroPedido.Size = new Size(38, 38);
+            btnCadastroPedido.Size = new Size(37, 38);
             btnCadastroPedido.Click += btnCadastroPedido_Click;
             // 
             // btnDetalhes

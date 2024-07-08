@@ -1,4 +1,6 @@
 ﻿using ControleDeBar.Dominio.ModuloGarcom;
+using ControleDeBar.Dominio.ModuloPedido;
+using ControleDeBar.Dominio.ModuloProduto;
 using Microsoft.EntityFrameworkCore;
 using static System.Net.Mime.MediaTypeNames;
 namespace ControladeDeBar.Infra.Orm.Compartilhado
@@ -6,6 +8,8 @@ namespace ControladeDeBar.Infra.Orm.Compartilhado
     public class ControleDeBarDbContext : DbContext
     {
         public DbSet<Garcom> Garcons { get; internal set; }
+        public DbSet<Produto> Produtos { get; internal set; }
+        public DbSet<Pedido> Pedidos { get; internal set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -22,13 +26,60 @@ namespace ControladeDeBar.Infra.Orm.Compartilhado
             {
                 garcomBuilder.ToTable("TBGarcom");
 
-                garcomBuilder.Property(d => d.Id)
+                garcomBuilder.Property(g => g.Id)
                     .IsRequired()
                     .ValueGeneratedOnAdd();
 
-                garcomBuilder.Property(d => d.Nome)
+                garcomBuilder.Property(g => g.Nome)
                     .IsRequired()
                     .HasColumnType("varchar(250)");
+            });
+
+            modelBuilder.Entity<Produto>(produtoBuilder =>
+            {
+                produtoBuilder.ToTable("TBProduto");
+
+                produtoBuilder.Property(p => p.Id)
+                    .IsRequired()
+                    .ValueGeneratedOnAdd();
+
+                produtoBuilder.Property(p => p.Nome)
+                    .IsRequired()
+                    .HasColumnType("varchar(250)");
+
+                produtoBuilder.Property(p => p.Preco)
+                    .IsRequired()
+                    .HasColumnType("decimal(18, 0)");
+            });
+
+            modelBuilder.Entity<Pedido>(pedidoBuilder =>
+            {
+                pedidoBuilder.ToTable("TBPedido");
+
+                pedidoBuilder.Property(p => p.Id)
+                    .IsRequired()
+                    .ValueGeneratedOnAdd();
+
+                pedidoBuilder.Property(p => p.Valor)
+                    .IsRequired()
+                    .HasColumnType("decimal(18, 0)");
+
+                pedidoBuilder.Property(p => p.Quantidade)
+                    .IsRequired()
+                    .HasColumnType("decimal(18, 0)");
+
+                pedidoBuilder.HasOne(p => p.Garcom)
+                    .WithMany()
+                    .IsRequired()
+                    .HasForeignKey("Garcom_Id")
+                    .HasConstraintName("FK_TBPedido_TBGarcom");
+
+                pedidoBuilder.HasOne(p => p.Produto)
+                    .WithMany()
+                    .IsRequired()
+                    .HasForeignKey("Produto_Id")
+                    .HasConstraintName("FK_TBPedido_TBProduto")
+                    .OnDelete(DeleteBehavior.Restrict);
             });
 
             base.OnModelCreating(modelBuilder);

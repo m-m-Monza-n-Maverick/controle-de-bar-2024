@@ -2,10 +2,10 @@
 using ControleDeBar.Dominio.Compartilhado.Extensions;
 namespace ControleDeBar.Dominio.ModuloProduto
 {
-    public class Produto (string nome, string preco) : EntidadeBase
+    public class Produto (string nome, decimal preco) : EntidadeBase
     {
         public string Nome { get; set; } = nome;
-        public string Preco { get; set; } = preco;
+        public decimal Preco { get; set; } = preco;
 
         #region Overrides
         public override void AtualizarRegistro(EntidadeBase novoRegistro)

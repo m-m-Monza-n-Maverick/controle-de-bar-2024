@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ControleDeBar.Dominio.ModuloProduto
+﻿namespace ControleDeBar.Dominio.ModuloProduto
 {
-    internal class IRepositorioProduto
+    public interface IRepositorioProduto
     {
+        void Cadastrar(Produto produto);
+        bool Editar(int id, Produto produto);
+        bool Excluir(int id);
+        Produto SelecionarPorId(int id);
+        List<Produto> SelecionarTodos();
     }
 }
