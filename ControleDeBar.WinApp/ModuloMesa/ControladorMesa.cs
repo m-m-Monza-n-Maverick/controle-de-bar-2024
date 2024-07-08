@@ -7,7 +7,7 @@ using ControleDeBar.WinApp.ModuloConta;
 using ControleDeBar.WinApp.ModuloPedido;
 namespace ControleDeBar.WinApp.ModuloMesa
 {
-    public class ControladorMesa(IRepositorioMesa repositorioMesa, ControleDeBarDbContext dbContext) : ControladorBase, IControladorGeraPedido, IControladorContaDaMesa
+    public class ControladorMesa(IRepositorioMesa repositorioMesa, ControleDeBarDbContext dbContext) : ControladorBase, IControladorGeraPedido
     {
         TabelaMesaControl tabelaMesa;
 
@@ -73,41 +73,6 @@ namespace ControleDeBar.WinApp.ModuloMesa
         }
         #endregion
 
-        public int GerarPedido()
-        {
-            int idSelecionado = tabelaMesa.ObterRegistroSelecionado();
-
-            Mesa registroSelecionado = repositorioMesa.SelecionarPorId(idSelecionado);
-
-            if (SemSeleção(registroSelecionado)) return 0;
-
-            return idSelecionado;
-        }
-        public void AdministrarContaDaMesa()
-        {
-            int idSelecionado = tabelaMesa.ObterRegistroSelecionado();
-
-            Mesa registroSelecionado = repositorioMesa.SelecionarPorId(idSelecionado);
-
-            if (SemSeleção(registroSelecionado)) return;
-
-            DialogResult resultado = DialogResult.No;
-
-            do
-            {
-                if (resultado == DialogResult.Yes) GerarPedido();
-
-                TelaAdministrarContaForm telaConta = new(idSelecionado)
-                {
-                    Conta = registroSelecionado.Conta
-                };
-
-                resultado = telaConta.ShowDialog();
-            }
-            while (resultado == DialogResult.Yes);
-
-            if (resultado != DialogResult.OK) return;
-        }
         public override UserControl ObterListagem()
         {
             tabelaMesa ??= new();

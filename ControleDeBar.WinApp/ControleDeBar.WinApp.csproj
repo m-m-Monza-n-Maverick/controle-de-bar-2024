@@ -30,13 +30,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="ModuloConta\TabelaContaControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="ModuloMesa\TabelaMesaControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="ModuloMesa\TelaMesaForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="ModuloConta\TelaAdministrarContaForm.cs">
+    <Compile Update="ModuloConta\TelaContaForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="ModuloPedido\TabelaPedidoControl.cs">

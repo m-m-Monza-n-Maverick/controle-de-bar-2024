@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ControladeDeBar.Infra.Orm.Migrations
 {
     /// <inheritdoc />
-    public partial class AddConta : Migration
+    public partial class BancoDeDados : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

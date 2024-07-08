@@ -48,6 +48,7 @@
             toolStripSeparator4 = new ToolStripSeparator();
             lblTipoCadastro = new ToolStripLabel();
             pnlRegistros = new Panel();
+            contaMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             statusStrip1.SuspendLayout();
             toolStrip1.SuspendLayout();
@@ -65,7 +66,7 @@
             // 
             // cadastrosToolStripMenuItem
             // 
-            cadastrosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { garcomMenuItem, produtoMenuItem, mesaMenuItem, barMenuItem });
+            cadastrosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { garcomMenuItem, produtoMenuItem, mesaMenuItem, contaMenuItem, barMenuItem });
             cadastrosToolStripMenuItem.Name = "cadastrosToolStripMenuItem";
             cadastrosToolStripMenuItem.Size = new Size(86, 24);
             cadastrosToolStripMenuItem.Text = "Cadastros";
@@ -228,6 +229,13 @@
             pnlRegistros.Size = new Size(800, 446);
             pnlRegistros.TabIndex = 3;
             // 
+            // contaMenuItem
+            // 
+            contaMenuItem.Name = "contaMenuItem";
+            contaMenuItem.Size = new Size(180, 24);
+            contaMenuItem.Text = "Conta";
+            contaMenuItem.Click += contaMenuItem_Click;
+            // 
             // TelaPrincipalForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -275,5 +283,6 @@
         private ToolStripButton btnPdf;
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripMenuItem barMenuItem;
+        private ToolStripMenuItem contaMenuItem;
     }
 }

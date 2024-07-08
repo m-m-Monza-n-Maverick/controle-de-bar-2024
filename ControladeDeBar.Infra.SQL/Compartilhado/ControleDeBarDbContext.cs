@@ -82,8 +82,8 @@ namespace ControladeDeBar.Infra.Orm.Compartilhado
                     .IsRequired()
                     .HasForeignKey("Produto_Id")
                     .HasConstraintName("FK_TBPedido_TBProduto")
-                    .OnDelete(DeleteBehavior.Restrict);
-
+                    .OnDelete(DeleteBehavior.Restrict);                
+                
                 pedidoBuilder.HasOne(p => p.Mesa)
                     .WithMany()
                     .IsRequired()
@@ -110,8 +110,8 @@ namespace ControladeDeBar.Infra.Orm.Compartilhado
                     .HasForeignKey("Conta_Id")
                     .HasConstraintName("FK_TBMesa_TBConta")
                     .OnDelete(DeleteBehavior.Restrict);
-            });          
-            
+            });
+
             modelBuilder.Entity<Conta>(contaBuilder =>
             {
                 contaBuilder.ToTable("TBConta");

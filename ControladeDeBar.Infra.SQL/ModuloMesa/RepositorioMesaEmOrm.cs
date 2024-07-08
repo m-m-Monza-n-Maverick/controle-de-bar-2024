@@ -1,15 +1,12 @@
 ﻿using ControladeDeBar.Infra.Orm.Compartilhado;
-using ControleDeBar.Dominio.ModuloConta;
 using ControleDeBar.Dominio.ModuloMesa;
+using Microsoft.EntityFrameworkCore;
 namespace ControladeDeBar.Infra.SQL.ModuloMesa
 {
     public class RepositorioMesaEmOrm(ControleDeBarDbContext dbContext) : IRepositorioMesa
     {
         public void Cadastrar(Mesa mesa)
         {
-            Conta contaDaMesa = new();
-
-            dbContext.Contas.Add(contaDaMesa);
             dbContext.Mesas.Add(mesa);
             dbContext.SaveChanges();
         }
@@ -39,6 +36,6 @@ namespace ControladeDeBar.Infra.SQL.ModuloMesa
         }
 
         public Mesa SelecionarPorId(int id) => dbContext.Mesas.Find(id)!;
-        public List<Mesa> SelecionarTodos() => [.. dbContext.Mesas];
+        public List<Mesa> SelecionarTodos() => dbContext.Mesas.Include(m => m.Conta).ToList();
     }
 }

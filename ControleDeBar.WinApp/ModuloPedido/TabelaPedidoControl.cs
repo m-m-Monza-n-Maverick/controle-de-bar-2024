@@ -20,14 +20,16 @@ namespace ControleDeBar.WinApp.ModuloPedido
             grid.Rows.Clear();
 
             foreach (Pedido p in pedidos)
-                grid.Rows.Add(p.Id, p.Mesa, p.Garcom, p.Produto, p.Quantidade, p.Valor);
+            {
+                //if (p.Mesa.Conta.Pedidos.Any(pedido => pedido.Id == p.Id))
+                grid.Rows.Add(p.Id, p.Garcom, p.Produto, p.Quantidade, p.Valor);
+            }
         }
 
         public int ObterRegistroSelecionado() => grid.SelecionarId();
         private DataGridViewColumn[] ObterColunas() =>
         [
             new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id" },
-            new DataGridViewTextBoxColumn { DataPropertyName = "Mesa", HeaderText = "Mesa" },
             new DataGridViewTextBoxColumn { DataPropertyName = "Garcom", HeaderText = "Garçom" },
             new DataGridViewTextBoxColumn { DataPropertyName = "Produto", HeaderText = "Produto" },
             new DataGridViewTextBoxColumn { DataPropertyName = "Quantidade", HeaderText = "Quantidade" },

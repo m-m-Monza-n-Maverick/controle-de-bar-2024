@@ -10,7 +10,6 @@ namespace ControleDeBar.Dominio.ModuloMesa
         public Mesa(decimal numero) : this()
         {
             Numero = numero;
-            Conta = new();
         }
 
         public override void AtualizarRegistro(EntidadeBase novoRegistro)

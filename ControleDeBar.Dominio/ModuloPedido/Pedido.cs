@@ -21,8 +21,6 @@ namespace ControleDeBar.Dominio.ModuloPedido
             Valor = valor;
         }
 
-        public void AcrescentarPedidoNaConta() => Mesa.Conta.Pedidos.Add(this);
-
         public override void AtualizarRegistro(EntidadeBase novoRegistro)
         {
             Pedido atualizado = (Pedido)novoRegistro;

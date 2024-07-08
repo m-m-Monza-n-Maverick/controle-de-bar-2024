@@ -1,9 +1,11 @@
 ﻿using ControladeDeBar.Infra.Orm.Compartilhado;
+using ControleDeBar.Dominio.ModuloConta;
+using ControleDeBar.Dominio.ModuloMesa;
 using ControleDeBar.Dominio.ModuloPedido;
 using ControleDeBar.WinApp.Compartilhado;
 namespace ControleDeBar.WinApp.ModuloPedido
 {
-    public class ControladorPedido(IRepositorioPedido repositorioPedido, ControleDeBarDbContext dbContext, int mesaId) : ControladorBase
+    public class ControladorPedido(IRepositorioPedido repositorioPedido, ControleDeBarDbContext dbContext) : ControladorBase
     {
         TabelaPedidoControl tabelaPedido;
 
@@ -23,15 +25,11 @@ namespace ControleDeBar.WinApp.ModuloPedido
             if (resultado != DialogResult.OK) return;
 
             Pedido novoRegistro = telaPedido.Pedido;
-            novoRegistro.Mesa = dbContext.Mesas.ToList().Find(m => m.Id == mesaId);
 
             RealizarAcao(
                 () => repositorioPedido.Cadastrar(novoRegistro),
                 novoRegistro, "cadastrado");
-
-            novoRegistro.AcrescentarPedidoNaConta();
         }
-
         public override void Editar()
         {
             int idSelecionado = tabelaPedido.ObterRegistroSelecionado();

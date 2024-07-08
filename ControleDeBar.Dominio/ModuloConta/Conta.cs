@@ -1,9 +1,13 @@
-﻿using ControleDeBar.Dominio.ModuloPedido;
+﻿using ControleDeBar.Dominio.Compartilhado;
+using ControleDeBar.Dominio.ModuloGarcom;
+using ControleDeBar.Dominio.ModuloMesa;
+using ControleDeBar.Dominio.ModuloPedido;
 namespace ControleDeBar.Dominio.ModuloConta
 {
-    public class Conta()
+    public class Conta() : EntidadeBase
     {
-        public int Id { get; set; }
+        public Mesa Mesa { get; set; }
+        public Garcom Garcom { get; set; }
         public List<Pedido> Pedidos { get; set; }
         public decimal ValorTotal { get; set; }
         public bool EmAberto { get; set; }
@@ -16,10 +20,19 @@ namespace ControleDeBar.Dominio.ModuloConta
             EmAberto = emAberto;
             Data = data;
         }
-
-        public void AtualizarRegistro(Conta contaAtualizada)
+        public override void AtualizarRegistro(EntidadeBase novoRegistro)
         {
-            Pedidos = contaAtualizada.Pedidos;
+            Conta atualizada = (Conta)novoRegistro;
+            Pedidos = atualizada.Pedidos;
+        }
+        public override List<string> Validar()
+        {
+            return [];
+        }
+        public override string ToString()
+        {
+            if (EmAberto) return $"Valor: {ValorTotal}, em aberto";
+            return $"Valor: {ValorTotal}, pago";
         }
     }
 }

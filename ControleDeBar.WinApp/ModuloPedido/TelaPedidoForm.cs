@@ -98,5 +98,10 @@ namespace ControleDeBar.WinApp.ModuloPedido
             }
         }
         #endregion
+
+        private void txtQnt_DataContextChanged(object sender, EventArgs e)
+        {
+            lblAumentarQnt.Visible = txtQnt.Value == 0;
+        }
     }
 }

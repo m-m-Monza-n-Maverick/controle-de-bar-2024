@@ -1,6 +1,7 @@
 ﻿using ControladeDeBar.Infra.Orm.Compartilhado;
 using ControleDeBar.Dominio.ModuloConta;
 using ControleDeBar.Dominio.ModuloConta;
+using Microsoft.EntityFrameworkCore;
 namespace ControladeDeBar.Infra.SQL.ModuloConta
 {
     public class RepositorioContaEmOrm(ControleDeBarDbContext dbContext) : IRepositorioConta
@@ -15,8 +16,7 @@ namespace ControladeDeBar.Infra.SQL.ModuloConta
         {
             Conta conta = dbContext.Contas.Find(id)!;
 
-            if (conta == null)
-                return false;
+            if (conta == null) return false;
 
             conta.AtualizarRegistro(contaAtualizada);
 
@@ -40,6 +40,6 @@ namespace ControladeDeBar.Infra.SQL.ModuloConta
         }
 
         public Conta SelecionarPorId(int id) => dbContext.Contas.Find(id)!;
-        public List<Conta> SelecionarTodos() => [.. dbContext.Contas];
+        public List<Conta> SelecionarTodos() => [.. dbContext.Contas.Include(c => c.Pedidos)];
     }
 }

@@ -35,11 +35,11 @@
             label1 = new Label();
             label3 = new Label();
             txtQnt = new NumericUpDown();
-            cmbGarcom = new ComboBox();
             cmbProduto = new ComboBox();
             label4 = new Label();
             txtTotal = new TextBox();
             label5 = new Label();
+            cmbGarcom = new ComboBox();
             lblAumentarQnt = new Label();
             ((System.ComponentModel.ISupportInitialize)txtQnt).BeginInit();
             SuspendLayout();
@@ -111,15 +111,7 @@
             txtQnt.Size = new Size(52, 23);
             txtQnt.TabIndex = 2;
             txtQnt.ValueChanged += txtQnt_ValueChanged;
-            // 
-            // cmbGarcom
-            // 
-            cmbGarcom.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbGarcom.FormattingEnabled = true;
-            cmbGarcom.Location = new Point(77, 52);
-            cmbGarcom.Name = "cmbGarcom";
-            cmbGarcom.Size = new Size(152, 23);
-            cmbGarcom.TabIndex = 0;
+            txtQnt.DataContextChanged += txtQnt_DataContextChanged;
             // 
             // cmbProduto
             // 
@@ -160,17 +152,24 @@
             label5.TabIndex = 24;
             label5.Text = "Valor:";
             // 
+            // cmbGarcom
+            // 
+            cmbGarcom.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbGarcom.FormattingEnabled = true;
+            cmbGarcom.Location = new Point(77, 52);
+            cmbGarcom.Name = "cmbGarcom";
+            cmbGarcom.Size = new Size(152, 23);
+            cmbGarcom.TabIndex = 25;
+            // 
             // lblAumentarQnt
             // 
             lblAumentarQnt.AutoSize = true;
             lblAumentarQnt.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-            lblAumentarQnt.ForeColor = Color.Firebrick;
-            lblAumentarQnt.Location = new Point(152, 150);
+            lblAumentarQnt.Location = new Point(159, 150);
             lblAumentarQnt.Name = "lblAumentarQnt";
             lblAumentarQnt.Size = new Size(132, 15);
             lblAumentarQnt.TabIndex = 26;
             lblAumentarQnt.Text = "Aumente a quantidade!";
-            lblAumentarQnt.Visible = false;
             // 
             // TelaPedidoForm
             // 
@@ -178,11 +177,11 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(406, 242);
             Controls.Add(lblAumentarQnt);
+            Controls.Add(cmbGarcom);
             Controls.Add(txtTotal);
             Controls.Add(label5);
             Controls.Add(cmbProduto);
             Controls.Add(label4);
-            Controls.Add(cmbGarcom);
             Controls.Add(txtQnt);
             Controls.Add(label3);
             Controls.Add(btnGravar);
@@ -210,11 +209,11 @@
         private Label label1;
         private Label label3;
         private NumericUpDown txtQnt;
-        private ComboBox cmbGarcom;
         private ComboBox cmbProduto;
         private Label label4;
         private TextBox txtTotal;
         private Label label5;
+        private ComboBox cmbGarcom;
         private Label lblAumentarQnt;
     }
 }
