@@ -7,7 +7,7 @@ using ControleDeBar.Dominio.ModuloConta;
 
 namespace ControleDeBar.Dominio.ModuloMesa
 {
-    public class Mesa : EntidadeBase
+    public class Mesa
     {
         public int Numero { get; set; }
         public Conta Conta { get; set; }

@@ -8,7 +8,7 @@ using ControleDeBar.Dominio.ModuloProduto;
 
 namespace ControleDeBar.Dominio.ModuloPedido
 {
-    public class Pedido : EntidadeBase
+    public class Pedido
     {
         public decimal Valor { get; set; }
         public Garcom Garcom { get; set; }

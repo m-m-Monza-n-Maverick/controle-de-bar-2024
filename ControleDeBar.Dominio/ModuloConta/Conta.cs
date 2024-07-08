@@ -7,7 +7,7 @@ using ControleDeBar.Dominio.ModuloPedido;
 
 namespace ControleDeBar.Dominio.ModuloConta
 {
-    public class Conta : EntidadeBase
+    public class Conta
     {
         public Pedido Pedido { get; set; }
         public decimal ValorTotal { get; set; }
