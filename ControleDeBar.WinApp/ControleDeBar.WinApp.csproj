@@ -10,13 +10,10 @@
 
   <ItemGroup>
     <Compile Remove="ModuloBar\**" />
-    <Compile Remove="ModuloConta\**" />
     <Compile Remove="Resources\**" />
     <EmbeddedResource Remove="ModuloBar\**" />
-    <EmbeddedResource Remove="ModuloConta\**" />
     <EmbeddedResource Remove="Resources\**" />
     <None Remove="ModuloBar\**" />
-    <None Remove="ModuloConta\**" />
     <None Remove="Resources\**" />
   </ItemGroup>
 
@@ -37,6 +34,9 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="ModuloMesa\TelaMesaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ModuloConta\TelaAdministrarContaForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="ModuloPedido\TabelaPedidoControl.cs">

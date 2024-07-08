@@ -104,33 +104,34 @@ namespace ControladeDeBar.Infra.Orm.Compartilhado
                     .IsRequired()
                     .HasColumnType("varchar(10)");
 
-/*                mesaBuilder.HasOne(m => m.Conta)
-                    .WithMany()
-                    .IsRequired()
-                    .HasForeignKey("Conta_Id")
-                    .HasConstraintName("FK_TBMesa_TBConta")
-                    .OnDelete(DeleteBehavior.Restrict);*/
-            });            
-            
-/*            modelBuilder.Entity<Mesa>(mesaBuilder =>
-            {
-                mesaBuilder.ToTable("TBConta");
-
-                mesaBuilder.Property(m => m.Id)
-                    .IsRequired()
-                    .ValueGeneratedOnAdd();
-
-                mesaBuilder.Property(m => m.Numero)
-                    .IsRequired()
-                    .HasColumnType("varchar(10)");
-
                 mesaBuilder.HasOne(m => m.Conta)
                     .WithMany()
                     .IsRequired()
                     .HasForeignKey("Conta_Id")
                     .HasConstraintName("FK_TBMesa_TBConta")
                     .OnDelete(DeleteBehavior.Restrict);
-            });*/
+            });          
+            
+            modelBuilder.Entity<Conta>(contaBuilder =>
+            {
+                contaBuilder.ToTable("TBConta");
+
+                contaBuilder.Property(c => c.Id)
+                    .IsRequired()
+                    .ValueGeneratedOnAdd();
+
+                contaBuilder.Property(m => m.ValorTotal)
+                    .IsRequired()
+                    .HasColumnType("decimal(18, 0)");
+
+                contaBuilder.Property(c => c.EmAberto).IsRequired();
+
+                contaBuilder.Property(c => c.Data).IsRequired();
+
+                contaBuilder.HasMany(c => c.Pedidos)
+                    .WithMany()
+                    .UsingEntity(x => x.ToTable("TBConta_TBPedido"));
+            });
 
             base.OnModelCreating(modelBuilder);
         }

@@ -7,10 +7,10 @@ namespace ControleDeBar.Dominio.ModuloMesa
         public decimal Numero { get; set; }
         public Conta Conta { get; set; }
 
-        public Mesa(decimal numero, Conta conta) : this()
+        public Mesa(decimal numero) : this()
         {
             Numero = numero;
-            Conta = conta;
+            Conta = new();
         }
 
         public override void AtualizarRegistro(EntidadeBase novoRegistro)
@@ -25,7 +25,6 @@ namespace ControleDeBar.Dominio.ModuloMesa
             List<string> erros = [];
 
             VerificaNulo(ref erros, Numero, "Número da mesa");
-            //VerificaNulo(ref erros, Conta, "Conta");
 
             return erros;
         }

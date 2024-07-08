@@ -1,34 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using ControleDeBar.Dominio.Compartilhado;
-using ControleDeBar.Dominio.ModuloPedido;
-
+﻿using ControleDeBar.Dominio.ModuloPedido;
 namespace ControleDeBar.Dominio.ModuloConta
 {
-    public class Conta() : EntidadeBase
+    public class Conta()
     {
-        public Pedido Pedido { get; set; }
+        public int Id { get; set; }
+        public List<Pedido> Pedidos { get; set; }
         public decimal ValorTotal { get; set; }
         public bool EmAberto { get; set; }
         public DateTime Data { get; set; }
 
-        public Conta(Pedido pedido, decimal valorTotal, bool emAberto, DateTime data) : this()
+        public Conta(List<Pedido> pedidos, decimal valorTotal, bool emAberto, DateTime data) : this()
         {
-            Pedido = pedido;
+            Pedidos = pedidos;
             ValorTotal = valorTotal;
             EmAberto = emAberto;
             Data = data;
         }
 
-        public override void AtualizarRegistro(EntidadeBase novoRegistro)
+        public void AtualizarRegistro(Conta contaAtualizada)
         {
-            throw new NotImplementedException();
-        }
-
-        public override List<string> Validar()
-        {
-            throw new NotImplementedException();
+            Pedidos = contaAtualizada.Pedidos;
         }
     }
 }

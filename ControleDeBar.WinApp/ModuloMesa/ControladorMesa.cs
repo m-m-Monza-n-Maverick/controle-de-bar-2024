@@ -1,10 +1,13 @@
 ﻿using ControladeDeBar.Infra.Orm.Compartilhado;
 using ControleDeBar.Dominio.Compartilhado;
+using ControleDeBar.Dominio.ModuloConta;
 using ControleDeBar.Dominio.ModuloMesa;
 using ControleDeBar.WinApp.Compartilhado;
+using ControleDeBar.WinApp.ModuloConta;
+using ControleDeBar.WinApp.ModuloPedido;
 namespace ControleDeBar.WinApp.ModuloMesa
 {
-    public class ControladorMesa(IRepositorioMesa repositorioMesa, ControleDeBarDbContext dbContext) : ControladorBase, IControladorGeraPedido
+    public class ControladorMesa(IRepositorioMesa repositorioMesa, ControleDeBarDbContext dbContext) : ControladorBase, IControladorGeraPedido, IControladorContaDaMesa
     {
         TabelaMesaControl tabelaMesa;
 
@@ -14,6 +17,7 @@ namespace ControleDeBar.WinApp.ModuloMesa
         public override string ToolTipEditar { get => "Editar um mesa existente"; }
         public override string ToolTipExcluir { get => "Excluir um mesa existente"; }
         public string ToolTipGerarPedido { get => "Cadastrar um novo pedido"; }
+        public string ToolTipContaDaMesa { get => "Visualizar conta da mesa"; }
         #endregion
 
         #region CRUD
@@ -68,6 +72,7 @@ namespace ControleDeBar.WinApp.ModuloMesa
                 registroSelecionado, "excluído");
         }
         #endregion
+
         public int GerarPedido()
         {
             int idSelecionado = tabelaMesa.ObterRegistroSelecionado();
@@ -77,6 +82,31 @@ namespace ControleDeBar.WinApp.ModuloMesa
             if (SemSeleção(registroSelecionado)) return 0;
 
             return idSelecionado;
+        }
+        public void AdministrarContaDaMesa()
+        {
+            int idSelecionado = tabelaMesa.ObterRegistroSelecionado();
+
+            Mesa registroSelecionado = repositorioMesa.SelecionarPorId(idSelecionado);
+
+            if (SemSeleção(registroSelecionado)) return;
+
+            DialogResult resultado = DialogResult.No;
+
+            do
+            {
+                if (resultado == DialogResult.Yes) GerarPedido();
+
+                TelaAdministrarContaForm telaConta = new(idSelecionado)
+                {
+                    Conta = registroSelecionado.Conta
+                };
+
+                resultado = telaConta.ShowDialog();
+            }
+            while (resultado == DialogResult.Yes);
+
+            if (resultado != DialogResult.OK) return;
         }
         public override UserControl ObterListagem()
         {

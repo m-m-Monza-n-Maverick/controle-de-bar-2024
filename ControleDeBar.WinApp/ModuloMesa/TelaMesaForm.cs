@@ -15,33 +15,26 @@ namespace ControleDeBar.WinApp.ModuloMesa
             {
                 txtId.Text = value.Id.ToString();
                 txtNumero.Value = Convert.ToDecimal(value.Numero);
-                cmbConta.SelectedItem = value.Conta;
             }
         }
         private Mesa mesa;
 
         ControleDeBarDbContext dbContext;
+        List<Mesa> mesasCadastradas;
 
         public TelaMesaForm(ControleDeBarDbContext dbContext)
         {
             InitializeComponent();
 
             this.dbContext = dbContext;
+            mesasCadastradas = [.. dbContext.Mesas];
 
-            MostrarId([.. dbContext.Mesas]);
-            CarregarContas();
+            MostrarId(mesasCadastradas);
         }
 
-        private void CarregarContas()
-        {
-            List<Conta> contasCadastradas = [.. dbContext.Contas];
-
-            foreach (Conta c in contasCadastradas)
-                cmbConta.Items.Add(c);
-        }
         private void btnGravar_Click(object sender, EventArgs e)
         {
-            mesa = new(txtNumero.Value, (Conta)cmbConta.SelectedItem);
+            mesa = new(txtNumero.Value);
 
             Validar();
         }
@@ -60,12 +53,16 @@ namespace ControleDeBar.WinApp.ModuloMesa
         {
             List<string> erros = mesa.Validar();
 
+            if (MesaTemNumeroDuplicado())
+                erros.Add("Já existe uma mesa com este número, tente utilizar outro!");
+
             if (erros.Count > 0)
             {
                 TelaPrincipalForm.Instancia.AtualizarRodape(erros[0]);
                 DialogResult = DialogResult.None;
             }
         }
+        private bool MesaTemNumeroDuplicado() => mesasCadastradas.Any(d => d.Numero == mesa.Numero);
         #endregion
     }
 }

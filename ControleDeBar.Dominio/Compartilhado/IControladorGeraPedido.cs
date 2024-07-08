@@ -3,7 +3,6 @@
     public interface IControladorGeraPedido
     {
         string ToolTipGerarPedido { get; }
-
         int GerarPedido();
     }
 }

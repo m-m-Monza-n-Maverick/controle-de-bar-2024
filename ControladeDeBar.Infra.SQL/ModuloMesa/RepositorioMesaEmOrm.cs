@@ -1,4 +1,5 @@
 ﻿using ControladeDeBar.Infra.Orm.Compartilhado;
+using ControleDeBar.Dominio.ModuloConta;
 using ControleDeBar.Dominio.ModuloMesa;
 namespace ControladeDeBar.Infra.SQL.ModuloMesa
 {
@@ -6,6 +7,9 @@ namespace ControladeDeBar.Infra.SQL.ModuloMesa
     {
         public void Cadastrar(Mesa mesa)
         {
+            Conta contaDaMesa = new();
+
+            dbContext.Contas.Add(contaDaMesa);
             dbContext.Mesas.Add(mesa);
             dbContext.SaveChanges();
         }

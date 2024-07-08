@@ -2,6 +2,7 @@
 using ControleDeBar.Dominio.ModuloGarcom;
 using ControleDeBar.Dominio.ModuloMesa;
 using ControleDeBar.Dominio.ModuloProduto;
+
 namespace ControleDeBar.Dominio.ModuloPedido
 {
     public class Pedido() : EntidadeBase
@@ -19,6 +20,8 @@ namespace ControleDeBar.Dominio.ModuloPedido
             Quantidade = quantidade;
             Valor = valor;
         }
+
+        public void AcrescentarPedidoNaConta() => Mesa.Conta.Pedidos.Add(this);
 
         public override void AtualizarRegistro(EntidadeBase novoRegistro)
         {

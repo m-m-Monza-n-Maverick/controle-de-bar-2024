@@ -33,7 +33,6 @@
             garcomMenuItem = new ToolStripMenuItem();
             produtoMenuItem = new ToolStripMenuItem();
             mesaMenuItem = new ToolStripMenuItem();
-            contaMenuItem = new ToolStripMenuItem();
             barMenuItem = new ToolStripMenuItem();
             statusStrip1 = new StatusStrip();
             statusLabelPrincipal = new ToolStripStatusLabel();
@@ -43,7 +42,7 @@
             btnExcluir = new ToolStripButton();
             toolStripSeparator2 = new ToolStripSeparator();
             btnCadastroPedido = new ToolStripButton();
-            btnDetalhes = new ToolStripButton();
+            btnContaDaMesa = new ToolStripButton();
             btnPdf = new ToolStripButton();
             btnGabarito = new ToolStripButton();
             toolStripSeparator4 = new ToolStripSeparator();
@@ -66,7 +65,7 @@
             // 
             // cadastrosToolStripMenuItem
             // 
-            cadastrosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { garcomMenuItem, produtoMenuItem, mesaMenuItem, contaMenuItem, barMenuItem });
+            cadastrosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { garcomMenuItem, produtoMenuItem, mesaMenuItem, barMenuItem });
             cadastrosToolStripMenuItem.Name = "cadastrosToolStripMenuItem";
             cadastrosToolStripMenuItem.Size = new Size(86, 24);
             cadastrosToolStripMenuItem.Text = "Cadastros";
@@ -91,13 +90,6 @@
             mesaMenuItem.Size = new Size(131, 24);
             mesaMenuItem.Text = "Mesa";
             mesaMenuItem.Click += mesaMenuItem_Click;
-            // 
-            // contaMenuItem
-            // 
-            contaMenuItem.Name = "contaMenuItem";
-            contaMenuItem.Size = new Size(131, 24);
-            contaMenuItem.Text = "Conta";
-            contaMenuItem.Click += contaMenuItem_Click;
             // 
             // barMenuItem
             // 
@@ -124,7 +116,7 @@
             // 
             // toolStrip1
             // 
-            toolStrip1.Items.AddRange(new ToolStripItem[] { btnAdicionar, btnEditar, btnExcluir, toolStripSeparator2, btnCadastroPedido, btnDetalhes, btnPdf, btnGabarito, toolStripSeparator4, lblTipoCadastro });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { btnAdicionar, btnEditar, btnExcluir, toolStripSeparator2, btnCadastroPedido, btnContaDaMesa, btnPdf, btnGabarito, toolStripSeparator4, lblTipoCadastro });
             toolStrip1.Location = new Point(0, 28);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(800, 41);
@@ -184,15 +176,17 @@
             btnCadastroPedido.Size = new Size(37, 38);
             btnCadastroPedido.Click += btnCadastroPedido_Click;
             // 
-            // btnDetalhes
+            // btnContaDaMesa
             // 
-            btnDetalhes.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            btnDetalhes.Enabled = false;
-            btnDetalhes.ImageScaling = ToolStripItemImageScaling.None;
-            btnDetalhes.ImageTransparentColor = Color.Magenta;
-            btnDetalhes.Name = "btnDetalhes";
-            btnDetalhes.Padding = new Padding(5);
-            btnDetalhes.Size = new Size(23, 38);
+            btnContaDaMesa.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            btnContaDaMesa.Enabled = false;
+            btnContaDaMesa.Image = WinApp.Properties.Resources.btnContas;
+            btnContaDaMesa.ImageScaling = ToolStripItemImageScaling.None;
+            btnContaDaMesa.ImageTransparentColor = Color.Magenta;
+            btnContaDaMesa.Name = "btnContaDaMesa";
+            btnContaDaMesa.Padding = new Padding(5);
+            btnContaDaMesa.Size = new Size(37, 38);
+            btnContaDaMesa.Click += btnContas_Click;
             // 
             // btnPdf
             // 
@@ -277,10 +271,9 @@
         private object Properties;
         private ToolStripMenuItem mesaMenuItem;
         private ToolStripButton btnCadastroPedido;
-        private ToolStripButton btnDetalhes;
+        private ToolStripButton btnContaDaMesa;
         private ToolStripButton btnPdf;
         private ToolStripSeparator toolStripSeparator2;
-        private ToolStripMenuItem contaMenuItem;
         private ToolStripMenuItem barMenuItem;
     }
 }

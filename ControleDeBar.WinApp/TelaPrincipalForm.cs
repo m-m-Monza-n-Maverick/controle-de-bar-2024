@@ -61,9 +61,6 @@ namespace ControleDeBar.WinApp
         private void mesaMenuItem_Click(object sender, EventArgs e)
             => SelecionaModulo(ref controlador, () => controlador = new ControladorMesa(repositorioMesa, dbContext),
                 repositorioMesa.SelecionarTodos().Count);
-        private void contaMenuItem_Click(object sender, EventArgs e) { }
-        /*                => SelecionaModulo(ref controlador, () => controlador = new ControladorGarcom(repositorioGarcom),
-                    repositorioGarcom.SelecionarTodos().Count);*/
         private void barMenuItem_Click(object sender, EventArgs e) { }
         /*                => SelecionaModulo(ref controlador, () => controlador = new ControladorGarcom(repositorioGarcom),
                     repositorioGarcom.SelecionarTodos().Count);*/
@@ -76,6 +73,11 @@ namespace ControleDeBar.WinApp
             => controlador.Editar();
         private void btnExcluir_Click(object sender, EventArgs e)
             => controlador.Excluir();
+        private void btnContas_Click(object sender, EventArgs e)
+        {
+            if (controlador is IControladorContaDaMesa controladorContaDaMesa)
+                controladorContaDaMesa.AdministrarContaDaMesa();
+        }
         #endregion
 
         #region Auxiliares
@@ -95,6 +97,7 @@ namespace ControleDeBar.WinApp
             btnExcluir.Enabled = true;
 
             btnCadastroPedido.Enabled = controladorSelecionado is IControladorGeraPedido;
+            btnContaDaMesa.Enabled = controladorSelecionado is IControladorContaDaMesa;
 
             ConfigurarToolTips(controladorSelecionado);
         }
@@ -106,6 +109,9 @@ namespace ControleDeBar.WinApp
 
             if (controladorSelecionado is IControladorGeraPedido controladorGeraPedido)
                 btnCadastroPedido.ToolTipText = controladorGeraPedido.ToolTipGerarPedido;
+
+            if (controladorSelecionado is IControladorContaDaMesa controladorContaDaMesa)
+                btnContaDaMesa.ToolTipText = controladorContaDaMesa.ToolTipContaDaMesa;
         }
         private void ConfigurarListagem(ControladorBase controladorSelecionado)
         {

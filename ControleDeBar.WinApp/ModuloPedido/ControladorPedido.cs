@@ -28,7 +28,10 @@ namespace ControleDeBar.WinApp.ModuloPedido
             RealizarAcao(
                 () => repositorioPedido.Cadastrar(novoRegistro),
                 novoRegistro, "cadastrado");
+
+            novoRegistro.AcrescentarPedidoNaConta();
         }
+
         public override void Editar()
         {
             int idSelecionado = tabelaPedido.ObterRegistroSelecionado();

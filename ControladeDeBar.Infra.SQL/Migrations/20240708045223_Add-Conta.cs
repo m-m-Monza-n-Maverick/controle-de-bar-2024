@@ -6,11 +6,26 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ControladeDeBar.Infra.Orm.Migrations
 {
     /// <inheritdoc />
-    public partial class AddMesa : Migration
+    public partial class AddConta : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "TBConta",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ValorTotal = table.Column<decimal>(type: "decimal(18,0)", nullable: false),
+                    EmAberto = table.Column<bool>(type: "bit", nullable: false),
+                    Data = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TBConta", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "TBGarcom",
                 columns: table => new
@@ -39,39 +54,23 @@ namespace ControladeDeBar.Infra.Orm.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Contas",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PedidoId = table.Column<int>(type: "int", nullable: false),
-                    ValorTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    EmAberto = table.Column<bool>(type: "bit", nullable: false),
-                    Data = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Contas", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "TBMesa",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Numero = table.Column<string>(type: "varchar(10)", nullable: false),
-                    ContaId = table.Column<int>(type: "int", nullable: false)
+                    Conta_Id = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TBMesa", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_TBMesa_Contas_ContaId",
-                        column: x => x.ContaId,
-                        principalTable: "Contas",
+                        name: "FK_TBMesa_TBConta",
+                        column: x => x.Conta_Id,
+                        principalTable: "TBConta",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -109,15 +108,39 @@ namespace ControladeDeBar.Infra.Orm.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Contas_PedidoId",
-                table: "Contas",
-                column: "PedidoId");
+            migrationBuilder.CreateTable(
+                name: "TBConta_TBPedido",
+                columns: table => new
+                {
+                    ContaId = table.Column<int>(type: "int", nullable: false),
+                    PedidosId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TBConta_TBPedido", x => new { x.ContaId, x.PedidosId });
+                    table.ForeignKey(
+                        name: "FK_TBConta_TBPedido_TBConta_ContaId",
+                        column: x => x.ContaId,
+                        principalTable: "TBConta",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_TBConta_TBPedido_TBPedido_PedidosId",
+                        column: x => x.PedidosId,
+                        principalTable: "TBPedido",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
 
             migrationBuilder.CreateIndex(
-                name: "IX_TBMesa_ContaId",
+                name: "IX_TBConta_TBPedido_PedidosId",
+                table: "TBConta_TBPedido",
+                column: "PedidosId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TBMesa_Conta_Id",
                 table: "TBMesa",
-                column: "ContaId");
+                column: "Conta_Id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TBPedido_Garcom_Id",
@@ -133,22 +156,13 @@ namespace ControladeDeBar.Infra.Orm.Migrations
                 name: "IX_TBPedido_Produto_Id",
                 table: "TBPedido",
                 column: "Produto_Id");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Contas_TBPedido_PedidoId",
-                table: "Contas",
-                column: "PedidoId",
-                principalTable: "TBPedido",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Contas_TBPedido_PedidoId",
-                table: "Contas");
+            migrationBuilder.DropTable(
+                name: "TBConta_TBPedido");
 
             migrationBuilder.DropTable(
                 name: "TBPedido");
@@ -163,7 +177,7 @@ namespace ControladeDeBar.Infra.Orm.Migrations
                 name: "TBProduto");
 
             migrationBuilder.DropTable(
-                name: "Contas");
+                name: "TBConta");
         }
     }
 }
