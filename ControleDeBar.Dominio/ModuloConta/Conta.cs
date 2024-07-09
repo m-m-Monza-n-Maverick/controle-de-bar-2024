@@ -13,8 +13,10 @@ namespace ControleDeBar.Dominio.ModuloConta
         public bool EmAberto { get; set; }
         public DateTime Data { get; set; }
 
-        public Conta(List<Pedido> pedidos, decimal valorTotal, bool emAberto, DateTime data) : this()
+        public Conta(Mesa mesa, Garcom garcom, List<Pedido> pedidos, decimal valorTotal, bool emAberto, DateTime data) : this()
         {
+            Mesa = mesa;
+            Garcom = garcom;
             Pedidos = pedidos;
             ValorTotal = valorTotal;
             EmAberto = emAberto;
@@ -27,12 +29,23 @@ namespace ControleDeBar.Dominio.ModuloConta
         }
         public override List<string> Validar()
         {
-            return [];
+            List<string> erros = [];
+
+            VerificaNulo(ref erros, Mesa, "Mesa");
+            VerificaNulo(ref erros, Garcom, "Garçom");
+            VerificaNulo(ref erros, Pedidos);
+
+            return erros;
         }
         public override string ToString()
         {
             if (EmAberto) return $"Valor: {ValorTotal}, em aberto";
             return $"Valor: {ValorTotal}, pago";
+        }
+        protected void VerificaNulo(ref List<string> erros, List<Pedido> listaEntidades)
+        {
+            if (listaEntidades.Count == 0)
+                erros.Add($"\nInsira um \"Pedido\"");
         }
     }
 }

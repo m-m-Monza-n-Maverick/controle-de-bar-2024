@@ -19,7 +19,7 @@ namespace ControleDeBar.WinApp.ModuloMesa
             grid.Rows.Clear();
 
             foreach (Mesa m in mesas)
-                grid.Rows.Add(m.Id, m.Numero, m.Conta);
+                grid.Rows.Add(m.Id, m.Numero);
         }
 
         public int ObterRegistroSelecionado() => grid.SelecionarId();
@@ -27,7 +27,6 @@ namespace ControleDeBar.WinApp.ModuloMesa
         [
             new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id" },
             new DataGridViewTextBoxColumn { DataPropertyName = "Numero", HeaderText = "Número" },
-            new DataGridViewTextBoxColumn { DataPropertyName = "Conta", HeaderText = "Conta" },
         ];
     }
 }

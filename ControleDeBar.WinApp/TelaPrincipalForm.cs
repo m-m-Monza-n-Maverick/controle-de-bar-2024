@@ -64,7 +64,7 @@ namespace ControleDeBar.WinApp
             => SelecionaModulo(ref controlador, () => controlador = new ControladorMesa(repositorioMesa, dbContext),
                 repositorioMesa.SelecionarTodos().Count);
         private void contaMenuItem_Click(object sender, EventArgs e)
-            => SelecionaModulo(ref controlador, () => controlador = new ControladorConta(repositorioConta, dbContext),
+            => SelecionaModulo(ref controlador, () => controlador = new ControladorConta(repositorioConta, repositorioPedido, dbContext),
                 repositorioConta.SelecionarTodos().Count);
         private void barMenuItem_Click(object sender, EventArgs e) { }
         /*                => SelecionaModulo(ref controlador, () => controlador = new ControladorGarcom(repositorioGarcom),

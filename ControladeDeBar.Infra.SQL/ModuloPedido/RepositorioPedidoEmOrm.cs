@@ -36,6 +36,6 @@ namespace ControladeDeBar.Infra.SQL.ModuloPedido
         }
 
         public Pedido SelecionarPorId(int id) => dbContext.Pedidos.Find(id)!;
-        public List<Pedido> SelecionarTodos() => [.. dbContext.Pedidos.Include(p => p.Produto).Include(p => p.Garcom).Include(p => p.Mesa)];
+        public List<Pedido> SelecionarTodos() => [.. dbContext.Pedidos.Include(p => p.Produto).Include(p => p.Garcom)];
     }
 }

@@ -51,10 +51,20 @@ namespace ControladeDeBar.Infra.Orm.Migrations
                     b.Property<bool>("EmAberto")
                         .HasColumnType("bit");
 
+                    b.Property<int>("Garcom_Id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Mesa_Id")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("ValorTotal")
                         .HasColumnType("decimal(18, 0)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Garcom_Id");
+
+                    b.HasIndex("Mesa_Id");
 
                     b.ToTable("TBConta", (string)null);
                 });
@@ -84,16 +94,11 @@ namespace ControladeDeBar.Infra.Orm.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Conta_Id")
-                        .HasColumnType("int");
-
                     b.Property<string>("Numero")
                         .IsRequired()
                         .HasColumnType("varchar(10)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("Conta_Id");
 
                     b.ToTable("TBMesa", (string)null);
                 });
@@ -109,9 +114,6 @@ namespace ControladeDeBar.Infra.Orm.Migrations
                     b.Property<int>("Garcom_Id")
                         .HasColumnType("int");
 
-                    b.Property<int>("Mesa_Id")
-                        .HasColumnType("int");
-
                     b.Property<int>("Produto_Id")
                         .HasColumnType("int");
 
@@ -124,8 +126,6 @@ namespace ControladeDeBar.Infra.Orm.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("Garcom_Id");
-
-                    b.HasIndex("Mesa_Id");
 
                     b.HasIndex("Produto_Id");
 
@@ -167,16 +167,25 @@ namespace ControladeDeBar.Infra.Orm.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ControleDeBar.Dominio.ModuloMesa.Mesa", b =>
+            modelBuilder.Entity("ControleDeBar.Dominio.ModuloConta.Conta", b =>
                 {
-                    b.HasOne("ControleDeBar.Dominio.ModuloConta.Conta", "Conta")
+                    b.HasOne("ControleDeBar.Dominio.ModuloGarcom.Garcom", "Garcom")
                         .WithMany()
-                        .HasForeignKey("Conta_Id")
+                        .HasForeignKey("Garcom_Id")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired()
-                        .HasConstraintName("FK_TBMesa_TBConta");
+                        .HasConstraintName("FK_TBConta_TBGarcom");
 
-                    b.Navigation("Conta");
+                    b.HasOne("ControleDeBar.Dominio.ModuloMesa.Mesa", "Mesa")
+                        .WithMany()
+                        .HasForeignKey("Mesa_Id")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
+                        .HasConstraintName("FK_TBConta_TBMesa");
+
+                    b.Navigation("Garcom");
+
+                    b.Navigation("Mesa");
                 });
 
             modelBuilder.Entity("ControleDeBar.Dominio.ModuloPedido.Pedido", b =>
@@ -188,13 +197,6 @@ namespace ControladeDeBar.Infra.Orm.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_TBPedido_TBGarcom");
 
-                    b.HasOne("ControleDeBar.Dominio.ModuloMesa.Mesa", "Mesa")
-                        .WithMany()
-                        .HasForeignKey("Mesa_Id")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired()
-                        .HasConstraintName("FK_TBPedido_TBMesa");
-
                     b.HasOne("ControleDeBar.Dominio.ModuloProduto.Produto", "Produto")
                         .WithMany()
                         .HasForeignKey("Produto_Id")
@@ -203,8 +205,6 @@ namespace ControladeDeBar.Infra.Orm.Migrations
                         .HasConstraintName("FK_TBPedido_TBProduto");
 
                     b.Navigation("Garcom");
-
-                    b.Navigation("Mesa");
 
                     b.Navigation("Produto");
                 });

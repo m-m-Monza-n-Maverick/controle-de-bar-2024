@@ -9,7 +9,6 @@ namespace ControleDeBar.Dominio.ModuloPedido
     {
         public Garcom Garcom { get; set; }
         public Produto Produto { get; set; }
-        public Mesa Mesa { get; set; }
         public decimal Quantidade { get; set; }
         public decimal Valor { get; set; }
 
@@ -40,6 +39,6 @@ namespace ControleDeBar.Dominio.ModuloPedido
 
             return erros;
         }
-        public override string ToString() => $"Mesa {Id}";
+        public override string ToString() => $"Produto: {Produto}, Quantidade: {Quantidade}, Valor: {Valor}";
     }
 }

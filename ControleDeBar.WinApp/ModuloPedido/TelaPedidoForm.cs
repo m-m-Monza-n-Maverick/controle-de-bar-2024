@@ -49,13 +49,10 @@ namespace ControleDeBar.WinApp.ModuloPedido
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
-            if (QuantidadeZero()) return;
-
-            decimal valorTotal = ((Produto)cmbProduto.SelectedItem).Preco * txtQnt.Value;
-
-            txtTotal.Text = valorTotal.ToString();
-
-            pedido = new Pedido((Garcom)cmbGarcom.SelectedItem, (Produto)cmbProduto.SelectedItem, txtQnt.Value, valorTotal);
+            pedido = new(
+                (Garcom)cmbGarcom.SelectedItem, 
+                (Produto)cmbProduto.SelectedItem, txtQnt.Value, 
+                ((Produto)cmbProduto.SelectedItem).Preco * txtQnt.Value);
 
             Validar();
         }
@@ -76,16 +73,12 @@ namespace ControleDeBar.WinApp.ModuloPedido
             txtQnt.Value = 0;
             txtTotal.Text = "0";
         }
-        private void txtQnt_ValueChanged(object sender, EventArgs e) => lblAumentarQnt.Visible = txtQnt.Value == 0;
-        private bool QuantidadeZero()
+        private void txtQnt_ValueChanged(object sender, EventArgs e)
         {
-            if (txtQnt.Value == 0)
-            {
-                lblAumentarQnt.Visible = true;
-                DialogResult = DialogResult.None;
-                return true;
-            }
-            return false;
+            decimal valorTotal = ((Produto)cmbProduto.SelectedItem).Preco * txtQnt.Value;
+
+            lblAumentarQnt.Visible = txtQnt.Value == 0;
+            txtTotal.Text = valorTotal.ToString();
         }
         private void Validar()
         {
@@ -98,10 +91,5 @@ namespace ControleDeBar.WinApp.ModuloPedido
             }
         }
         #endregion
-
-        private void txtQnt_DataContextChanged(object sender, EventArgs e)
-        {
-            lblAumentarQnt.Visible = txtQnt.Value == 0;
-        }
     }
 }

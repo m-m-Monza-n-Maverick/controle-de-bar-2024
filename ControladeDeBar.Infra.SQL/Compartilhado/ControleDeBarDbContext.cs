@@ -83,13 +83,6 @@ namespace ControladeDeBar.Infra.Orm.Compartilhado
                     .HasForeignKey("Produto_Id")
                     .HasConstraintName("FK_TBPedido_TBProduto")
                     .OnDelete(DeleteBehavior.Restrict);                
-                
-                pedidoBuilder.HasOne(p => p.Mesa)
-                    .WithMany()
-                    .IsRequired()
-                    .HasForeignKey("Mesa_Id")
-                    .HasConstraintName("FK_TBPedido_TBMesa")
-                    .OnDelete(DeleteBehavior.Restrict);
             });
 
             modelBuilder.Entity<Mesa>(mesaBuilder =>
@@ -103,13 +96,6 @@ namespace ControladeDeBar.Infra.Orm.Compartilhado
                 mesaBuilder.Property(m => m.Numero)
                     .IsRequired()
                     .HasColumnType("varchar(10)");
-
-                mesaBuilder.HasOne(m => m.Conta)
-                    .WithMany()
-                    .IsRequired()
-                    .HasForeignKey("Conta_Id")
-                    .HasConstraintName("FK_TBMesa_TBConta")
-                    .OnDelete(DeleteBehavior.Restrict);
             });
 
             modelBuilder.Entity<Conta>(contaBuilder =>
@@ -131,6 +117,20 @@ namespace ControladeDeBar.Infra.Orm.Compartilhado
                 contaBuilder.HasMany(c => c.Pedidos)
                     .WithMany()
                     .UsingEntity(x => x.ToTable("TBConta_TBPedido"));
+
+                contaBuilder.HasOne(p => p.Mesa)
+                    .WithMany()
+                    .IsRequired()
+                    .HasForeignKey("Mesa_Id")
+                    .HasConstraintName("FK_TBConta_TBMesa")
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                contaBuilder.HasOne(p => p.Garcom)
+                    .WithMany()
+                    .IsRequired()
+                    .HasForeignKey("Garcom_Id")
+                    .HasConstraintName("FK_TBConta_TBGarcom")
+                    .OnDelete(DeleteBehavior.Restrict);
             });
 
             base.OnModelCreating(modelBuilder);

@@ -1,18 +1,19 @@
 ﻿using ControladeDeBar.Infra.Orm.Compartilhado;
 using ControleDeBar.Dominio.ModuloConta;
 using ControleDeBar.Dominio.ModuloConta;
+using ControleDeBar.Dominio.ModuloPedido;
 using ControleDeBar.WinApp.Compartilhado;
 namespace ControleDeBar.WinApp.ModuloConta
 {
-    public class ControladorConta(IRepositorioConta repositorioConta, ControleDeBarDbContext dbContext) : ControladorBase
+    public class ControladorConta(IRepositorioConta repositorioConta, IRepositorioPedido repositorioPedido, ControleDeBarDbContext dbContext) : ControladorBase
     {
         TabelaContaControl tabelaConta;
 
         #region ToolTips
-        public override string TipoCadastro { get => "Garçom"; }
-        public override string ToolTipAdicionar { get => "Cadastrar um novo garçom"; }
-        public override string ToolTipEditar { get => "Editar um garçom existente"; }
-        public override string ToolTipExcluir { get => "Excluir um garçom existente"; }
+        public override string TipoCadastro { get => "Conta"; }
+        public override string ToolTipAdicionar { get => "Cadastrar uma nova conta"; }
+        public override string ToolTipEditar { get => "Editar uma conta existente"; }
+        public override string ToolTipExcluir { get => "Excluir uma conta existente"; }
         #endregion
 
         #region CRUD
@@ -24,6 +25,9 @@ namespace ControleDeBar.WinApp.ModuloConta
             if (resultado != DialogResult.OK) return;
 
             Conta novoRegistro = telaProduto.Conta;
+
+            foreach (Pedido p in novoRegistro.Pedidos)
+                repositorioPedido.Cadastrar(p);
 
             RealizarAcao(
                 () => repositorioConta.Cadastrar(novoRegistro),

@@ -1,6 +1,7 @@
 ﻿using ControladeDeBar.Infra.Orm.Compartilhado;
 using ControleDeBar.Dominio.ModuloConta;
 using ControleDeBar.Dominio.ModuloGarcom;
+using ControleDeBar.Dominio.ModuloMesa;
 using ControleDeBar.Dominio.ModuloPedido;
 using ControleDeBar.Dominio.ModuloProduto;
 namespace ControleDeBar.WinApp.ModuloConta
@@ -12,7 +13,9 @@ namespace ControleDeBar.WinApp.ModuloConta
             get => conta;
             set
             {
-                txtId.Text = numeroMesa.ToString();
+                txtId.Text = value.Id.ToString();
+                cmbGarcom.SelectedItem = value.Garcom;
+                cmbMesa.SelectedItem = value.Mesa;
 
                 foreach (Pedido p in value.Pedidos)
                     listPedidos.Items.Add(p);
@@ -20,7 +23,8 @@ namespace ControleDeBar.WinApp.ModuloConta
         }
         private Conta conta;
         ControleDeBarDbContext dbContext;
-        readonly int numeroMesa;
+        decimal valorTotal = 0;
+        bool emEdicao = false;
 
         public TelaContaForm(ControleDeBarDbContext dbContext)
         {
@@ -30,14 +34,15 @@ namespace ControleDeBar.WinApp.ModuloConta
             CarregarMesas();
             CarregarGarcons();
             CarregarProdutos();
+            MostrarId([.. dbContext.Contas]);
         }
 
         private void CarregarMesas()
         {
-            List<Garcom> garconsCadastrados = [.. dbContext.Garcons];
+            List<Mesa> mesasCadastradas = [.. dbContext.Mesas];
 
-            foreach (Garcom g in garconsCadastrados)
-                cmbGarcom.Items.Add(g);
+            foreach (Mesa m in mesasCadastradas)
+                cmbMesa.Items.Add(m);
         }
         private void CarregarGarcons()
         {
@@ -53,14 +58,93 @@ namespace ControleDeBar.WinApp.ModuloConta
             foreach (Produto p in produtosCadastrados)
                 cmbProduto.Items.Add(p);
         }
-        private void btnRemoverlist_Click(object sender, EventArgs e)
+
+        private void cmbProduto_SelectionChangeCommitted(object sender, EventArgs e) => txtQuantidade.Enabled = true;
+        private void btnAdicionar_Click(object sender, EventArgs e)
         {
-            Pedido pedidoSelecionado = (Pedido)listPedidos.SelectedItem;
+            if (QuantidadeZerada() || SemGarcomSelecionado()) return;
 
-            if (pedidoSelecionado == null) return;
+            Pedido novoPedido = new(
+                (Garcom)cmbGarcom.SelectedItem,
+                (Produto)cmbProduto.SelectedItem, txtQuantidade.Value,
+                ((Produto)cmbProduto.SelectedItem).Preco * txtQuantidade.Value);
 
-            Conta.Pedidos.Remove(pedidoSelecionado);
-            listPedidos.Items.Remove(pedidoSelecionado);
+            listPedidos.Items.Add(novoPedido);
+
+            valorTotal += novoPedido.Valor;
+
+            cmbProduto.SelectedItem = null;
+            txtQuantidade.Value = 0; txtQuantidade.Enabled = false;
+            lblValorTotal.Text = valorTotal.ToString(); lblValorTotal.Visible = true;
+            TelaPrincipalForm.Instancia.AtualizarRodape("Pedido adicionado com sucesso!");
+
+            if (emEdicao) listPedidos.Items.Remove(listPedidos.SelectedItem);
+            emEdicao = false;
+        }
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            if (listPedidos.SelectedItem == null) return;
+
+            emEdicao = true;
+            cmbProduto.SelectedItem = ((Pedido)listPedidos.SelectedItem).Produto;
+            txtQuantidade.Value = ((Pedido)listPedidos.SelectedItem).Quantidade;
+            txtQuantidade.Enabled = true;
+
+            valorTotal -= ((Pedido)listPedidos.SelectedItem).Valor;
+            lblValorTotal.Text = valorTotal.ToString();
+        }
+        private void btnRemover_Click(object sender, EventArgs e)
+        {
+            if (listPedidos.SelectedItem == null) return;
+
+            valorTotal -= ((Pedido)listPedidos.SelectedItem).Valor;
+            lblValorTotal.Text = valorTotal.ToString();
+            listPedidos.Items.Remove(listPedidos.SelectedItem);
+        }
+        private void btnGravar_Click(object sender, EventArgs e)
+        {
+            List<Pedido> pedidos = [];
+
+            foreach (Pedido p in listPedidos.Items)
+                pedidos.Add(p);
+
+            conta = new((Mesa)cmbMesa.SelectedItem, (Garcom)cmbGarcom.SelectedItem, pedidos, valorTotal, true, DateTime.Now);
+
+            List<string> erros = conta.Validar();
+
+            if (erros.Count > 0)
+            {
+                TelaPrincipalForm.Instancia.AtualizarRodape(erros[0]);
+                DialogResult = DialogResult.None;
+            }
+        }
+
+        private bool SemGarcomSelecionado()
+        {
+            if (cmbGarcom.SelectedItem == null)
+            {
+                TelaPrincipalForm.Instancia.AtualizarRodape("Não é possível adicionar este pedido. Informe um \"Garçom\"");
+                return true;
+            }
+            return false;
+        }
+        private bool QuantidadeZerada()
+        {
+            if (txtQuantidade.Value == 0)
+            {
+                TelaPrincipalForm.Instancia.AtualizarRodape("Não é possível adicionar este pedido. Aumente a quantidade");
+                return true;
+            }
+            return false;
+        }
+        private void MostrarId(List<Conta> contasCadastradas)
+        {
+            if (txtId.Text == "0")
+            {
+                if (contasCadastradas.Count > 0)
+                    txtId.Text = (contasCadastradas.Last().Id + 1).ToString();
+                else txtId.Text = "1";
+            }
         }
     }
 }

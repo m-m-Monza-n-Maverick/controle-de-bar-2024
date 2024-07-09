@@ -36,6 +36,6 @@ namespace ControladeDeBar.Infra.SQL.ModuloMesa
         }
 
         public Mesa SelecionarPorId(int id) => dbContext.Mesas.Find(id)!;
-        public List<Mesa> SelecionarTodos() => dbContext.Mesas.Include(m => m.Conta).ToList();
+        public List<Mesa> SelecionarTodos() => dbContext.Mesas.ToList();
     }
 }

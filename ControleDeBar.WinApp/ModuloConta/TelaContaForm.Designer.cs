@@ -35,10 +35,10 @@
             groupBox1 = new GroupBox();
             groupBox2 = new GroupBox();
             listPedidos = new ListBox();
-            button3 = new Button();
-            button2 = new Button();
-            button1 = new Button();
-            txtNumero = new NumericUpDown();
+            btnRemover = new Button();
+            btnEditar = new Button();
+            btnAdicionar = new Button();
+            txtQuantidade = new NumericUpDown();
             label7 = new Label();
             cmbProduto = new ComboBox();
             label6 = new Label();
@@ -47,10 +47,10 @@
             cmbGarcom = new ComboBox();
             label3 = new Label();
             label4 = new Label();
-            label5 = new Label();
+            lblValorTotal = new Label();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)txtNumero).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)txtQuantidade).BeginInit();
             SuspendLayout();
             // 
             // btnGravar
@@ -62,6 +62,7 @@
             btnGravar.TabIndex = 5;
             btnGravar.Text = "Gravar";
             btnGravar.UseVisualStyleBackColor = true;
+            btnGravar.Click += btnGravar_Click;
             // 
             // btnCancelar
             // 
@@ -96,8 +97,8 @@
             // 
             groupBox1.BackColor = SystemColors.ButtonFace;
             groupBox1.Controls.Add(groupBox2);
-            groupBox1.Controls.Add(button1);
-            groupBox1.Controls.Add(txtNumero);
+            groupBox1.Controls.Add(btnAdicionar);
+            groupBox1.Controls.Add(txtQuantidade);
             groupBox1.Controls.Add(label7);
             groupBox1.Controls.Add(cmbProduto);
             groupBox1.Controls.Add(label6);
@@ -112,14 +113,14 @@
             // 
             groupBox2.BackColor = SystemColors.ButtonFace;
             groupBox2.Controls.Add(listPedidos);
-            groupBox2.Controls.Add(button3);
-            groupBox2.Controls.Add(button2);
+            groupBox2.Controls.Add(btnRemover);
+            groupBox2.Controls.Add(btnEditar);
             groupBox2.Location = new Point(9, 75);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(474, 218);
             groupBox2.TabIndex = 35;
             groupBox2.TabStop = false;
-            groupBox2.Text = "Produtos:";
+            groupBox2.Text = "Pedidos:";
             // 
             // listPedidos
             // 
@@ -131,40 +132,44 @@
             listPedidos.Size = new Size(474, 150);
             listPedidos.TabIndex = 37;
             // 
-            // button3
+            // btnRemover
             // 
-            button3.Location = new Point(92, 27);
-            button3.Name = "button3";
-            button3.Size = new Size(75, 23);
-            button3.TabIndex = 36;
-            button3.Text = "Remover";
-            button3.UseVisualStyleBackColor = true;
+            btnRemover.Location = new Point(92, 27);
+            btnRemover.Name = "btnRemover";
+            btnRemover.Size = new Size(75, 23);
+            btnRemover.TabIndex = 36;
+            btnRemover.Text = "Remover";
+            btnRemover.UseVisualStyleBackColor = true;
+            btnRemover.Click += btnRemover_Click;
             // 
-            // button2
+            // btnEditar
             // 
-            button2.Location = new Point(11, 27);
-            button2.Name = "button2";
-            button2.Size = new Size(75, 23);
-            button2.TabIndex = 35;
-            button2.Text = "Editar";
-            button2.UseVisualStyleBackColor = true;
+            btnEditar.Location = new Point(11, 27);
+            btnEditar.Name = "btnEditar";
+            btnEditar.Size = new Size(75, 23);
+            btnEditar.TabIndex = 35;
+            btnEditar.Text = "Editar";
+            btnEditar.UseVisualStyleBackColor = true;
+            btnEditar.Click += btnEditar_Click;
             // 
-            // button1
+            // btnAdicionar
             // 
-            button1.Location = new Point(387, 34);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 34;
-            button1.Text = "Adicionar";
-            button1.UseVisualStyleBackColor = true;
+            btnAdicionar.Location = new Point(387, 34);
+            btnAdicionar.Name = "btnAdicionar";
+            btnAdicionar.Size = new Size(75, 23);
+            btnAdicionar.TabIndex = 34;
+            btnAdicionar.Text = "Adicionar";
+            btnAdicionar.UseVisualStyleBackColor = true;
+            btnAdicionar.Click += btnAdicionar_Click;
             // 
-            // txtNumero
+            // txtQuantidade
             // 
-            txtNumero.Location = new Point(314, 34);
-            txtNumero.Maximum = new decimal(new int[] { 50, 0, 0, 0 });
-            txtNumero.Name = "txtNumero";
-            txtNumero.Size = new Size(52, 23);
-            txtNumero.TabIndex = 32;
+            txtQuantidade.Enabled = false;
+            txtQuantidade.Location = new Point(314, 34);
+            txtQuantidade.Maximum = new decimal(new int[] { 50, 0, 0, 0 });
+            txtQuantidade.Name = "txtQuantidade";
+            txtQuantidade.Size = new Size(52, 23);
+            txtQuantidade.TabIndex = 32;
             // 
             // label7
             // 
@@ -183,6 +188,7 @@
             cmbProduto.Name = "cmbProduto";
             cmbProduto.Size = new Size(127, 23);
             cmbProduto.TabIndex = 31;
+            cmbProduto.SelectionChangeCommitted += cmbProduto_SelectionChangeCommitted;
             // 
             // label6
             // 
@@ -238,22 +244,23 @@
             label4.TabIndex = 32;
             label4.Text = "Valor total:";
             // 
-            // label5
+            // lblValorTotal
             // 
-            label5.AutoSize = true;
-            label5.ForeColor = Color.LimeGreen;
-            label5.Location = new Point(85, 92);
-            label5.Name = "label5";
-            label5.Size = new Size(60, 15);
-            label5.TabIndex = 33;
-            label5.Text = "Valor total";
+            lblValorTotal.AutoSize = true;
+            lblValorTotal.ForeColor = Color.LimeGreen;
+            lblValorTotal.Location = new Point(85, 92);
+            lblValorTotal.Name = "lblValorTotal";
+            lblValorTotal.Size = new Size(60, 15);
+            lblValorTotal.TabIndex = 33;
+            lblValorTotal.Text = "Valor total";
+            lblValorTotal.Visible = false;
             // 
             // TelaContaForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(507, 469);
-            Controls.Add(label5);
+            Controls.Add(lblValorTotal);
             Controls.Add(label4);
             Controls.Add(cmbGarcom);
             Controls.Add(label3);
@@ -273,7 +280,7 @@
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)txtNumero).EndInit();
+            ((System.ComponentModel.ISupportInitialize)txtQuantidade).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -290,15 +297,15 @@
         private ComboBox cmbGarcom;
         private Label label3;
         private Label label4;
-        private Label label5;
+        private Label lblValorTotal;
         private ComboBox cmbProduto;
         private Label label6;
-        private Button button1;
-        private NumericUpDown txtNumero;
+        private Button btnAdicionar;
+        private NumericUpDown txtQuantidade;
         private Label label7;
         private GroupBox groupBox2;
-        private Button button3;
-        private Button button2;
+        private Button btnRemover;
+        private Button btnEditar;
         private ListBox listPedidos;
     }
 }

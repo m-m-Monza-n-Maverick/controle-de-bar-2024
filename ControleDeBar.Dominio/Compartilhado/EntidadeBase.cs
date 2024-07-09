@@ -1,4 +1,6 @@
-﻿namespace ControleDeBar.Dominio.Compartilhado
+﻿using ControleDeBar.Dominio.ModuloPedido;
+
+namespace ControleDeBar.Dominio.Compartilhado
 {
     public abstract class EntidadeBase
     {

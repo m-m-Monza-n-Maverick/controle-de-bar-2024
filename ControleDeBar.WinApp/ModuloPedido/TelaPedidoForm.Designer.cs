@@ -111,7 +111,6 @@
             txtQnt.Size = new Size(52, 23);
             txtQnt.TabIndex = 2;
             txtQnt.ValueChanged += txtQnt_ValueChanged;
-            txtQnt.DataContextChanged += txtQnt_DataContextChanged;
             // 
             // cmbProduto
             // 
