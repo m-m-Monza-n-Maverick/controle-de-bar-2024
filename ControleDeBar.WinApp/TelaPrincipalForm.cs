@@ -47,19 +47,16 @@ namespace ControleDeBar.WinApp
         private void produtoMenuItem_Click(object sender, EventArgs e)
             => SelecionaModulo(ref controlador, () => controlador = new ControladorProduto(repositorioProduto, dbContext),
                     repositorioProduto.SelecionarTodos().Count);
-        private void btnCadastroPedido_Click(object sender, EventArgs e)
-            => SelecionaModulo(ref controlador, () => controlador = new ControladorPedido(repositorioPedido, dbContext),
-                repositorioPedido.SelecionarTodos().Count);
         private void mesaMenuItem_Click(object sender, EventArgs e) { }
         /*                => SelecionaModulo(ref controlador, () => controlador = new ControladorGarcom(repositorioGarcom),
                     repositorioGarcom.SelecionarTodos().Count);*/
         private void contaMenuItem_Click(object sender, EventArgs e) { }
         /*                => SelecionaModulo(ref controlador, () => controlador = new ControladorGarcom(repositorioGarcom),
                     repositorioGarcom.SelecionarTodos().Count);*/
-        private void barMenuItem_Click(object sender, EventArgs e) { }
-        /*                => SelecionaModulo(ref controlador, () => controlador = new ControladorGarcom(repositorioGarcom),
-                    repositorioGarcom.SelecionarTodos().Count);*/
         #endregion
+        private void btnCadastroPedido_Click(object sender, EventArgs e)
+            => SelecionaModulo(ref controlador, () => controlador = new ControladorPedido(repositorioPedido, dbContext),
+                repositorioPedido.SelecionarTodos().Count);
 
         #region Botões
         private void btnAdicionar_Click_1(object sender, EventArgs e)
@@ -108,5 +105,6 @@ namespace ControleDeBar.WinApp
             pnlRegistros.Controls.Add(listagemContato);
         }
         #endregion
+
     }
 }
