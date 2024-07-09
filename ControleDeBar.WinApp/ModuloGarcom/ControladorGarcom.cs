@@ -17,7 +17,7 @@ namespace ControleDeBar.WinApp.ModuloGarcom
         #region CRUD
         public override void Adicionar()
         {
-            TelaGarcomForm telaProduto = new([.. dbContext.Garcons]);
+            TelaGarcomForm telaProduto = new(dbContext);
             DialogResult resultado = telaProduto.ShowDialog();
 
             if (resultado != DialogResult.OK) return;
@@ -38,7 +38,7 @@ namespace ControleDeBar.WinApp.ModuloGarcom
 
             List<Garcom> disciplinasCadastradas = repositorioGarcom.SelecionarTodos();
 
-            TelaGarcomForm telaGarcom = new([.. dbContext.Garcons])
+            TelaGarcomForm telaGarcom = new(dbContext)
             {
                 Garcom = registroSelecionado
             };

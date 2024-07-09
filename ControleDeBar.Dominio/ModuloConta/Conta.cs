@@ -26,6 +26,7 @@ namespace ControleDeBar.Dominio.ModuloConta
         {
             Conta atualizada = (Conta)novoRegistro;
             Pedidos = atualizada.Pedidos;
+            ValorTotal = atualizada.ValorTotal;
         }
         public override List<string> Validar()
         {

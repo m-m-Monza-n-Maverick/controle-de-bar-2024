@@ -26,8 +26,7 @@ namespace ControleDeBar.WinApp.ModuloPedido
             InitializeComponent();
 
             this.dbContext = dbContext;
-
-            MostrarId([.. dbContext.Pedidos]);
+            MostrarId();
             CarregarGarcons();
             CarregarProdutos();
         }
@@ -58,12 +57,12 @@ namespace ControleDeBar.WinApp.ModuloPedido
         }
 
         #region Auxiliares
-        private void MostrarId(List<Pedido> pedidosCadastrados)
+        private void MostrarId()
         {
             if (txtId.Text == "0")
             {
-                if (pedidosCadastrados.Count > 0)
-                    txtId.Text = (pedidosCadastrados.Last().Id + 1).ToString();
+                if (dbContext.Pedidos.ToList().Count > 0)
+                    txtId.Text = (dbContext.Pedidos.ToList().Last().Id + 1).ToString();
                 else txtId.Text = "1";
             }
         }

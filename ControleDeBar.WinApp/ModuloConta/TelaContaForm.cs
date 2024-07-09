@@ -16,6 +16,8 @@ namespace ControleDeBar.WinApp.ModuloConta
                 txtId.Text = value.Id.ToString();
                 cmbGarcom.SelectedItem = value.Garcom;
                 cmbMesa.SelectedItem = value.Mesa;
+                lblValorTotal.Text = value.ValorTotal.ToString();
+                valorTotal = value.ValorTotal;
 
                 foreach (Pedido p in value.Pedidos)
                     listPedidos.Items.Add(p);
@@ -59,7 +61,7 @@ namespace ControleDeBar.WinApp.ModuloConta
                 cmbProduto.Items.Add(p);
         }
 
-        private void cmbProduto_SelectionChangeCommitted(object sender, EventArgs e) => txtQuantidade.Enabled = true;
+        #region Botões
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
             if (QuantidadeZerada() || SemGarcomSelecionado()) return;
@@ -104,8 +106,7 @@ namespace ControleDeBar.WinApp.ModuloConta
         private void btnGravar_Click(object sender, EventArgs e)
         {
             List<Pedido> pedidos = [];
-
-            foreach (Pedido p in listPedidos.Items)
+            foreach (Pedido p in listPedidos.Items) 
                 pedidos.Add(p);
 
             conta = new((Mesa)cmbMesa.SelectedItem, (Garcom)cmbGarcom.SelectedItem, pedidos, valorTotal, true, DateTime.Now);
@@ -118,7 +119,10 @@ namespace ControleDeBar.WinApp.ModuloConta
                 DialogResult = DialogResult.None;
             }
         }
+        #endregion
 
+        #region Auxiliares
+        private void cmbProduto_SelectionChangeCommitted(object sender, EventArgs e) => txtQuantidade.Enabled = true;
         private bool SemGarcomSelecionado()
         {
             if (cmbGarcom.SelectedItem == null)
@@ -146,5 +150,6 @@ namespace ControleDeBar.WinApp.ModuloConta
                 else txtId.Text = "1";
             }
         }
+        #endregion
     }
 }

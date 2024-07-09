@@ -80,8 +80,19 @@ namespace ControleDeBar.WinApp
             => controlador.Excluir();
         private void btnContas_Click(object sender, EventArgs e)
         {
-            if (controlador is IControladorContaDaMesa controladorContaDaMesa)
-                controladorContaDaMesa.AdministrarContaDaMesa();
+            if (controlador is ControladorConta controladorContasAbertas)
+            {
+                lblTipoCadastro.Text = "Visualizando contas em aberto";
+                btnFecharConta.Enabled = true;
+                btnFecharConta.ToolTipText = controladorContasAbertas.ToolTipFecharConta;
+
+                ConfigurarListagemContasAbertas(controladorContasAbertas);
+            }
+        }        
+        private void btnFecharConta_Click(object sender, EventArgs e)
+        {
+            if (controlador is IControladorContasAbertas controladorContasAbertas)
+                controladorContasAbertas.FecharConta();
         }
         #endregion
 
@@ -102,7 +113,7 @@ namespace ControleDeBar.WinApp
             btnExcluir.Enabled = true;
 
             btnCadastroPedido.Enabled = controladorSelecionado is IControladorGeraPedido;
-            btnContaDaMesa.Enabled = controladorSelecionado is IControladorContaDaMesa;
+            btnContasAbertas.Enabled = controladorSelecionado is IControladorContasAbertas;
 
             ConfigurarToolTips(controladorSelecionado);
         }
@@ -115,16 +126,24 @@ namespace ControleDeBar.WinApp
             if (controladorSelecionado is IControladorGeraPedido controladorGeraPedido)
                 btnCadastroPedido.ToolTipText = controladorGeraPedido.ToolTipGerarPedido;
 
-            if (controladorSelecionado is IControladorContaDaMesa controladorContaDaMesa)
-                btnContaDaMesa.ToolTipText = controladorContaDaMesa.ToolTipContaDaMesa;
+            if (controladorSelecionado is IControladorContasAbertas controladorContaDaMesa)
+                btnContasAbertas.ToolTipText = controladorContaDaMesa.ToolTipContasAbertas;
         }
         private void ConfigurarListagem(ControladorBase controladorSelecionado)
         {
-            UserControl listagemContato = controladorSelecionado.ObterListagem();
+            UserControl listagemEntidades = controladorSelecionado.ObterListagem();
 
-            listagemContato.Dock = DockStyle.Fill;
+            listagemEntidades.Dock = DockStyle.Fill;
             pnlRegistros.Controls.Clear();
-            pnlRegistros.Controls.Add(listagemContato);
+            pnlRegistros.Controls.Add(listagemEntidades);
+        }
+        private void ConfigurarListagemContasAbertas(ControladorConta controladorContasAbertas)
+        {
+            UserControl listagemEntidades = controladorContasAbertas.ObterListagemContasAbertas();
+
+            listagemEntidades.Dock = DockStyle.Fill;
+            pnlRegistros.Controls.Clear();
+            pnlRegistros.Controls.Add(listagemEntidades);
         }
         #endregion
     }

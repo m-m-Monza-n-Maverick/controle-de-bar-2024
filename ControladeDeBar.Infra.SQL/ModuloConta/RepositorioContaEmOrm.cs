@@ -36,7 +36,7 @@ namespace ControladeDeBar.Infra.SQL.ModuloConta
             return true;
         }
 
-        public Conta SelecionarPorId(int id) => dbContext.Contas.Find(id)!;
+        public Conta SelecionarPorId(int id) => dbContext.Contas.Include(c => c.Pedidos).FirstOrDefault(c => c.Id == id);
         public List<Conta> SelecionarTodos() => [.. dbContext.Contas.Include(c => c.Mesa).Include(c => c.Garcom)];
     }
 }

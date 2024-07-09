@@ -14,22 +14,19 @@ namespace ControleDeBar.WinApp.ModuloMesa
             set
             {
                 txtId.Text = value.Id.ToString();
-                txtNumero.Value = Convert.ToDecimal(value.Numero);
+                txtNumero.Value = numeroAtual = Convert.ToDecimal(value.Numero);
             }
         }
         private Mesa mesa;
-
-        ControleDeBarDbContext dbContext;
-        List<Mesa> mesasCadastradas;
+        private ControleDeBarDbContext dbContext;
+        private decimal numeroAtual;
 
         public TelaMesaForm(ControleDeBarDbContext dbContext)
         {
             InitializeComponent();
 
             this.dbContext = dbContext;
-            mesasCadastradas = [.. dbContext.Mesas];
-
-            MostrarId(mesasCadastradas);
+            MostrarId();
         }
 
         private void btnGravar_Click(object sender, EventArgs e)
@@ -40,12 +37,12 @@ namespace ControleDeBar.WinApp.ModuloMesa
         }
 
         #region Auxiliares
-        private void MostrarId(List<Mesa> mesasCadastradas)
+        private void MostrarId()
         {
             if (txtId.Text == "0")
             {
-                if (mesasCadastradas.Count > 0)
-                    txtId.Text = (mesasCadastradas.Last().Id + 1).ToString();
+                if (dbContext.Mesas.ToList().Count > 0)
+                    txtId.Text = (dbContext.Mesas.ToList().Last().Id + 1).ToString();
                 else txtId.Text = "1";
             }
         }
@@ -62,7 +59,11 @@ namespace ControleDeBar.WinApp.ModuloMesa
                 DialogResult = DialogResult.None;
             }
         }
-        private bool MesaTemNumeroDuplicado() => mesasCadastradas.Any(d => d.Numero == mesa.Numero);
+        private bool MesaTemNumeroDuplicado()
+        {
+            if (numeroAtual == mesa.Numero) return false;
+            return dbContext.Mesas.ToList().Any(m => m.Numero == mesa.Numero);
+        }
         #endregion
     }
 }

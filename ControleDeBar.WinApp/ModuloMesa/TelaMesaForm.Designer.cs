@@ -43,7 +43,7 @@
             btnGravar.Location = new Point(319, 117);
             btnGravar.Name = "btnGravar";
             btnGravar.Size = new Size(75, 23);
-            btnGravar.TabIndex = 3;
+            btnGravar.TabIndex = 2;
             btnGravar.Text = "Gravar";
             btnGravar.UseVisualStyleBackColor = true;
             btnGravar.Click += btnGravar_Click;
@@ -54,7 +54,7 @@
             btnCancelar.Location = new Point(12, 117);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(75, 23);
-            btnCancelar.TabIndex = 2;
+            btnCancelar.TabIndex = 1;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
             // 
@@ -92,7 +92,7 @@
             txtNumero.Maximum = new decimal(new int[] { 50, 0, 0, 0 });
             txtNumero.Name = "txtNumero";
             txtNumero.Size = new Size(52, 23);
-            txtNumero.TabIndex = 1;
+            txtNumero.TabIndex = 0;
             // 
             // TelaMesaForm
             // 

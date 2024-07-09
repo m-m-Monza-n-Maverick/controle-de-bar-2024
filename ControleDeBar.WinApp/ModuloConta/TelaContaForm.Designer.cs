@@ -59,7 +59,7 @@
             btnGravar.Location = new Point(420, 434);
             btnGravar.Name = "btnGravar";
             btnGravar.Size = new Size(75, 23);
-            btnGravar.TabIndex = 5;
+            btnGravar.TabIndex = 9;
             btnGravar.Text = "Gravar";
             btnGravar.UseVisualStyleBackColor = true;
             btnGravar.Click += btnGravar_Click;
@@ -70,7 +70,7 @@
             btnCancelar.Location = new Point(12, 434);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(75, 23);
-            btnCancelar.TabIndex = 4;
+            btnCancelar.TabIndex = 8;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
             // 
@@ -130,14 +130,14 @@
             listPedidos.Location = new Point(0, 66);
             listPedidos.Name = "listPedidos";
             listPedidos.Size = new Size(474, 150);
-            listPedidos.TabIndex = 37;
+            listPedidos.TabIndex = 5;
             // 
             // btnRemover
             // 
             btnRemover.Location = new Point(92, 27);
             btnRemover.Name = "btnRemover";
             btnRemover.Size = new Size(75, 23);
-            btnRemover.TabIndex = 36;
+            btnRemover.TabIndex = 7;
             btnRemover.Text = "Remover";
             btnRemover.UseVisualStyleBackColor = true;
             btnRemover.Click += btnRemover_Click;
@@ -147,7 +147,7 @@
             btnEditar.Location = new Point(11, 27);
             btnEditar.Name = "btnEditar";
             btnEditar.Size = new Size(75, 23);
-            btnEditar.TabIndex = 35;
+            btnEditar.TabIndex = 6;
             btnEditar.Text = "Editar";
             btnEditar.UseVisualStyleBackColor = true;
             btnEditar.Click += btnEditar_Click;
@@ -157,7 +157,7 @@
             btnAdicionar.Location = new Point(387, 34);
             btnAdicionar.Name = "btnAdicionar";
             btnAdicionar.Size = new Size(75, 23);
-            btnAdicionar.TabIndex = 34;
+            btnAdicionar.TabIndex = 4;
             btnAdicionar.Text = "Adicionar";
             btnAdicionar.UseVisualStyleBackColor = true;
             btnAdicionar.Click += btnAdicionar_Click;
@@ -169,7 +169,7 @@
             txtQuantidade.Maximum = new decimal(new int[] { 50, 0, 0, 0 });
             txtQuantidade.Name = "txtQuantidade";
             txtQuantidade.Size = new Size(52, 23);
-            txtQuantidade.TabIndex = 32;
+            txtQuantidade.TabIndex = 3;
             // 
             // label7
             // 
@@ -187,7 +187,7 @@
             cmbProduto.Location = new Point(87, 33);
             cmbProduto.Name = "cmbProduto";
             cmbProduto.Size = new Size(127, 23);
-            cmbProduto.TabIndex = 31;
+            cmbProduto.TabIndex = 2;
             cmbProduto.SelectionChangeCommitted += cmbProduto_SelectionChangeCommitted;
             // 
             // label6
@@ -215,7 +215,7 @@
             cmbMesa.Location = new Point(86, 50);
             cmbMesa.Name = "cmbMesa";
             cmbMesa.Size = new Size(127, 23);
-            cmbMesa.TabIndex = 29;
+            cmbMesa.TabIndex = 0;
             // 
             // cmbGarcom
             // 
@@ -224,7 +224,7 @@
             cmbGarcom.Location = new Point(310, 50);
             cmbGarcom.Name = "cmbGarcom";
             cmbGarcom.Size = new Size(135, 23);
-            cmbGarcom.TabIndex = 31;
+            cmbGarcom.TabIndex = 1;
             // 
             // label3
             // 
@@ -250,10 +250,9 @@
             lblValorTotal.ForeColor = Color.LimeGreen;
             lblValorTotal.Location = new Point(85, 92);
             lblValorTotal.Name = "lblValorTotal";
-            lblValorTotal.Size = new Size(60, 15);
+            lblValorTotal.Size = new Size(13, 15);
             lblValorTotal.TabIndex = 33;
-            lblValorTotal.Text = "Valor total";
-            lblValorTotal.Visible = false;
+            lblValorTotal.Text = "0";
             // 
             // TelaContaForm
             // 

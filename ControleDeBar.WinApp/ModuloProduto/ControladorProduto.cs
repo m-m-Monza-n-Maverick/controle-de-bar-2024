@@ -17,7 +17,7 @@ namespace ControleDeBar.WinApp.ModuloProduto
         #region CRUD
         public override void Adicionar()
         {
-            TelaProdutoForm telaProduto = new([.. dbContext.Produtos]);
+            TelaProdutoForm telaProduto = new(dbContext);
             DialogResult resultado = telaProduto.ShowDialog();
 
             if (resultado != DialogResult.OK) return;
@@ -38,7 +38,7 @@ namespace ControleDeBar.WinApp.ModuloProduto
 
             List<Produto> disciplinasCadastradas = repositorioProduto.SelecionarTodos();
 
-            TelaProdutoForm telaProduto = new([.. dbContext.Produtos])
+            TelaProdutoForm telaProduto = new(dbContext)
             {
                 Produto = registroSelecionado
             };

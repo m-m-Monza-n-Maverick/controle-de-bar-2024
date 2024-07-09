@@ -50,7 +50,7 @@
             btnGravar.Location = new Point(319, 207);
             btnGravar.Name = "btnGravar";
             btnGravar.Size = new Size(75, 23);
-            btnGravar.TabIndex = 5;
+            btnGravar.TabIndex = 4;
             btnGravar.Text = "Gravar";
             btnGravar.UseVisualStyleBackColor = true;
             btnGravar.Click += btnGravar_Click;
@@ -61,7 +61,7 @@
             btnCancelar.Location = new Point(12, 207);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(75, 23);
-            btnCancelar.TabIndex = 4;
+            btnCancelar.TabIndex = 3;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
             // 
@@ -108,6 +108,7 @@
             txtQnt.Location = new Point(324, 91);
             txtQnt.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             txtQnt.Name = "txtQnt";
+            txtQnt.ReadOnly = true;
             txtQnt.Size = new Size(52, 23);
             txtQnt.TabIndex = 2;
             txtQnt.ValueChanged += txtQnt_ValueChanged;
@@ -138,7 +139,7 @@
             txtTotal.Location = new Point(77, 147);
             txtTotal.Name = "txtTotal";
             txtTotal.Size = new Size(52, 23);
-            txtTotal.TabIndex = 3;
+            txtTotal.TabIndex = 32;
             txtTotal.Text = "0";
             // 
             // label5
@@ -158,7 +159,7 @@
             cmbGarcom.Location = new Point(77, 52);
             cmbGarcom.Name = "cmbGarcom";
             cmbGarcom.Size = new Size(152, 23);
-            cmbGarcom.TabIndex = 25;
+            cmbGarcom.TabIndex = 0;
             // 
             // lblAumentarQnt
             // 
