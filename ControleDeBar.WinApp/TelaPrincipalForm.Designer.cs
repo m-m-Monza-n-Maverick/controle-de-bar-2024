@@ -34,7 +34,6 @@
             produtoMenuItem = new ToolStripMenuItem();
             mesaMenuItem = new ToolStripMenuItem();
             contaMenuItem = new ToolStripMenuItem();
-            barMenuItem = new ToolStripMenuItem();
             statusStrip1 = new StatusStrip();
             statusLabelPrincipal = new ToolStripStatusLabel();
             toolStrip1 = new ToolStrip();
@@ -48,7 +47,6 @@
             toolStripSeparator4 = new ToolStripSeparator();
             lblTipoCadastro = new ToolStripLabel();
             pnlRegistros = new Panel();
-            btnGabarito = new ToolStripButton();
             menuStrip1.SuspendLayout();
             statusStrip1.SuspendLayout();
             toolStrip1.SuspendLayout();
@@ -66,7 +64,7 @@
             // 
             // cadastrosToolStripMenuItem
             // 
-            cadastrosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { garcomMenuItem, produtoMenuItem, mesaMenuItem, contaMenuItem, barMenuItem });
+            cadastrosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { garcomMenuItem, produtoMenuItem, mesaMenuItem, contaMenuItem });
             cadastrosToolStripMenuItem.Name = "cadastrosToolStripMenuItem";
             cadastrosToolStripMenuItem.Size = new Size(86, 24);
             cadastrosToolStripMenuItem.Text = "Cadastros";
@@ -74,37 +72,30 @@
             // garcomMenuItem
             // 
             garcomMenuItem.Name = "garcomMenuItem";
-            garcomMenuItem.Size = new Size(131, 24);
+            garcomMenuItem.Size = new Size(180, 24);
             garcomMenuItem.Text = "Garçom";
             garcomMenuItem.Click += garcomMenuItem_Click;
             // 
             // produtoMenuItem
             // 
             produtoMenuItem.Name = "produtoMenuItem";
-            produtoMenuItem.Size = new Size(131, 24);
+            produtoMenuItem.Size = new Size(180, 24);
             produtoMenuItem.Text = "Produto";
             produtoMenuItem.Click += produtoMenuItem_Click;
             // 
             // mesaMenuItem
             // 
             mesaMenuItem.Name = "mesaMenuItem";
-            mesaMenuItem.Size = new Size(131, 24);
+            mesaMenuItem.Size = new Size(180, 24);
             mesaMenuItem.Text = "Mesa";
             mesaMenuItem.Click += mesaMenuItem_Click;
             // 
             // contaMenuItem
             // 
             contaMenuItem.Name = "contaMenuItem";
-            contaMenuItem.Size = new Size(131, 24);
+            contaMenuItem.Size = new Size(180, 24);
             contaMenuItem.Text = "Conta";
             contaMenuItem.Click += contaMenuItem_Click;
-            // 
-            // barMenuItem
-            // 
-            barMenuItem.Name = "barMenuItem";
-            barMenuItem.Size = new Size(131, 24);
-            barMenuItem.Text = "Bar";
-            barMenuItem.Click += barMenuItem_Click;
             // 
             // statusStrip1
             // 
@@ -124,7 +115,7 @@
             // 
             // toolStrip1
             // 
-            toolStrip1.Items.AddRange(new ToolStripItem[] { btnAdicionar, btnEditar, btnExcluir, toolStripSeparator2, btnCadastroPedido, btnContasAbertas, btnFecharConta, btnGabarito, toolStripSeparator4, lblTipoCadastro });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { btnAdicionar, btnEditar, btnExcluir, toolStripSeparator2, btnCadastroPedido, btnContasAbertas, btnFecharConta, toolStripSeparator4, lblTipoCadastro });
             toolStrip1.Location = new Point(0, 28);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(800, 41);
@@ -228,16 +219,6 @@
             pnlRegistros.Size = new Size(800, 446);
             pnlRegistros.TabIndex = 3;
             // 
-            // btnGabarito
-            // 
-            btnGabarito.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            btnGabarito.Enabled = false;
-            btnGabarito.ImageScaling = ToolStripItemImageScaling.None;
-            btnGabarito.ImageTransparentColor = Color.Magenta;
-            btnGabarito.Name = "btnGabarito";
-            btnGabarito.Padding = new Padding(5);
-            btnGabarito.Size = new Size(23, 38);
-            // 
             // TelaPrincipalForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -283,8 +264,6 @@
         private ToolStripButton btnContasAbertas;
         private ToolStripButton btnFecharConta;
         private ToolStripSeparator toolStripSeparator2;
-        private ToolStripMenuItem barMenuItem;
         private ToolStripMenuItem contaMenuItem;
-        private ToolStripButton btnGabarito;
     }
 }
