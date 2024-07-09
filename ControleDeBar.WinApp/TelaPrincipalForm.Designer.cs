@@ -32,7 +32,6 @@
             cadastrosToolStripMenuItem = new ToolStripMenuItem();
             garcomMenuItem = new ToolStripMenuItem();
             produtoMenuItem = new ToolStripMenuItem();
-            contaToolStripMenuItem = new ToolStripMenuItem();
             mesaMenuItem = new ToolStripMenuItem();
             contaMenuItem = new ToolStripMenuItem();
             statusStrip1 = new StatusStrip();
@@ -42,16 +41,12 @@
             btnEditar = new ToolStripButton();
             btnExcluir = new ToolStripButton();
             toolStripSeparator2 = new ToolStripSeparator();
-            btnCadastroPedido = new ToolStripButton();
-
             btnContasAbertas = new ToolStripButton();
             btnFecharConta = new ToolStripButton();
-
             toolStripSeparator4 = new ToolStripSeparator();
-            btnPdf = new ToolStripButton();
-            toolStripSeparator1 = new ToolStripSeparator();
             lblTipoCadastro = new ToolStripLabel();
             pnlRegistros = new Panel();
+            btnCadastroPedido = new ToolStripButton();
             menuStrip1.SuspendLayout();
             statusStrip1.SuspendLayout();
             toolStrip1.SuspendLayout();
@@ -77,35 +72,28 @@
             // garcomMenuItem
             // 
             garcomMenuItem.Name = "garcomMenuItem";
-            garcomMenuItem.Size = new Size(180, 24);
+            garcomMenuItem.Size = new Size(131, 24);
             garcomMenuItem.Text = "Garçom";
             garcomMenuItem.Click += garcomMenuItem_Click;
             // 
             // produtoMenuItem
             // 
             produtoMenuItem.Name = "produtoMenuItem";
-            produtoMenuItem.Size = new Size(180, 24);
+            produtoMenuItem.Size = new Size(131, 24);
             produtoMenuItem.Text = "Produto";
             produtoMenuItem.Click += produtoMenuItem_Click;
-            // 
-            // contaToolStripMenuItem
-            // 
-            contaToolStripMenuItem.Name = "contaToolStripMenuItem";
-            contaToolStripMenuItem.Size = new Size(180, 24);
-            contaToolStripMenuItem.Text = "Conta";
-            contaToolStripMenuItem.Click += contaMenuItem_Click;
             // 
             // mesaMenuItem
             // 
             mesaMenuItem.Name = "mesaMenuItem";
-            mesaMenuItem.Size = new Size(180, 24);
+            mesaMenuItem.Size = new Size(131, 24);
             mesaMenuItem.Text = "Mesa";
             mesaMenuItem.Click += mesaMenuItem_Click;
             // 
             // contaMenuItem
             // 
             contaMenuItem.Name = "contaMenuItem";
-            contaMenuItem.Size = new Size(180, 24);
+            contaMenuItem.Size = new Size(131, 24);
             contaMenuItem.Text = "Conta";
             contaMenuItem.Click += contaMenuItem_Click;
             // 
@@ -130,7 +118,7 @@
             toolStrip1.Items.AddRange(new ToolStripItem[] { btnAdicionar, btnEditar, btnExcluir, toolStripSeparator2, btnCadastroPedido, btnContasAbertas, btnFecharConta, toolStripSeparator4, lblTipoCadastro });
             toolStrip1.Location = new Point(0, 28);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(800, 45);
+            toolStrip1.Size = new Size(800, 41);
             toolStrip1.TabIndex = 2;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -143,7 +131,7 @@
             btnAdicionar.ImageTransparentColor = Color.Magenta;
             btnAdicionar.Name = "btnAdicionar";
             btnAdicionar.Padding = new Padding(5);
-            btnAdicionar.Size = new Size(38, 42);
+            btnAdicionar.Size = new Size(38, 38);
             btnAdicionar.Click += btnAdicionar_Click_1;
             // 
             // btnEditar
@@ -155,7 +143,7 @@
             btnEditar.ImageTransparentColor = Color.Magenta;
             btnEditar.Name = "btnEditar";
             btnEditar.Padding = new Padding(5);
-            btnEditar.Size = new Size(38, 42);
+            btnEditar.Size = new Size(38, 38);
             btnEditar.Click += btnEditar_Click;
             // 
             // btnExcluir
@@ -167,25 +155,13 @@
             btnExcluir.ImageTransparentColor = Color.Magenta;
             btnExcluir.Name = "btnExcluir";
             btnExcluir.Padding = new Padding(5);
-            btnExcluir.Size = new Size(38, 42);
+            btnExcluir.Size = new Size(38, 38);
             btnExcluir.Click += btnExcluir_Click;
             // 
             // toolStripSeparator2
             // 
             toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(6, 45);
-            // 
-            // btnCadastroPedido
-            // 
-            btnCadastroPedido.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            btnCadastroPedido.Enabled = false;
-            btnCadastroPedido.Image = WinApp.Properties.Resources.Info2;
-            btnCadastroPedido.ImageScaling = ToolStripItemImageScaling.None;
-            btnCadastroPedido.ImageTransparentColor = Color.DarkOrchid;
-            btnCadastroPedido.Name = "btnCadastroPedido";
-            btnCadastroPedido.Padding = new Padding(5);
-            btnCadastroPedido.Size = new Size(38, 42);
-            btnCadastroPedido.Click += btnCadastroPedido_Click;
+            toolStripSeparator2.Size = new Size(6, 41);
             // 
             // btnContasAbertas
             // 
@@ -220,16 +196,27 @@
             // 
             lblTipoCadastro.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblTipoCadastro.Name = "lblTipoCadastro";
-            lblTipoCadastro.Size = new Size(123, 42);
+            lblTipoCadastro.Size = new Size(123, 38);
             lblTipoCadastro.Text = "Tipo de Cadastro";
             // 
             // pnlRegistros
             // 
             pnlRegistros.Dock = DockStyle.Fill;
-            pnlRegistros.Location = new Point(0, 73);
+            pnlRegistros.Location = new Point(0, 69);
             pnlRegistros.Name = "pnlRegistros";
-            pnlRegistros.Size = new Size(800, 442);
+            pnlRegistros.Size = new Size(800, 446);
             pnlRegistros.TabIndex = 3;
+            // 
+            // btnCadastroPedido
+            // 
+            btnCadastroPedido.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            btnCadastroPedido.Enabled = false;
+            btnCadastroPedido.Image = WinApp.Properties.Resources.Info2;
+            btnCadastroPedido.ImageScaling = ToolStripItemImageScaling.None;
+            btnCadastroPedido.ImageTransparentColor = Color.DarkOrchid;
+            btnCadastroPedido.Name = "btnCadastroPedido";
+            btnCadastroPedido.Padding = new Padding(5);
+            btnCadastroPedido.Size = new Size(38, 38);
             // 
             // TelaPrincipalForm
             // 
@@ -272,10 +259,10 @@
         private ToolStripMenuItem produtoMenuItem;
         private object Properties;
         private ToolStripMenuItem mesaMenuItem;
-        private ToolStripButton btnCadastroPedido;
         private ToolStripButton btnContasAbertas;
         private ToolStripButton btnFecharConta;
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripMenuItem contaMenuItem;
+        private ToolStripButton btnCadastroPedido;
     }
 }

@@ -68,9 +68,9 @@ namespace ControleDeBar.WinApp
             => SelecionaModulo(ref controlador, () => controlador = new ControladorConta(repositorioConta, repositorioPedido, dbContext),
                 repositorioConta.SelecionarTodos().Count);
         #endregion
-        private void btnCadastroPedido_Click(object sender, EventArgs e)
-            => SelecionaModulo(ref controlador, () => controlador = new ControladorPedido(repositorioPedido, dbContext),
-                repositorioPedido.SelecionarTodos().Count);
+        //private void btnCadastroPedido_Click(object sender, EventArgs e)
+        //    => SelecionaModulo(ref controlador, () => controlador = new ControladorPedido(repositorioPedido, dbContext),
+        //        repositorioPedido.SelecionarTodos().Count);
 
         #region Botões
         private void btnAdicionar_Click_1(object sender, EventArgs e)
