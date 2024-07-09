@@ -13,7 +13,8 @@
     <Compile Remove="Resources\**" />
     <EmbeddedResource Remove="ModuloBar\**" />
     <EmbeddedResource Remove="Resources\**" />
-    <None Remove="ModuloBar\**" />
+
+    <None Remove="ModuloConta\**" />
     <None Remove="Resources\**" />
   </ItemGroup>
 
