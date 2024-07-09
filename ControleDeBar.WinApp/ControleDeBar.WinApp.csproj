@@ -15,7 +15,6 @@
     <EmbeddedResource Remove="ModuloBar\**" />
     <EmbeddedResource Remove="ModuloConta\**" />
     <EmbeddedResource Remove="Resources\**" />
-    <None Remove="ModuloBar\**" />
     <None Remove="ModuloConta\**" />
     <None Remove="Resources\**" />
   </ItemGroup>
