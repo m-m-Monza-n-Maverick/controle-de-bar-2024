@@ -26,22 +26,21 @@ namespace ControleDeBar.WinApp.ModuloPedido
             InitializeComponent();
 
             this.dbContext = dbContext;
-
-            MostrarId([.. dbContext.Pedidos]);
+            MostrarId();
             CarregarGarcons();
             CarregarProdutos();
         }
 
         private void CarregarGarcons()
         {
-            List<Garcom> garconsCadastrados = [];
+            List<Garcom> garconsCadastrados = [.. dbContext.Garcons];
 
             foreach (Garcom g in garconsCadastrados)
                 cmbGarcom.Items.Add(g);
         }
         private void CarregarProdutos()
         {
-            List<Produto> produtosCadastrados = [];
+            List<Produto> produtosCadastrados = [.. dbContext.Produtos];
 
             foreach (Produto p in produtosCadastrados)
                 cmbProduto.Items.Add(p);
@@ -49,24 +48,21 @@ namespace ControleDeBar.WinApp.ModuloPedido
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
-            if (QuantidadeZero()) return;
-
-            decimal valorTotal = ((Produto)cmbProduto.SelectedItem).Preco * txtQnt.Value;
-
-            txtTotal.Text = valorTotal.ToString();
-
-            pedido = new Pedido(/*(Garcom)cmbGarcom.SelectedItem, */ null, (Produto)cmbProduto.SelectedItem, txtQnt.Value, valorTotal);
+            pedido = new(
+                (Garcom)cmbGarcom.SelectedItem, 
+                (Produto)cmbProduto.SelectedItem, txtQnt.Value, 
+                ((Produto)cmbProduto.SelectedItem).Preco * txtQnt.Value);
 
             Validar();
         }
 
         #region Auxiliares
-        private void MostrarId(List<Pedido> pedidosCadastrados)
+        private void MostrarId()
         {
             if (txtId.Text == "0")
             {
-                if (pedidosCadastrados.Count > 0)
-                    txtId.Text = (pedidosCadastrados.Last().Id + 1).ToString();
+                if (dbContext.Pedidos.ToList().Count > 0)
+                    txtId.Text = (dbContext.Pedidos.ToList().Last().Id + 1).ToString();
                 else txtId.Text = "1";
             }
         }
@@ -76,16 +72,12 @@ namespace ControleDeBar.WinApp.ModuloPedido
             txtQnt.Value = 0;
             txtTotal.Text = "0";
         }
-        private void txtQnt_ValueChanged(object sender, EventArgs e) => lblAumentarQnt.Visible = txtQnt.Value == 0;
-        private bool QuantidadeZero()
+        private void txtQnt_ValueChanged(object sender, EventArgs e)
         {
-            if (txtQnt.Value == 0)
-            {
-                lblAumentarQnt.Visible = true;
-                DialogResult = DialogResult.None;
-                return true;
-            }
-            return false;
+            decimal valorTotal = ((Produto)cmbProduto.SelectedItem).Preco * txtQnt.Value;
+
+            lblAumentarQnt.Visible = txtQnt.Value == 0;
+            txtTotal.Text = valorTotal.ToString();
         }
         private void Validar()
         {

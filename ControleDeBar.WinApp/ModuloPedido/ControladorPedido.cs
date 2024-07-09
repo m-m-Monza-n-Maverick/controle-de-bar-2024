@@ -1,4 +1,6 @@
 ﻿using ControladeDeBar.Infra.Orm.Compartilhado;
+using ControleDeBar.Dominio.ModuloConta;
+using ControleDeBar.Dominio.ModuloMesa;
 using ControleDeBar.Dominio.ModuloPedido;
 using ControleDeBar.WinApp.Compartilhado;
 namespace ControleDeBar.WinApp.ModuloPedido

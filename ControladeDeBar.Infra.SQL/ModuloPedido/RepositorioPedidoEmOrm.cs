@@ -1,5 +1,6 @@
 ﻿using ControladeDeBar.Infra.Orm.Compartilhado;
 using ControleDeBar.Dominio.ModuloPedido;
+using Microsoft.EntityFrameworkCore;
 namespace ControladeDeBar.Infra.SQL.ModuloPedido
 {
     public class RepositorioPedidoEmOrm(ControleDeBarDbContext dbContext) : IRepositorioPedido
@@ -35,6 +36,6 @@ namespace ControladeDeBar.Infra.SQL.ModuloPedido
         }
 
         public Pedido SelecionarPorId(int id) => dbContext.Pedidos.Find(id)!;
-        public List<Pedido> SelecionarTodos() => [.. dbContext.Pedidos];
+        public List<Pedido> SelecionarTodos() => [.. dbContext.Pedidos.Include(p => p.Produto).Include(p => p.Garcom)];
     }
 }

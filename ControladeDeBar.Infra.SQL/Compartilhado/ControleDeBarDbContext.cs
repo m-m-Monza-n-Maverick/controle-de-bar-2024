@@ -1,8 +1,9 @@
-﻿using ControleDeBar.Dominio.ModuloGarcom;
+﻿using ControleDeBar.Dominio.ModuloConta;
+using ControleDeBar.Dominio.ModuloGarcom;
+using ControleDeBar.Dominio.ModuloMesa;
 using ControleDeBar.Dominio.ModuloPedido;
 using ControleDeBar.Dominio.ModuloProduto;
 using Microsoft.EntityFrameworkCore;
-using static System.Net.Mime.MediaTypeNames;
 namespace ControladeDeBar.Infra.Orm.Compartilhado
 {
     public class ControleDeBarDbContext : DbContext
@@ -10,6 +11,8 @@ namespace ControladeDeBar.Infra.Orm.Compartilhado
         public DbSet<Garcom> Garcons { get; internal set; }
         public DbSet<Produto> Produtos { get; internal set; }
         public DbSet<Pedido> Pedidos { get; internal set; }
+        public DbSet<Mesa> Mesas { get; internal set; }
+        public DbSet<Conta> Contas { get; internal set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -79,6 +82,54 @@ namespace ControladeDeBar.Infra.Orm.Compartilhado
                     .IsRequired()
                     .HasForeignKey("Produto_Id")
                     .HasConstraintName("FK_TBPedido_TBProduto")
+                    .OnDelete(DeleteBehavior.Restrict);                
+            });
+
+            modelBuilder.Entity<Mesa>(mesaBuilder =>
+            {
+                mesaBuilder.ToTable("TBMesa");
+
+                mesaBuilder.Property(m => m.Id)
+                    .IsRequired()
+                    .ValueGeneratedOnAdd();
+
+                mesaBuilder.Property(m => m.Numero)
+                    .IsRequired()
+                    .HasColumnType("varchar(10)");
+            });
+
+            modelBuilder.Entity<Conta>(contaBuilder =>
+            {
+                contaBuilder.ToTable("TBConta");
+
+                contaBuilder.Property(c => c.Id)
+                    .IsRequired()
+                    .ValueGeneratedOnAdd();
+
+                contaBuilder.Property(m => m.ValorTotal)
+                    .IsRequired()
+                    .HasColumnType("decimal(18, 0)");
+
+                contaBuilder.Property(c => c.EmAberto).IsRequired();
+
+                contaBuilder.Property(c => c.Data).IsRequired();
+
+                contaBuilder.HasMany(c => c.Pedidos)
+                    .WithMany()
+                    .UsingEntity(x => x.ToTable("TBConta_TBPedido"));
+
+                contaBuilder.HasOne(p => p.Mesa)
+                    .WithMany()
+                    .IsRequired()
+                    .HasForeignKey("Mesa_Id")
+                    .HasConstraintName("FK_TBConta_TBMesa")
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                contaBuilder.HasOne(p => p.Garcom)
+                    .WithMany()
+                    .IsRequired()
+                    .HasForeignKey("Garcom_Id")
+                    .HasConstraintName("FK_TBConta_TBGarcom")
                     .OnDelete(DeleteBehavior.Restrict);
             });
 

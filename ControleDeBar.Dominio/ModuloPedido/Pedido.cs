@@ -1,6 +1,8 @@
 ﻿using ControleDeBar.Dominio.Compartilhado;
 using ControleDeBar.Dominio.ModuloGarcom;
+using ControleDeBar.Dominio.ModuloMesa;
 using ControleDeBar.Dominio.ModuloProduto;
+
 namespace ControleDeBar.Dominio.ModuloPedido
 {
     public class Pedido() : EntidadeBase
@@ -37,6 +39,6 @@ namespace ControleDeBar.Dominio.ModuloPedido
 
             return erros;
         }
-        public override string ToString() => $"Pedido {Id}";
+        public override string ToString() => $"Produto: {Produto}, Quantidade: {Quantidade}, Valor: {Valor}";
     }
 }

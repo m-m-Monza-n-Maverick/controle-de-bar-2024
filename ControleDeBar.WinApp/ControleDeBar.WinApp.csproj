@@ -10,11 +10,10 @@
 
   <ItemGroup>
     <Compile Remove="ModuloBar\**" />
-    <Compile Remove="ModuloConta\**" />
     <Compile Remove="Resources\**" />
     <EmbeddedResource Remove="ModuloBar\**" />
-    <EmbeddedResource Remove="ModuloConta\**" />
     <EmbeddedResource Remove="Resources\**" />
+
     <None Remove="ModuloConta\**" />
     <None Remove="Resources\**" />
   </ItemGroup>
@@ -32,6 +31,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="ModuloConta\TabelaContasAbertasControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ModuloConta\TabelaContaControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ModuloMesa\TabelaMesaControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ModuloMesa\TelaMesaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ModuloConta\TelaContaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="ModuloPedido\TabelaPedidoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

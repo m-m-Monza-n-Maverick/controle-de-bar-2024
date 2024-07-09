@@ -20,7 +20,10 @@ namespace ControleDeBar.WinApp.ModuloPedido
             grid.Rows.Clear();
 
             foreach (Pedido p in pedidos)
+            {
+                //if (p.Mesa.Conta.Pedidos.Any(pedido => pedido.Id == p.Id))
                 grid.Rows.Add(p.Id, p.Garcom, p.Produto, p.Quantidade, p.Valor);
+            }
         }
 
         public int ObterRegistroSelecionado() => grid.SelecionarId();

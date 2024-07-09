@@ -34,6 +34,7 @@
             produtoMenuItem = new ToolStripMenuItem();
             contaToolStripMenuItem = new ToolStripMenuItem();
             mesaMenuItem = new ToolStripMenuItem();
+            contaMenuItem = new ToolStripMenuItem();
             statusStrip1 = new StatusStrip();
             statusLabelPrincipal = new ToolStripStatusLabel();
             toolStrip1 = new ToolStrip();
@@ -42,7 +43,10 @@
             btnExcluir = new ToolStripButton();
             toolStripSeparator2 = new ToolStripSeparator();
             btnCadastroPedido = new ToolStripButton();
-            btnDetalhes = new ToolStripButton();
+
+            btnContasAbertas = new ToolStripButton();
+            btnFecharConta = new ToolStripButton();
+
             toolStripSeparator4 = new ToolStripSeparator();
             btnPdf = new ToolStripButton();
             toolStripSeparator1 = new ToolStripSeparator();
@@ -65,7 +69,7 @@
             // 
             // cadastrosToolStripMenuItem
             // 
-            cadastrosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { garcomMenuItem, produtoMenuItem, mesaMenuItem, contaToolStripMenuItem });
+            cadastrosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { garcomMenuItem, produtoMenuItem, mesaMenuItem, contaMenuItem });
             cadastrosToolStripMenuItem.Name = "cadastrosToolStripMenuItem";
             cadastrosToolStripMenuItem.Size = new Size(86, 24);
             cadastrosToolStripMenuItem.Text = "Cadastros";
@@ -98,6 +102,13 @@
             mesaMenuItem.Text = "Mesa";
             mesaMenuItem.Click += mesaMenuItem_Click;
             // 
+            // contaMenuItem
+            // 
+            contaMenuItem.Name = "contaMenuItem";
+            contaMenuItem.Size = new Size(180, 24);
+            contaMenuItem.Text = "Conta";
+            contaMenuItem.Click += contaMenuItem_Click;
+            // 
             // statusStrip1
             // 
             statusStrip1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -116,7 +127,7 @@
             // 
             // toolStrip1
             // 
-            toolStrip1.Items.AddRange(new ToolStripItem[] { btnAdicionar, btnEditar, btnExcluir, toolStripSeparator2, btnCadastroPedido, btnDetalhes, toolStripSeparator4, btnPdf, toolStripSeparator1, lblTipoCadastro });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { btnAdicionar, btnEditar, btnExcluir, toolStripSeparator2, btnCadastroPedido, btnContasAbertas, btnFecharConta, toolStripSeparator4, lblTipoCadastro });
             toolStrip1.Location = new Point(0, 28);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(800, 45);
@@ -176,37 +187,34 @@
             btnCadastroPedido.Size = new Size(38, 42);
             btnCadastroPedido.Click += btnCadastroPedido_Click;
             // 
-            // btnDetalhes
+            // btnContasAbertas
             // 
-            btnDetalhes.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            btnDetalhes.Enabled = false;
-            btnDetalhes.Image = WinApp.Properties.Resources.filtro28;
-            btnDetalhes.ImageScaling = ToolStripItemImageScaling.None;
-            btnDetalhes.ImageTransparentColor = Color.Magenta;
-            btnDetalhes.Name = "btnDetalhes";
-            btnDetalhes.Padding = new Padding(5);
-            btnDetalhes.Size = new Size(42, 42);
+            btnContasAbertas.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            btnContasAbertas.Enabled = false;
+            btnContasAbertas.Image = WinApp.Properties.Resources.btnContas;
+            btnContasAbertas.ImageScaling = ToolStripItemImageScaling.None;
+            btnContasAbertas.ImageTransparentColor = Color.Magenta;
+            btnContasAbertas.Name = "btnContasAbertas";
+            btnContasAbertas.Padding = new Padding(5);
+            btnContasAbertas.Size = new Size(37, 38);
+            btnContasAbertas.Click += btnContas_Click;
+            // 
+            // btnFecharConta
+            // 
+            btnFecharConta.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            btnFecharConta.Enabled = false;
+            btnFecharConta.Image = WinApp.Properties.Resources.btnFecharConta;
+            btnFecharConta.ImageScaling = ToolStripItemImageScaling.None;
+            btnFecharConta.ImageTransparentColor = Color.Magenta;
+            btnFecharConta.Name = "btnFecharConta";
+            btnFecharConta.Padding = new Padding(5);
+            btnFecharConta.Size = new Size(37, 38);
+            btnFecharConta.Click += btnFecharConta_Click;
             // 
             // toolStripSeparator4
             // 
             toolStripSeparator4.Name = "toolStripSeparator4";
-            toolStripSeparator4.Size = new Size(6, 45);
-            // 
-            // btnPdf
-            // 
-            btnPdf.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            btnPdf.Enabled = false;
-            btnPdf.Image = WinApp.Properties.Resources.faturamento24;
-            btnPdf.ImageScaling = ToolStripItemImageScaling.None;
-            btnPdf.ImageTransparentColor = Color.Magenta;
-            btnPdf.Name = "btnPdf";
-            btnPdf.Padding = new Padding(5);
-            btnPdf.Size = new Size(38, 42);
-            // 
-            // toolStripSeparator1
-            // 
-            toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(6, 45);
+            toolStripSeparator4.Size = new Size(6, 41);
             // 
             // lblTipoCadastro
             // 
@@ -265,11 +273,9 @@
         private object Properties;
         private ToolStripMenuItem mesaMenuItem;
         private ToolStripButton btnCadastroPedido;
-        private ToolStripButton btnDetalhes;
-        private ToolStripButton btnPdf;
+        private ToolStripButton btnContasAbertas;
+        private ToolStripButton btnFecharConta;
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripMenuItem contaMenuItem;
-        private ToolStripMenuItem contaToolStripMenuItem;
-        private ToolStripSeparator toolStripSeparator1;
     }
 }

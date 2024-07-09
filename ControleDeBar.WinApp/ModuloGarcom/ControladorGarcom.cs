@@ -1,12 +1,9 @@
 ﻿using ControladeDeBar.Infra.Orm.Compartilhado;
-using ControleDeBar.Dominio.Compartilhado;
 using ControleDeBar.Dominio.ModuloGarcom;
-using ControleDeBar.Dominio.ModuloProduto;
-using ControleDeBar.Dominio.ModuloProduto;
 using ControleDeBar.WinApp.Compartilhado;
 namespace ControleDeBar.WinApp.ModuloGarcom
 {
-    public class ControladorGarcom(IRepositorioGarcom repositorioGarcom, ControleDeBarDbContext dbContext) : ControladorBase, IControladorGeraPedido
+    public class ControladorGarcom(IRepositorioGarcom repositorioGarcom, ControleDeBarDbContext dbContext) : ControladorBase
     {
         TabelaGarcomControl tabelaGarcom;
 
@@ -15,13 +12,12 @@ namespace ControleDeBar.WinApp.ModuloGarcom
         public override string ToolTipAdicionar { get => "Cadastrar um novo garçom"; }
         public override string ToolTipEditar { get => "Editar um garçom existente"; }
         public override string ToolTipExcluir { get => "Excluir um garçom existente"; }
-        public string ToolTipGerarPedido { get => "Cadastrar novo pedido"; }
         #endregion
 
         #region CRUD
         public override void Adicionar()
         {
-            TelaGarcomForm telaProduto = new([.. dbContext.Garcons]);
+            TelaGarcomForm telaProduto = new(dbContext);
             DialogResult resultado = telaProduto.ShowDialog();
 
             if (resultado != DialogResult.OK) return;
@@ -42,7 +38,7 @@ namespace ControleDeBar.WinApp.ModuloGarcom
 
             List<Garcom> disciplinasCadastradas = repositorioGarcom.SelecionarTodos();
 
-            TelaGarcomForm telaGarcom = new([.. dbContext.Garcons])
+            TelaGarcomForm telaGarcom = new(dbContext)
             {
                 Garcom = registroSelecionado
             };

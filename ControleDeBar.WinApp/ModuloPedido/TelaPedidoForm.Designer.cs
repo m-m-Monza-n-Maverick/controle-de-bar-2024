@@ -35,11 +35,11 @@
             label1 = new Label();
             label3 = new Label();
             txtQnt = new NumericUpDown();
-            cmbGarcom = new ComboBox();
             cmbProduto = new ComboBox();
             label4 = new Label();
             txtTotal = new TextBox();
             label5 = new Label();
+            cmbGarcom = new ComboBox();
             lblAumentarQnt = new Label();
             ((System.ComponentModel.ISupportInitialize)txtQnt).BeginInit();
             SuspendLayout();
@@ -50,7 +50,7 @@
             btnGravar.Location = new Point(319, 207);
             btnGravar.Name = "btnGravar";
             btnGravar.Size = new Size(75, 23);
-            btnGravar.TabIndex = 3;
+            btnGravar.TabIndex = 4;
             btnGravar.Text = "Gravar";
             btnGravar.UseVisualStyleBackColor = true;
             btnGravar.Click += btnGravar_Click;
@@ -61,7 +61,7 @@
             btnCancelar.Location = new Point(12, 207);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(75, 23);
-            btnCancelar.TabIndex = 2;
+            btnCancelar.TabIndex = 3;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
             // 
@@ -108,18 +108,10 @@
             txtQnt.Location = new Point(324, 91);
             txtQnt.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             txtQnt.Name = "txtQnt";
+            txtQnt.ReadOnly = true;
             txtQnt.Size = new Size(52, 23);
-            txtQnt.TabIndex = 1;
+            txtQnt.TabIndex = 2;
             txtQnt.ValueChanged += txtQnt_ValueChanged;
-            // 
-            // cmbGarcom
-            // 
-            cmbGarcom.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbGarcom.FormattingEnabled = true;
-            cmbGarcom.Location = new Point(77, 52);
-            cmbGarcom.Name = "cmbGarcom";
-            cmbGarcom.Size = new Size(152, 23);
-            cmbGarcom.TabIndex = 21;
             // 
             // cmbProduto
             // 
@@ -128,7 +120,7 @@
             cmbProduto.Location = new Point(77, 90);
             cmbProduto.Name = "cmbProduto";
             cmbProduto.Size = new Size(152, 23);
-            cmbProduto.TabIndex = 23;
+            cmbProduto.TabIndex = 1;
             cmbProduto.SelectionChangeCommitted += cmbProduto_SelectionChangeCommitted;
             // 
             // label4
@@ -147,7 +139,7 @@
             txtTotal.Location = new Point(77, 147);
             txtTotal.Name = "txtTotal";
             txtTotal.Size = new Size(52, 23);
-            txtTotal.TabIndex = 25;
+            txtTotal.TabIndex = 32;
             txtTotal.Text = "0";
             // 
             // label5
@@ -160,17 +152,24 @@
             label5.TabIndex = 24;
             label5.Text = "Valor:";
             // 
+            // cmbGarcom
+            // 
+            cmbGarcom.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbGarcom.FormattingEnabled = true;
+            cmbGarcom.Location = new Point(77, 52);
+            cmbGarcom.Name = "cmbGarcom";
+            cmbGarcom.Size = new Size(152, 23);
+            cmbGarcom.TabIndex = 0;
+            // 
             // lblAumentarQnt
             // 
             lblAumentarQnt.AutoSize = true;
             lblAumentarQnt.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-            lblAumentarQnt.ForeColor = Color.Firebrick;
-            lblAumentarQnt.Location = new Point(152, 150);
+            lblAumentarQnt.Location = new Point(159, 150);
             lblAumentarQnt.Name = "lblAumentarQnt";
             lblAumentarQnt.Size = new Size(132, 15);
             lblAumentarQnt.TabIndex = 26;
             lblAumentarQnt.Text = "Aumente a quantidade!";
-            lblAumentarQnt.Visible = false;
             // 
             // TelaPedidoForm
             // 
@@ -178,11 +177,11 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(406, 242);
             Controls.Add(lblAumentarQnt);
+            Controls.Add(cmbGarcom);
             Controls.Add(txtTotal);
             Controls.Add(label5);
             Controls.Add(cmbProduto);
             Controls.Add(label4);
-            Controls.Add(cmbGarcom);
             Controls.Add(txtQnt);
             Controls.Add(label3);
             Controls.Add(btnGravar);
@@ -195,7 +194,7 @@
             MinimizeBox = false;
             Name = "TelaPedidoForm";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "Cadastro de Pedido";
+            Text = "Cadastro de Mesa";
             ((System.ComponentModel.ISupportInitialize)txtQnt).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -210,11 +209,11 @@
         private Label label1;
         private Label label3;
         private NumericUpDown txtQnt;
-        private ComboBox cmbGarcom;
         private ComboBox cmbProduto;
         private Label label4;
         private TextBox txtTotal;
         private Label label5;
+        private ComboBox cmbGarcom;
         private Label lblAumentarQnt;
     }
 }
