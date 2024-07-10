@@ -28,32 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            grid = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)grid).BeginInit();
+            listContas = new ListView();
             SuspendLayout();
             // 
-            // grid
+            // listContas
             // 
-            grid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            grid.Dock = DockStyle.Fill;
-            grid.Location = new Point(0, 0);
-            grid.Name = "grid";
-            grid.Size = new Size(743, 370);
-            grid.TabIndex = 0;
+            listContas.Dock = DockStyle.Fill;
+            listContas.Location = new Point(0, 0);
+            listContas.Name = "listContas";
+            listContas.Size = new Size(335, 218);
+            listContas.TabIndex = 0;
+            listContas.UseCompatibleStateImageBehavior = false;
             // 
-            // TabelaDisciplinaControl
+            // TabelaContaControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(grid);
-            Name = "TabelaDisciplinaControl";
-            Size = new Size(743, 370);
-            ((System.ComponentModel.ISupportInitialize)grid).EndInit();
+            Controls.Add(listContas);
+            Name = "TabelaContaControl";
+            Size = new Size(335, 218);
             ResumeLayout(false);
         }
 
         #endregion
 
-        private DataGridView grid;
+        private ListView listContas;
     }
 }

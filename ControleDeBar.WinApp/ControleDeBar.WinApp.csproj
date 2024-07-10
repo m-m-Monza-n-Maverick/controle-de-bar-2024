@@ -31,9 +31,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="ModuloConta\TabelaContasAbertasControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Update="ModuloConta\TabelaContaControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

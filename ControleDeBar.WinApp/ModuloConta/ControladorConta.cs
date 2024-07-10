@@ -1,14 +1,14 @@
 ﻿using ControladeDeBar.Infra.Orm.Compartilhado;
-using ControleDeBar.Dominio.Compartilhado;
 using ControleDeBar.Dominio.ModuloConta;
 using ControleDeBar.Dominio.ModuloPedido;
 using ControleDeBar.WinApp.Compartilhado;
+
 namespace ControleDeBar.WinApp.ModuloConta
 {
-    public class ControladorConta(IRepositorioConta repositorioConta, IRepositorioPedido repositorioPedido, ControleDeBarDbContext dbContext) : ControladorBase, IControladorContasAbertas
+    public class ControladorConta(IRepositorioConta repositorioConta, IRepositorioPedido repositorioPedido, ControleDeBarDbContext dbContext) : ControladorBase
     {
         TabelaContaControl tabelaConta;
-        TabelaContasAbertasControl tabelaContasAbertas;
+        IRepositorioConta RepositorioConta = repositorioConta;
 
         #region ToolTips
         public override string TipoCadastro { get => "Conta"; }
@@ -38,7 +38,7 @@ namespace ControleDeBar.WinApp.ModuloConta
         }
         public override void Editar()
         {
-            int idSelecionado = tabelaConta.ObterRegistroSelecionado();
+            int idSelecionado = tabelaConta.ObterIdSelecionado();
 
             Conta registroSelecionado = repositorioConta.SelecionarPorId(idSelecionado);
 
@@ -63,7 +63,7 @@ namespace ControleDeBar.WinApp.ModuloConta
         }
         public override void Excluir()
         {
-            int idSelecionado = tabelaConta.ObterRegistroSelecionado();
+            int idSelecionado = tabelaConta.ObterIdSelecionado();
 
             Conta registroSelecionado = repositorioConta.SelecionarPorId(idSelecionado);
 
@@ -74,12 +74,68 @@ namespace ControleDeBar.WinApp.ModuloConta
                 registroSelecionado, "excluído");
         }
         #endregion
+        public void ExibirFaturamento() 
+        {
+            TelaFaturamentoForm telaFaturamento = new(repositorioConta);
+            DialogResult resultado = telaFaturamento.ShowDialog();
+
+            /*decimal faturamento = 0;
+            TipoFiltroFaturamentoEnum filtroSelecionado 
+                = telaFaturamento.FiltroSelecionado;
+            
+            List<Conta> contas = RepositorioConta.SelecionarTodos();
+            DateTime startDate, endDate;
+            
+            if (filtroSelecionado == TipoFiltroFaturamentoEnum.Sempre)
+            {
+                foreach (Conta c in contas)
+                    faturamento =+ c.ValorTotal;
+            }
+            else if (filtroSelecionado == TipoFiltroFaturamentoEnum.Dia) 
+            {
+                foreach (Conta c in contas)
+                {
+                    if (c.Data == DateTime.Today)
+                        faturamento =+ c.ValorTotal;
+                }
+            }
+            else if (filtroSelecionado == TipoFiltroFaturamentoEnum.Semana) 
+            {
+                startDate = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek);
+                endDate = startDate.AddDays(6);
+                faturamento = contas.Where(c => c.Data.Date >= startDate && c.Data.Date <= endDate).Sum(c => c.ValorTotal);
+            }
+            else if (filtroSelecionado == TipoFiltroFaturamentoEnum.Mes) 
+            {
+                startDate = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
+                endDate = startDate.AddMonths(1).AddDays(-1);
+                faturamento = contas.Where(c => c.Data.Date >= startDate && c.Data.Date <= endDate).Sum(c => c.ValorTotal);
+            }
+            else if (filtroSelecionado == TipoFiltroFaturamentoEnum.Periodo) 
+            {
+                startDate = telaFaturamento.DiaInicio();
+                endDate = telaFaturamento.DiaFim();
+                faturamento = contas.Where(c => c.Data.Date >= startDate && c.Data.Date <= endDate).Sum(c => c.ValorTotal);
+            }
+                return faturamento;*/
+        }
 
         public void FecharConta()
         {
-            int idSelecionado = tabelaContasAbertas.ObterRegistroSelecionado();
+            int idSelecionado = tabelaConta.ObterIdSelecionado();
 
             Conta registroSelecionado = repositorioConta.SelecionarPorId(idSelecionado);
+
+            if (registroSelecionado.EmAberto == false)
+            {
+                MessageBox.Show(
+                $"Esta conta já foi fechada",
+                $"Erro",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+
+                return;
+            }
 
             if (SemSeleção(registroSelecionado) || !DesejaRealmenteFecharConta(registroSelecionado)) return;
 
@@ -98,18 +154,11 @@ namespace ControleDeBar.WinApp.ModuloConta
 
             return tabelaConta;
         }
-        public UserControl ObterListagemContasAbertas()
-        {
-            tabelaContasAbertas ??= new();
-
-            CarregarContasEmAberto();
-
-            return tabelaContasAbertas;
-        }
+        
         public override void CarregarRegistros()
             => tabelaConta.AtualizarRegistros(repositorioConta.SelecionarTodos());
         public void CarregarContasEmAberto()
-            => tabelaContasAbertas.AtualizarRegistros(repositorioConta.SelecionarTodos());
+            => tabelaConta.AtualizarRegistros(repositorioConta.SelecionarTodos());
         protected bool DesejaRealmenteFecharConta(Conta entidadeSelecionada)
         {
             DialogResult resposta = MessageBox.Show(

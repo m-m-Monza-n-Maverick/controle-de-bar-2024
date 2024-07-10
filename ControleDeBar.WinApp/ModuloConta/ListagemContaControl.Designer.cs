@@ -1,6 +1,6 @@
 ﻿namespace ControleDeBar.WinApp.ModuloConta
 {
-    partial class TabelaContasAbertasControl
+    partial class ListagemContaControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,32 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            grid = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)grid).BeginInit();
+            ListViewItem listViewItem1 = new ListViewItem(new string[] { "", "Contas Em aberto", "Contas Fechadas" }, -1);
+            listContas = new ListView();
             SuspendLayout();
             // 
-            // grid
+            // listContas
             // 
-            grid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            grid.Dock = DockStyle.Fill;
-            grid.Location = new Point(0, 0);
-            grid.Name = "grid";
-            grid.Size = new Size(743, 370);
-            grid.TabIndex = 0;
+            listContas.Dock = DockStyle.Fill;
+            listContas.FullRowSelect = true;
+            listContas.GridLines = true;
+            listContas.Items.AddRange(new ListViewItem[] { listViewItem1 });
+            listContas.Location = new Point(0, 0);
+            listContas.Name = "listContas";
+            listContas.Size = new Size(178, 169);
+            listContas.TabIndex = 0;
+            listContas.UseCompatibleStateImageBehavior = false;
+            listContas.View = View.Details;
             // 
-            // TabelaDisciplinaControl
+            // ListagemContaControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(grid);
-            Name = "TabelaDisciplinaControl";
-            Size = new Size(743, 370);
-            ((System.ComponentModel.ISupportInitialize)grid).EndInit();
+            Controls.Add(listContas);
+            Name = "ListagemContaControl";
+            Size = new Size(178, 169);
             ResumeLayout(false);
         }
 
         #endregion
 
-        private DataGridView grid;
+        private ListView listContas;
     }
 }

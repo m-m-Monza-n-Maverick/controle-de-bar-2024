@@ -1,5 +1,6 @@
 ﻿using ControleDeBar.Dominio.ModuloConta;
-using ControleDeBar.WinApp.Compartilhado.Extensions;
+using System.Web;
+
 namespace ControleDeBar.WinApp.ModuloConta
 {
     public partial class TabelaContaControl : UserControl
@@ -8,33 +9,88 @@ namespace ControleDeBar.WinApp.ModuloConta
         {
             InitializeComponent();
 
-            grid.Columns.AddRange(ObterColunas());
-
-            grid.ConfigurarGridSomenteLeitura();
-            grid.ConfigurarGridZebrado();
+            ConfigurarColunas();
+            ConfigurarListView();
         }
 
         public void AtualizarRegistros(List<Conta> contas)
         {
-            string emAberto = "Em aberto";
-            grid.Rows.Clear();
+            listContas.Items.Clear();
+            listContas.Groups.Clear();
 
-            foreach (Conta c in contas)
+            var contasAgrupadas = contas.GroupBy(t => t.EmAberto).OrderByDescending(g => g.Key);
+
+            foreach (var grupo in contasAgrupadas)
             {
-                if (!c.EmAberto) emAberto = "Fechada";
-                grid.Rows.Add(c.Id, c.Mesa, c.Garcom, c.ValorTotal, c.Data.ToShortDateString(), emAberto);
+                string situacao = grupo.Key ? "Em Aberto" : "Fechadas";
+                ListViewGroup listViewGroup =
+                    new ListViewGroup($"Contas {situacao}", HorizontalAlignment.Left);
+
+                listContas.Groups.Add(listViewGroup);
+
+                foreach (Conta c in grupo)
+                {
+                    ListViewItem item = new ListViewItem(c.Id.ToString())
+                    {
+                        Tag = c,
+                    };
+
+                    item.SubItems.Add(c.Mesa.ToString());
+                    item.SubItems.Add(c.Garcom.ToString());
+                    item.SubItems.Add(c.Data.ToShortDateString());
+                    item.SubItems.Add(c.ValorTotal.ToString());
+
+                    item.Group = listViewGroup;
+
+                    listContas.Items.Add(item);
+                }
             }
+
+            ConfigurarAparenciaColunas();
         }
 
-        public int ObterRegistroSelecionado() => grid.SelecionarId();
-        private DataGridViewColumn[] ObterColunas() =>
-        [
-            new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id" },
-            new DataGridViewTextBoxColumn { DataPropertyName = "Mesa", HeaderText = "Mesa" },
-            new DataGridViewTextBoxColumn { DataPropertyName = "Garcom", HeaderText = "Garçom" },
-            new DataGridViewTextBoxColumn { DataPropertyName = "ValorTotal", HeaderText = "Valor total" },
-            new DataGridViewTextBoxColumn { DataPropertyName = "Data", HeaderText = "Data" },
-            new DataGridViewTextBoxColumn { DataPropertyName = "EmAberto", HeaderText = "Situação" },
-        ];
+        public int ObterIdSelecionado()
+        {
+            if (listContas.SelectedItems.Count == 0)
+                return -1;
+
+            var tarefaSelecionada = (Conta)listContas.SelectedItems[0].Tag;
+
+            return tarefaSelecionada.Id;
+        }
+
+        private void ConfigurarColunas()
+        {
+            ColumnHeader[] colunas = new ColumnHeader[]
+            {
+                new ColumnHeader() { Text = "Id"},
+                new ColumnHeader() { Text = "Mesa", Width = 180},
+                new ColumnHeader() { Text = "Garçom", Width = 180},
+                new ColumnHeader() { Text = "Data", Width = 180},
+                new ColumnHeader() { Text = "Valor Total", Width = 180}
+            };
+
+            listContas.Columns.AddRange(colunas);
+        }
+
+        private void ConfigurarAparenciaColunas()
+        {
+            //listContas.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+
+            listContas.Columns[0].Width = 80;
+            //listContas.Columns[1].Width = 180;
+            //listContas.Columns[2].Width = 180;
+            //listContas.Columns[3].Width = 180;
+            //listContas.Columns[4].Width = 180;
+        }
+
+        private void ConfigurarListView()
+        {
+            listContas.MultiSelect = false;
+            listContas.FullRowSelect = true;
+            listContas.GridLines = true;
+
+            listContas.View = View.Details;
+        }
     }
 }
