@@ -92,8 +92,7 @@ namespace ControleDeBar.WinApp.ModuloConta
             txtQuantidade.Value = ((Pedido)listPedidos.SelectedItem).Quantidade;
             txtQuantidade.Enabled = true;
 
-            valorTotal -= ((Pedido)listPedidos.SelectedItem).Valor;
-            lblValorTotal.Text = valorTotal.ToString();
+            btnRemover_Click(sender, e);
         }
         private void btnRemover_Click(object sender, EventArgs e)
         {

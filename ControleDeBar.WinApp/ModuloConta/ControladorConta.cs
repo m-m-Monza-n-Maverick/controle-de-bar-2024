@@ -77,47 +77,7 @@ namespace ControleDeBar.WinApp.ModuloConta
         public void ExibirFaturamento() 
         {
             TelaFaturamentoForm telaFaturamento = new(repositorioConta);
-            DialogResult resultado = telaFaturamento.ShowDialog();
-
-            /*decimal faturamento = 0;
-            TipoFiltroFaturamentoEnum filtroSelecionado 
-                = telaFaturamento.FiltroSelecionado;
-            
-            List<Conta> contas = RepositorioConta.SelecionarTodos();
-            DateTime startDate, endDate;
-            
-            if (filtroSelecionado == TipoFiltroFaturamentoEnum.Sempre)
-            {
-                foreach (Conta c in contas)
-                    faturamento =+ c.ValorTotal;
-            }
-            else if (filtroSelecionado == TipoFiltroFaturamentoEnum.Dia) 
-            {
-                foreach (Conta c in contas)
-                {
-                    if (c.Data == DateTime.Today)
-                        faturamento =+ c.ValorTotal;
-                }
-            }
-            else if (filtroSelecionado == TipoFiltroFaturamentoEnum.Semana) 
-            {
-                startDate = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek);
-                endDate = startDate.AddDays(6);
-                faturamento = contas.Where(c => c.Data.Date >= startDate && c.Data.Date <= endDate).Sum(c => c.ValorTotal);
-            }
-            else if (filtroSelecionado == TipoFiltroFaturamentoEnum.Mes) 
-            {
-                startDate = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
-                endDate = startDate.AddMonths(1).AddDays(-1);
-                faturamento = contas.Where(c => c.Data.Date >= startDate && c.Data.Date <= endDate).Sum(c => c.ValorTotal);
-            }
-            else if (filtroSelecionado == TipoFiltroFaturamentoEnum.Periodo) 
-            {
-                startDate = telaFaturamento.DiaInicio();
-                endDate = telaFaturamento.DiaFim();
-                faturamento = contas.Where(c => c.Data.Date >= startDate && c.Data.Date <= endDate).Sum(c => c.ValorTotal);
-            }
-                return faturamento;*/
+            DialogResult resultado = telaFaturamento.ShowDialog();            
         }
 
         public void FecharConta()
