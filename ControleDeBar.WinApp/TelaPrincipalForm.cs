@@ -36,8 +36,6 @@ namespace ControleDeBar.WinApp
         {
             InitializeComponent();
 
-            lblTipoCadastro.Text = string.Empty;
-
             dbContext = new();
 
             repositorioGarcom = new RepositorioGarcomEmOrm(dbContext);

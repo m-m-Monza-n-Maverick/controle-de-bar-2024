@@ -195,8 +195,8 @@
             // 
             lblTipoCadastro.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblTipoCadastro.Name = "lblTipoCadastro";
-            lblTipoCadastro.Size = new Size(123, 38);
-            lblTipoCadastro.Text = "Tipo de Cadastro";
+            lblTipoCadastro.Size = new Size(88, 38);
+            lblTipoCadastro.Text = "Bem-Vindo!";
             // 
             // pnlRegistros
             // 

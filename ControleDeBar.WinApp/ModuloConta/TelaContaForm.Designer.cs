@@ -59,7 +59,7 @@
             btnGravar.Location = new Point(420, 434);
             btnGravar.Name = "btnGravar";
             btnGravar.Size = new Size(75, 23);
-            btnGravar.TabIndex = 9;
+            btnGravar.TabIndex = 11;
             btnGravar.Text = "Gravar";
             btnGravar.UseVisualStyleBackColor = true;
             btnGravar.Click += btnGravar_Click;
@@ -70,7 +70,7 @@
             btnCancelar.Location = new Point(12, 434);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(75, 23);
-            btnCancelar.TabIndex = 8;
+            btnCancelar.TabIndex = 10;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
             // 
@@ -105,7 +105,7 @@
             groupBox1.Location = new Point(8, 128);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(493, 293);
-            groupBox1.TabIndex = 26;
+            groupBox1.TabIndex = 2;
             groupBox1.TabStop = false;
             groupBox1.Text = "Registro de Pedidos:";
             // 
@@ -118,7 +118,7 @@
             groupBox2.Location = new Point(9, 75);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(474, 218);
-            groupBox2.TabIndex = 35;
+            groupBox2.TabIndex = 6;
             groupBox2.TabStop = false;
             groupBox2.Text = "Pedidos:";
             // 
@@ -130,14 +130,14 @@
             listPedidos.Location = new Point(0, 66);
             listPedidos.Name = "listPedidos";
             listPedidos.Size = new Size(474, 150);
-            listPedidos.TabIndex = 5;
+            listPedidos.TabIndex = 9;
             // 
             // btnRemover
             // 
             btnRemover.Location = new Point(92, 27);
             btnRemover.Name = "btnRemover";
             btnRemover.Size = new Size(75, 23);
-            btnRemover.TabIndex = 7;
+            btnRemover.TabIndex = 8;
             btnRemover.Text = "Remover";
             btnRemover.UseVisualStyleBackColor = true;
             btnRemover.Click += btnRemover_Click;
@@ -147,7 +147,7 @@
             btnEditar.Location = new Point(11, 27);
             btnEditar.Name = "btnEditar";
             btnEditar.Size = new Size(75, 23);
-            btnEditar.TabIndex = 6;
+            btnEditar.TabIndex = 7;
             btnEditar.Text = "Editar";
             btnEditar.UseVisualStyleBackColor = true;
             btnEditar.Click += btnEditar_Click;
@@ -157,7 +157,7 @@
             btnAdicionar.Location = new Point(387, 34);
             btnAdicionar.Name = "btnAdicionar";
             btnAdicionar.Size = new Size(75, 23);
-            btnAdicionar.TabIndex = 4;
+            btnAdicionar.TabIndex = 5;
             btnAdicionar.Text = "Adicionar";
             btnAdicionar.UseVisualStyleBackColor = true;
             btnAdicionar.Click += btnAdicionar_Click;
@@ -169,7 +169,7 @@
             txtQuantidade.Maximum = new decimal(new int[] { 50, 0, 0, 0 });
             txtQuantidade.Name = "txtQuantidade";
             txtQuantidade.Size = new Size(52, 23);
-            txtQuantidade.TabIndex = 3;
+            txtQuantidade.TabIndex = 4;
             // 
             // label7
             // 
@@ -187,7 +187,7 @@
             cmbProduto.Location = new Point(87, 33);
             cmbProduto.Name = "cmbProduto";
             cmbProduto.Size = new Size(127, 23);
-            cmbProduto.TabIndex = 2;
+            cmbProduto.TabIndex = 3;
             cmbProduto.SelectionChangeCommitted += cmbProduto_SelectionChangeCommitted;
             // 
             // label6
