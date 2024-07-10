@@ -71,6 +71,7 @@
             txtId.Name = "txtId";
             txtId.Size = new Size(55, 23);
             txtId.TabIndex = 19;
+            txtId.Text = "0";
             // 
             // label2
             // 

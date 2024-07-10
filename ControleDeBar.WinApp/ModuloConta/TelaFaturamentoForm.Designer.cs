@@ -59,7 +59,7 @@
             groupBox.Location = new Point(12, 12);
             groupBox.Name = "groupBox";
             groupBox.Size = new Size(406, 238);
-            groupBox.TabIndex = 12;
+            groupBox.TabIndex = 0;
             groupBox.TabStop = false;
             groupBox.Text = "Selecione um Filtro:";
             // 
@@ -69,7 +69,7 @@
             rdbFaturamentoSempre.Location = new Point(24, 33);
             rdbFaturamentoSempre.Name = "rdbFaturamentoSempre";
             rdbFaturamentoSempre.Size = new Size(78, 24);
-            rdbFaturamentoSempre.TabIndex = 3;
+            rdbFaturamentoSempre.TabIndex = 1;
             rdbFaturamentoSempre.TabStop = true;
             rdbFaturamentoSempre.Text = "Sempre";
             rdbFaturamentoSempre.UseVisualStyleBackColor = true;
@@ -81,7 +81,7 @@
             txtTerminoPeriodo.Location = new Point(276, 183);
             txtTerminoPeriodo.Name = "txtTerminoPeriodo";
             txtTerminoPeriodo.Size = new Size(123, 27);
-            txtTerminoPeriodo.TabIndex = 2;
+            txtTerminoPeriodo.TabIndex = 7;
             txtTerminoPeriodo.Value = new DateTime(2024, 5, 30, 0, 0, 0, 0);
             // 
             // txtInicioPeriodo
@@ -91,7 +91,7 @@
             txtInicioPeriodo.Location = new Point(76, 183);
             txtInicioPeriodo.Name = "txtInicioPeriodo";
             txtInicioPeriodo.Size = new Size(123, 27);
-            txtInicioPeriodo.TabIndex = 2;
+            txtInicioPeriodo.TabIndex = 6;
             // 
             // label1
             // 
@@ -117,7 +117,7 @@
             rdbFaturamentoPeriodo.Location = new Point(24, 153);
             rdbFaturamentoPeriodo.Name = "rdbFaturamentoPeriodo";
             rdbFaturamentoPeriodo.Size = new Size(149, 24);
-            rdbFaturamentoPeriodo.TabIndex = 0;
+            rdbFaturamentoPeriodo.TabIndex = 5;
             rdbFaturamentoPeriodo.TabStop = true;
             rdbFaturamentoPeriodo.Text = "Período especifico";
             rdbFaturamentoPeriodo.UseVisualStyleBackColor = true;
@@ -129,7 +129,7 @@
             rdbFaturamentoMes.Location = new Point(24, 123);
             rdbFaturamentoMes.Name = "rdbFaturamentoMes";
             rdbFaturamentoMes.Size = new Size(103, 24);
-            rdbFaturamentoMes.TabIndex = 0;
+            rdbFaturamentoMes.TabIndex = 4;
             rdbFaturamentoMes.TabStop = true;
             rdbFaturamentoMes.Text = "Ultimo mês";
             rdbFaturamentoMes.UseVisualStyleBackColor = true;
@@ -140,7 +140,7 @@
             rdbFaturamentoSemana.Location = new Point(24, 93);
             rdbFaturamentoSemana.Name = "rdbFaturamentoSemana";
             rdbFaturamentoSemana.Size = new Size(126, 24);
-            rdbFaturamentoSemana.TabIndex = 0;
+            rdbFaturamentoSemana.TabIndex = 3;
             rdbFaturamentoSemana.TabStop = true;
             rdbFaturamentoSemana.Text = "Ultima semana";
             rdbFaturamentoSemana.UseVisualStyleBackColor = true;
@@ -151,7 +151,7 @@
             rdbFaturamentoDia.Location = new Point(24, 63);
             rdbFaturamentoDia.Name = "rdbFaturamentoDia";
             rdbFaturamentoDia.Size = new Size(93, 24);
-            rdbFaturamentoDia.TabIndex = 0;
+            rdbFaturamentoDia.TabIndex = 2;
             rdbFaturamentoDia.TabStop = true;
             rdbFaturamentoDia.Text = "Dia (hoje)";
             rdbFaturamentoDia.UseVisualStyleBackColor = true;
@@ -171,7 +171,7 @@
             faturamentoCalculado.AutoSize = true;
             faturamentoCalculado.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             faturamentoCalculado.ForeColor = Color.LimeGreen;
-            faturamentoCalculado.Location = new Point(344, 275);
+            faturamentoCalculado.Location = new Point(326, 275);
             faturamentoCalculado.Name = "faturamentoCalculado";
             faturamentoCalculado.Size = new Size(36, 25);
             faturamentoCalculado.TabIndex = 14;
@@ -182,7 +182,7 @@
             btnCalcular.Location = new Point(29, 275);
             btnCalcular.Name = "btnCalcular";
             btnCalcular.Size = new Size(95, 30);
-            btnCalcular.TabIndex = 15;
+            btnCalcular.TabIndex = 8;
             btnCalcular.Text = "Calcular";
             btnCalcular.UseVisualStyleBackColor = true;
             btnCalcular.Click += btnCalcular_Click;
@@ -196,6 +196,7 @@
             Controls.Add(lblSting);
             Controls.Add(groupBox);
             Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximizeBox = false;
             Name = "TelaFaturamentoForm";
             ShowIcon = false;

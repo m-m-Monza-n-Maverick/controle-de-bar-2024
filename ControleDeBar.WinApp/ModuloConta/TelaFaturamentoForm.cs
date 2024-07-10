@@ -19,30 +19,41 @@ namespace ControleDeBar.WinApp.ModuloConta
             DateTime startDate, endDate;
 
             if (rdbFaturamentoSempre.Checked)
-                faturamento = contas.Sum(c => c.ValorTotal);
+                faturamento = contas.Where(c => c.EmAberto == false).Sum(c => c.ValorTotal);
 
             else if (rdbFaturamentoDia.Checked)
-                faturamento = contas.Where(c => c.Data.Date == DateTime.Today).Sum(c => c.ValorTotal);
+                faturamento = contas.Where(
+                    c => c.Data.Date == DateTime.Today && 
+                    c.EmAberto == false).Sum(c => c.ValorTotal);
 
             else if (rdbFaturamentoSemana.Checked)
             {
                 startDate = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek);
                 endDate = startDate.AddDays(6);
-                faturamento = contas.Where(c => c.Data.Date >= startDate && c.Data.Date <= endDate).Sum(c => c.ValorTotal);
+                faturamento = contas.Where(
+                    c => c.Data.Date >= startDate && 
+                    c.Data.Date <= endDate && 
+                    c.EmAberto == false).Sum(c => c.ValorTotal);
             }
 
             else if (rdbFaturamentoMes.Checked)
             {
                 startDate = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
                 endDate = startDate.AddMonths(1).AddDays(-1);
-                faturamento = contas.Where(c => c.Data.Date >= startDate && c.Data.Date <= endDate).Sum(c => c.ValorTotal);
+                faturamento = contas.Where(
+                    c => c.Data.Date >= startDate && 
+                    c.Data.Date <= endDate && 
+                    c.EmAberto == false).Sum(c => c.ValorTotal);
             }
 
             else if (rdbFaturamentoPeriodo.Checked)
             {
                 startDate = txtInicioPeriodo.Value;
                 endDate = txtTerminoPeriodo.Value;
-                faturamento = contas.Where(c => c.Data.Date >= startDate && c.Data.Date <= endDate).Sum(c => c.ValorTotal);
+                faturamento = contas.Where(
+                    c => c.Data.Date >= startDate && 
+                    c.Data.Date <= endDate && 
+                    c.EmAberto == false).Sum(c => c.ValorTotal);
             }
 
             faturamentoCalculado.Text = faturamento.ToString("f2");
