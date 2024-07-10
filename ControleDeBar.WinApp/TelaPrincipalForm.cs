@@ -16,6 +16,7 @@ using ControleDeBar.WinApp.ModuloGarcom;
 using ControleDeBar.WinApp.ModuloMesa;
 using ControleDeBar.WinApp.ModuloPedido;
 using ControleDeBar.WinApp.ModuloProduto;
+
 namespace ControleDeBar.WinApp
 {
     public partial class TelaPrincipalForm : Form
@@ -58,9 +59,6 @@ namespace ControleDeBar.WinApp
             => SelecionaModulo(ref controlador, () => controlador = new ControladorProduto(repositorioProduto, dbContext),
                     repositorioProduto.SelecionarTodos().Count);
 
-        private void btnCadastroPedido_Click(object sender, EventArgs e)
-            => SelecionaModulo(ref controlador, () => controlador = new ControladorPedido(repositorioPedido, dbContext),
-                repositorioPedido.SelecionarTodos().Count);
         private void mesaMenuItem_Click(object sender, EventArgs e)
             => SelecionaModulo(ref controlador, () => controlador = new ControladorMesa(repositorioMesa, dbContext),
                 repositorioMesa.SelecionarTodos().Count);
@@ -68,9 +66,6 @@ namespace ControleDeBar.WinApp
             => SelecionaModulo(ref controlador, () => controlador = new ControladorConta(repositorioConta, repositorioPedido, dbContext),
                 repositorioConta.SelecionarTodos().Count);
         #endregion
-        //private void btnCadastroPedido_Click(object sender, EventArgs e)
-        //    => SelecionaModulo(ref controlador, () => controlador = new ControladorPedido(repositorioPedido, dbContext),
-        //        repositorioPedido.SelecionarTodos().Count);
 
         #region Botões
         private void btnAdicionar_Click_1(object sender, EventArgs e)
@@ -79,21 +74,15 @@ namespace ControleDeBar.WinApp
             => controlador.Editar();
         private void btnExcluir_Click(object sender, EventArgs e)
             => controlador.Excluir();
-        private void btnContas_Click(object sender, EventArgs e)
+        private void btnFaturamento_Click(object sender, EventArgs e)
         {
-            if (controlador is ControladorConta controladorContasAbertas)
-            {
-                lblTipoCadastro.Text = "Visualizando contas em aberto";
-                btnFecharConta.Enabled = true;
-                btnFecharConta.ToolTipText = controladorContasAbertas.ToolTipFecharConta;
-
-                ConfigurarListagemContasAbertas(controladorContasAbertas);
-            }
+            if (controlador is ControladorConta controladorConta)
+                controladorConta.ExibirFaturamento();
         }        
         private void btnFecharConta_Click(object sender, EventArgs e)
         {
-            if (controlador is IControladorContasAbertas controladorContasAbertas)
-                controladorContasAbertas.FecharConta();
+            if (controlador is ControladorConta controladorConta)
+                controladorConta.FecharConta();
         }
         #endregion
 
@@ -113,8 +102,8 @@ namespace ControleDeBar.WinApp
             btnEditar.Enabled = true;
             btnExcluir.Enabled = true;
 
-            btnCadastroPedido.Enabled = controladorSelecionado is IControladorGeraPedido;
-            btnContasAbertas.Enabled = controladorSelecionado is IControladorContasAbertas;
+            btnFecharConta.Enabled = controladorSelecionado is ControladorConta;
+            btnFaturamento.Enabled = controladorSelecionado is ControladorConta;
 
             ConfigurarToolTips(controladorSelecionado);
         }
@@ -124,11 +113,11 @@ namespace ControleDeBar.WinApp
             btnEditar.ToolTipText = controladorSelecionado.ToolTipEditar;
             btnExcluir.ToolTipText = controladorSelecionado.ToolTipExcluir;
 
-            if (controladorSelecionado is IControladorGeraPedido controladorGeraPedido)
-                btnCadastroPedido.ToolTipText = controladorGeraPedido.ToolTipGerarPedido;
-
-            if (controladorSelecionado is IControladorContasAbertas controladorContaDaMesa)
-                btnContasAbertas.ToolTipText = controladorContaDaMesa.ToolTipContasAbertas;
+            if (controladorSelecionado is ControladorConta)
+            {
+                btnFaturamento.ToolTipText = "Faturamento";
+                btnFecharConta.ToolTipText = "Fechar Conta";
+            }
         }
         private void ConfigurarListagem(ControladorBase controladorSelecionado)
         {
@@ -138,15 +127,6 @@ namespace ControleDeBar.WinApp
             pnlRegistros.Controls.Clear();
             pnlRegistros.Controls.Add(listagemEntidades);
         }
-        private void ConfigurarListagemContasAbertas(ControladorConta controladorContasAbertas)
-        {
-            UserControl listagemEntidades = controladorContasAbertas.ObterListagemContasAbertas();
-
-            listagemEntidades.Dock = DockStyle.Fill;
-            pnlRegistros.Controls.Clear();
-            pnlRegistros.Controls.Add(listagemEntidades);
-        }
         #endregion
-
     }
 }

@@ -41,12 +41,11 @@
             btnEditar = new ToolStripButton();
             btnExcluir = new ToolStripButton();
             toolStripSeparator2 = new ToolStripSeparator();
-            btnContasAbertas = new ToolStripButton();
             btnFecharConta = new ToolStripButton();
+            btnFaturamento = new ToolStripButton();
             toolStripSeparator4 = new ToolStripSeparator();
             lblTipoCadastro = new ToolStripLabel();
             pnlRegistros = new Panel();
-            btnCadastroPedido = new ToolStripButton();
             menuStrip1.SuspendLayout();
             statusStrip1.SuspendLayout();
             toolStrip1.SuspendLayout();
@@ -115,7 +114,7 @@
             // 
             // toolStrip1
             // 
-            toolStrip1.Items.AddRange(new ToolStripItem[] { btnAdicionar, btnEditar, btnExcluir, toolStripSeparator2, btnCadastroPedido, btnContasAbertas, btnFecharConta, toolStripSeparator4, lblTipoCadastro });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { btnAdicionar, btnEditar, btnExcluir, toolStripSeparator2, btnFecharConta, btnFaturamento, toolStripSeparator4, lblTipoCadastro });
             toolStrip1.Location = new Point(0, 28);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(800, 41);
@@ -163,18 +162,6 @@
             toolStripSeparator2.Name = "toolStripSeparator2";
             toolStripSeparator2.Size = new Size(6, 41);
             // 
-            // btnContasAbertas
-            // 
-            btnContasAbertas.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            btnContasAbertas.Enabled = false;
-            btnContasAbertas.Image = WinApp.Properties.Resources.btnContas;
-            btnContasAbertas.ImageScaling = ToolStripItemImageScaling.None;
-            btnContasAbertas.ImageTransparentColor = Color.Magenta;
-            btnContasAbertas.Name = "btnContasAbertas";
-            btnContasAbertas.Padding = new Padding(5);
-            btnContasAbertas.Size = new Size(37, 38);
-            btnContasAbertas.Click += btnContas_Click;
-            // 
             // btnFecharConta
             // 
             btnFecharConta.DisplayStyle = ToolStripItemDisplayStyle.Image;
@@ -186,6 +173,18 @@
             btnFecharConta.Padding = new Padding(5);
             btnFecharConta.Size = new Size(37, 38);
             btnFecharConta.Click += btnFecharConta_Click;
+            // 
+            // btnFaturamento
+            // 
+            btnFaturamento.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            btnFaturamento.Enabled = false;
+            btnFaturamento.Image = WinApp.Properties.Resources.btnContas;
+            btnFaturamento.ImageScaling = ToolStripItemImageScaling.None;
+            btnFaturamento.ImageTransparentColor = Color.Magenta;
+            btnFaturamento.Name = "btnFaturamento";
+            btnFaturamento.Padding = new Padding(5);
+            btnFaturamento.Size = new Size(37, 38);
+            btnFaturamento.Click += btnFaturamento_Click;
             // 
             // toolStripSeparator4
             // 
@@ -201,22 +200,12 @@
             // 
             // pnlRegistros
             // 
+            pnlRegistros.BorderStyle = BorderStyle.FixedSingle;
             pnlRegistros.Dock = DockStyle.Fill;
             pnlRegistros.Location = new Point(0, 69);
             pnlRegistros.Name = "pnlRegistros";
             pnlRegistros.Size = new Size(800, 446);
             pnlRegistros.TabIndex = 3;
-            // 
-            // btnCadastroPedido
-            // 
-            btnCadastroPedido.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            btnCadastroPedido.Enabled = false;
-            btnCadastroPedido.Image = WinApp.Properties.Resources.Info2;
-            btnCadastroPedido.ImageScaling = ToolStripItemImageScaling.None;
-            btnCadastroPedido.ImageTransparentColor = Color.DarkOrchid;
-            btnCadastroPedido.Name = "btnCadastroPedido";
-            btnCadastroPedido.Padding = new Padding(5);
-            btnCadastroPedido.Size = new Size(38, 38);
             // 
             // TelaPrincipalForm
             // 
@@ -227,7 +216,9 @@
             Controls.Add(toolStrip1);
             Controls.Add(statusStrip1);
             Controls.Add(menuStrip1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             MainMenuStrip = menuStrip1;
+            MaximizeBox = false;
             Name = "TelaPrincipalForm";
             ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
@@ -259,10 +250,9 @@
         private ToolStripMenuItem produtoMenuItem;
         private object Properties;
         private ToolStripMenuItem mesaMenuItem;
-        private ToolStripButton btnContasAbertas;
+        private ToolStripButton btnFaturamento;
         private ToolStripButton btnFecharConta;
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripMenuItem contaMenuItem;
-        private ToolStripButton btnCadastroPedido;
     }
 }

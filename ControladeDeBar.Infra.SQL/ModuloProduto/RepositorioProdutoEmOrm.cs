@@ -13,7 +13,8 @@ namespace ControladeDeBar.Infra.SQL.ModuloProduto
         {
             Produto produto = dbContext.Produtos.Find(id)!;
 
-            if (produto == null) return false;
+            if (produto == null) 
+                return false;
 
             produto.AtualizarRegistro(produtoAtualizado);
 
@@ -26,7 +27,8 @@ namespace ControladeDeBar.Infra.SQL.ModuloProduto
         {
             Produto produto = dbContext.Produtos.Find(id)!;
 
-            if (produto == null) return false;
+            if (produto == null) 
+                return false;
 
             dbContext.Produtos.Remove(produto);
             dbContext.SaveChanges();
